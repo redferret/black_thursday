@@ -152,4 +152,16 @@ RSpec.describe SalesAnalyst do
       expect(expected_deviation).to eq actual_deviation
     end
   end
+
+  describe '#top_merchants_by_invoice_count' do
+    it 'returns an array of merchants two StDevs above mean' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+      merchant_ids = [1, 3]
+      actual_merchants = sales_analyst.top_merchants_by_invoice_count
+
+      actual_merchants.each do |merchant|
+        expect(merchant_ids.include?(merchant.id)).to eq true
+      end
+    end
+  end
 end
