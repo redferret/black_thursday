@@ -151,7 +151,7 @@ RSpec.describe SalesAnalyst do
       }
 
       actual = sales_analyst.num_of_invoices_per_merchant
-      require 'pry'; binding.pry
+
       expect(actual).to be_a Hash
       expect(actual).to eq expected_hash
     end
@@ -189,6 +189,36 @@ RSpec.describe SalesAnalyst do
       actual_merchants.each do |merchant|
         expect(merchant_ids.include?(merchant.id)).to eq true
       end
+    end
+  end
+
+  describe '#invoice_created_at_times' do
+    it 'returns an array of invoice times as Time objects' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+
+      expect(sales_analyst.invoice_created_at_times.first).is_a? Time
+      expect(sales_analyst.invoice_created_at_times).is_a? Array
+      expect(sales_analyst.invoice_created_at_times.length).to eq 36
+    end
+  end
+
+  describe '#invoice_created_at_by_weekday' do
+    it 'returns an array of integers corresponding to weekday created' do
+
+
+    end
+  end
+
+  describe '#convert_wday_integers_to_hash' do
+    it 'creates a hash with weekdays as keys and num_of_invoices as values' do
+
+
+    end
+  end
+
+  describe '#top_days_by_invoice_count' do
+    it 'returns an array of days 1StdDev above in invoices created' do
+
     end
   end
 end

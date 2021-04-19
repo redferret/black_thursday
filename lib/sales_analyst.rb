@@ -101,10 +101,8 @@ class SalesAnalyst
   end
 
   def average_invoices_per_merchant_standard_deviation
-    invoice_count_per_merchant = num_of_invoices_per_merchant
     mean = average_invoices_per_merchant
-
-    invoice_counts = invoice_count_per_merchant.values
+    invoice_counts = num_of_invoices_per_merchant.values
     std_dev = standard_deviation(invoice_counts, mean)
   end
 
@@ -113,7 +111,7 @@ class SalesAnalyst
     std_dev = average_invoices_per_merchant_standard_deviation
 
     z = standard_deviations_of_mean(mean, std_dev, 2)
-        
+
     merchants = []
     num_of_invoices_per_merchant.each_pair do |merchant, invoice_count|
       merchants << merchant if invoice_count >= z 
@@ -132,6 +130,50 @@ class SalesAnalyst
       merchants << merchant if invoice_count <= z
     end
     merchants
+  end
+
+  def invoice_created_at_times
+    all_invoices.map do |invoice|
+      Time.parse(invoice.created_at)
+    end
+  end
+
+  def invoice_created_at_by_weekday
+    invoice_created_at_times.map do |time|
+      time.wday
+    end
+  end
+
+  def convert_wday_integers_to_hash
+    invoice_created_at_by_weekday.map do |integer|
+      if integer == 0
+        integer = 'Sunday'
+      elsif integer == 1
+        integer = 'Monday'
+      elsif integer == 2
+        integer = 'Tuesday'
+      elsif integer == 3 
+        integer = 'Wednesday'
+      elsif integer == 4
+        integer = 'Thursday'
+      elsif integer == 5
+        integer = 'Friday'
+      elsif integer == 6
+        integer = 'Saturday'
+      end
+    end.tally
+  end
+
+  def top_days_by_invoice_count
+    threshold = standard_deviations_of_mean(average_invoices_per_merchant, average_invoices_per_merchant_standard_deviation)
+    top_days = []
+    weekday_hash = convert_wday_integers_to_hash
+    weekday_hash.map do |weekday, invoices|
+      if invoices > threshold
+        top_days << weekday
+      end
+    end
+    top_days
   end
 
 
