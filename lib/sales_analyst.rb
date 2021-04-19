@@ -80,6 +80,11 @@ class SalesAnalyst
     std_dev.round(2)
   end
 
+  def average_invoices_per_merchant
+    average = all_invoices.length.to_f / all_merchants.length
+    average.round(2)
+  end
+
   def all_items
     @sales_engine.all_items
   end

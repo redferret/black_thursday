@@ -110,8 +110,15 @@ RSpec.describe SalesAnalyst do
     it 'returns all invoices' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
 
-
       expect(sales_analyst.all_invoices.length).to eq 10
+    end
+  end
+
+  describe '#average_invoices_per_merchant' do
+    it 'returns the average number of invoices per merchant' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+
+      expect(sales_analyst.average_invoices_per_merchant). to eq 2.5
     end
   end
 end
