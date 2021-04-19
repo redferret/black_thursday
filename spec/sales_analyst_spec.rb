@@ -213,8 +213,15 @@ RSpec.describe SalesAnalyst do
 
   describe '#convert_wday_integers_to_hash' do
     it 'creates a hash with weekdays as keys and num_of_invoices as values' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
 
-
+      expected = {
+        'Friday' => 9,
+        'Saturday' => 4,
+        'Tuesday' => 21,
+        'Wednesday' => 2
+      }
+      expect(sales_analyst.convert_wday_integers_to_hash).to eq expected
     end
   end
 
