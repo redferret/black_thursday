@@ -24,25 +24,25 @@ class SalesAnalystMocks
     items_as_hashes += ItemMocks.items_as_hashes(unit_price: 50.0, number_of_hashes: 12,
                                                  merchant_id_range: (3..3))
 
-    invoices_as_hashes = InvoiceMocks.invoices_as_hashes(number_of_hashes: 1, random_dates: false,
+    invoices_as_hashes = InvoiceMocks.invoices_as_hashes(number_of_hashes: 1, random_dates: false, created_at: Proc.new{Time.new(2020, 1, 11)},
       status: :pending, merchant_id_range: (0..0))
-    invoices_as_hashes += InvoiceMocks.invoices_as_hashes(number_of_hashes: 2, random_dates: false,
+    invoices_as_hashes += InvoiceMocks.invoices_as_hashes(number_of_hashes: 2, random_dates: false, created_at: Proc.new{Time.new(2020, 2, 12)},
       status: :shipped, merchant_id_range: (1..1))
-    invoices_as_hashes += InvoiceMocks.invoices_as_hashes(number_of_hashes: 3, random_dates: false,
+    invoices_as_hashes += InvoiceMocks.invoices_as_hashes(number_of_hashes: 3, random_dates: false, created_at: Proc.new{Time.new(2020, 3, 13)},
       status: :returned, merchant_id_range: (2..2))
-    invoices_as_hashes += InvoiceMocks.invoices_as_hashes(number_of_hashes: 3, random_dates: false,
+    invoices_as_hashes += InvoiceMocks.invoices_as_hashes(number_of_hashes: 3, random_dates: false, created_at: Proc.new{Time.new(2020, 4, 14)},
       status: :shipped, merchant_id_range: (3..3))
-    invoices_as_hashes += InvoiceMocks.invoices_as_hashes(number_of_hashes: 3, random_dates: false,
+    invoices_as_hashes += InvoiceMocks.invoices_as_hashes(number_of_hashes: 3, random_dates: false, created_at: Proc.new{Time.new(2020, 5, 15)},
       status: :returned, merchant_id_range: (4..4))
-    invoices_as_hashes += InvoiceMocks.invoices_as_hashes(number_of_hashes: 3, random_dates: false,
+    invoices_as_hashes += InvoiceMocks.invoices_as_hashes(number_of_hashes: 3, random_dates: false, created_at: Proc.new{Time.new(2020, 6, 16)},
       status: :shipped, merchant_id_range: (5..5))
-    invoices_as_hashes += InvoiceMocks.invoices_as_hashes(number_of_hashes: 3, random_dates: false,
+    invoices_as_hashes += InvoiceMocks.invoices_as_hashes(number_of_hashes: 3, random_dates: false, created_at: Proc.new{Time.new(2020, 7, 17)},
       status: :returned, merchant_id_range: (6..6))
-    invoices_as_hashes += InvoiceMocks.invoices_as_hashes(number_of_hashes: 3, random_dates: false,
+    invoices_as_hashes += InvoiceMocks.invoices_as_hashes(number_of_hashes: 3, random_dates: false, created_at: Proc.new{Time.new(2020, 8, 18)},
       status: :pending, merchant_id_range: (7..7))
-    invoices_as_hashes += InvoiceMocks.invoices_as_hashes(number_of_hashes: 3, random_dates: false, 
+    invoices_as_hashes += InvoiceMocks.invoices_as_hashes(number_of_hashes: 3, random_dates: false, created_at: Proc.new{Time.new(2020, 9, 19)},
       status: :returned, merchant_id_range: (8..8))
-    invoices_as_hashes += InvoiceMocks.invoices_as_hashes(number_of_hashes: 12, random_dates: false, 
+    invoices_as_hashes += InvoiceMocks.invoices_as_hashes(number_of_hashes: 12, random_dates: false, created_at: Proc.new{Time.new(2020, 10, 20)},
       status: :returned, merchant_id_range: (9..9))
 
     

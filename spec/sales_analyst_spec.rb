@@ -151,7 +151,7 @@ RSpec.describe SalesAnalyst do
       }
 
       actual = sales_analyst.num_of_invoices_per_merchant
-
+      require 'pry'; binding.pry
       expect(actual).to be_a Hash
       expect(actual).to eq expected_hash
     end
