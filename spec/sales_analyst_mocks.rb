@@ -24,7 +24,14 @@ class SalesAnalystMocks
     items_as_hashes += ItemMocks.items_as_hashes(unit_price: 50.0, number_of_hashes: 12,
                                                  merchant_id_range: (3..3))
 
-    invoices_as_hashes = InvoiceMocks.invoices_as_hashes(number_of_hashes: 10)
+    invoices_as_hashes = InvoiceMocks.invoices_as_hashes(number_of_hashes: 3, random_dates: false, 
+      status: :pending, merchant_id_range: (0..0))
+    invoices_as_hashes += InvoiceMocks.invoices_as_hashes(number_of_hashes: 7, random_dates: false, 
+      status: :shipped, merchant_id_range: (1..1))
+    invoices_as_hashes += InvoiceMocks.invoices_as_hashes(number_of_hashes: 4, random_dates: false, 
+      status: :returned, merchant_id_range: (2..2))
+    invoices_as_hashes += InvoiceMocks.invoices_as_hashes(number_of_hashes: 12, random_dates: false, 
+      status: :shipped, merchant_id_range: (3..3))
 
     @@price_sums_for_each_merchant = merchants_as_mocks.each_with_object({}) do |merchant, sums_by_merchant|
       item_hashes = items_as_hashes.find_all do |item_hash|
