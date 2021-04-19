@@ -58,9 +58,15 @@ class SalesAnalyst
     end
   end
 
+  def merchants_with_items
+    merchants_with_items = num_of_items_per_merchant.select do |merchant, num_of_items|
+      num_of_items != 0
+    end.keys
+  end
+
   def average_average_price_per_merchant
-    sum_of_averages = all_merchants.sum do |merchant|
-      average_item_price_for_merchant(merchant.id) unless num_of_items_per_merchant[merchant].zero?
+    sum_of_averages = merchants_with_items.sum do |merchant|
+      average_item_price_for_merchant(merchant.id)
     end
     average_average_price = sum_of_averages / all_merchants.length
     average_average_price.round(2)
@@ -106,11 +112,11 @@ class SalesAnalyst
     mean = average_invoices_per_merchant
     std_dev = average_invoices_per_merchant_standard_deviation
 
-    z = standard_deviations_of_mean(mean, std_dev)
-
+    z = standard_deviations_of_mean(mean, std_dev, 2)
+        
     merchants = []
     num_of_invoices_per_merchant.each_pair do |merchant, invoice_count|
-      merchants << merchant if invoice_count >= (z + 2)
+      merchants << merchant if invoice_count >= z 
     end
     merchants
   end
@@ -119,11 +125,11 @@ class SalesAnalyst
     mean = average_invoices_per_merchant
     std_dev = average_invoices_per_merchant_standard_deviation
 
-    z = standard_deviations_of_mean(mean, std_dev)
+    z = standard_deviations_of_mean(mean, std_dev, -2)
 
     merchants = []
     num_of_invoices_per_merchant.each_pair do |merchant, invoice_count|
-      merchants << merchant if invoice_count <= (z - 2)
+      merchants << merchant if invoice_count <= z
     end
     merchants
   end
