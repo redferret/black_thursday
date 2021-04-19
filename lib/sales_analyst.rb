@@ -80,11 +80,64 @@ class SalesAnalyst
     std_dev.round(2)
   end
 
+  def average_invoices_per_merchant
+    average = all_invoices.length.to_f / all_merchants.length
+    average.round(2)
+  end
+
+  def num_of_invoices_per_merchant
+    all_merchants.each_with_object({}) do |merchant, total_per_merchant|
+      total_invoices = all_invoices.count do |invoice|
+        invoice.merchant_id == merchant.id
+      end
+      total_per_merchant[merchant] = total_invoices
+    end
+  end
+
+  def average_invoices_per_merchant_standard_deviation
+    invoice_count_per_merchant = num_of_invoices_per_merchant
+    mean = average_invoices_per_merchant
+
+    invoice_counts = invoice_count_per_merchant.values
+    std_dev = standard_deviation(invoice_counts, mean)
+  end
+
+  def top_merchants_by_invoice_count
+    mean = average_invoices_per_merchant
+    std_dev = average_invoices_per_merchant_standard_deviation
+
+    z = standard_deviations_of_mean(mean, std_dev)
+
+    merchants = []
+    num_of_invoices_per_merchant.each_pair do |merchant, invoice_count|
+      merchants << merchant if invoice_count >= (z + 2)
+    end
+    merchants
+  end
+
+  def bottom_merchants_by_invoice_count
+    mean = average_invoices_per_merchant
+    std_dev = average_invoices_per_merchant_standard_deviation
+
+    z = standard_deviations_of_mean(mean, std_dev)
+
+    merchants = []
+    num_of_invoices_per_merchant.each_pair do |merchant, invoice_count|
+      merchants << merchant if invoice_count <= (z - 2)
+    end
+    merchants
+  end
+
+
   def all_items
     @sales_engine.all_items
   end
 
   def all_merchants
     @sales_engine.all_merchants
+  end
+
+  def all_invoices
+    @sales_engine.all_invoices
   end
 end

@@ -105,4 +105,76 @@ RSpec.describe SalesAnalyst do
       expect(actual_items.length).to eq 3
     end
   end
+
+  describe '#all_invoices' do
+    it 'returns all invoices' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+
+      expect(sales_analyst.all_invoices.length).to eq 26
+    end
+  end
+
+  describe '#average_invoices_per_merchant' do
+    it 'returns the average number of invoices per merchant' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+
+      expect(sales_analyst.average_invoices_per_merchant). to eq 6.5
+    end
+  end
+
+  describe 'num_of_invoices_per_merchant' do
+    it 'returns a hash with merchants as keys and invoices as values' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+
+      sales_engine = sales_analyst.sales_engine
+      merchants_as_mocks = sales_engine.merchants.all
+
+      expected_hash = {
+        merchants_as_mocks[0] => 3,
+        merchants_as_mocks[1] => 7,
+        merchants_as_mocks[2] => 4,
+        merchants_as_mocks[3] => 12
+      }
+
+      actual = sales_analyst.num_of_invoices_per_merchant
+
+      expect(actual).to be_a Hash
+      expect(actual).to eq expected_hash
+    end
+  end
+
+  describe '#average_invoices_per_merchant_standard_deviation' do
+    it 'returns the standard deviation of invoices per merchant' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+      expected_deviation = (Math.sqrt((((3 - 6.5)**2) + ((7 - 6.5)**2) + ((4 - 6.5)**2) + ((12 - 6.5)**2)) / 3.0)).round(2)
+      actual_deviation = sales_analyst.average_invoices_per_merchant_standard_deviation
+
+      expect(expected_deviation).to eq actual_deviation
+    end
+  end
+
+  describe '#top_merchants_by_invoice_count' do
+    it 'returns an array of merchants two StDevs above mean' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+      merchant_ids = [1, 3]
+      actual_merchants = sales_analyst.top_merchants_by_invoice_count
+
+      actual_merchants.each do |merchant|
+        expect(merchant_ids.include?(merchant.id)).to eq true
+      end
+    end
+  end
+
+  describe '#bottom_merchants_by_invoice_count' do
+    it 'returns an array of merchants two StDevs above mean' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+      merchant_ids = [0, 1, 2]
+      actual_merchants = sales_analyst.bottom_merchants_by_invoice_count
+
+
+      actual_merchants.each do |merchant|
+        expect(merchant_ids.include?(merchant.id)).to eq true
+      end
+    end
+  end
 end

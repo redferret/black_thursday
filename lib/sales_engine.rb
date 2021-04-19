@@ -39,4 +39,8 @@ class SalesEngine
   def all_merchants
     @merchants.all
   end
+
+  def all_invoices
+    @invoices.all
+  end
 end
