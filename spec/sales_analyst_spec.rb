@@ -37,9 +37,9 @@ RSpec.describe SalesAnalyst do
   end
 
   describe '#average_items_per_merchant' do
-    xit 'averages the items per merchant' do
+    it 'averages the items per merchant' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
-      expected_average = 6.5
+      expected_average = 2.6
       actual_average = sales_analyst.average_items_per_merchant
 
       expect(actual_average).to eq expected_average
