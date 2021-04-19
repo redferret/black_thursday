@@ -106,11 +106,11 @@ class SalesAnalyst
     mean = average_invoices_per_merchant
     std_dev = average_invoices_per_merchant_standard_deviation
 
-    z = standard_deviations_of_mean(mean, std_dev)
-
+    z = standard_deviations_of_mean(mean, std_dev, 2)
+        
     merchants = []
     num_of_invoices_per_merchant.each_pair do |merchant, invoice_count|
-      merchants << merchant if invoice_count >= (z + 2)
+      merchants << merchant if invoice_count >= z 
     end
     merchants
   end
@@ -119,11 +119,11 @@ class SalesAnalyst
     mean = average_invoices_per_merchant
     std_dev = average_invoices_per_merchant_standard_deviation
 
-    z = standard_deviations_of_mean(mean, std_dev)
+    z = standard_deviations_of_mean(mean, std_dev, -2)
 
     merchants = []
     num_of_invoices_per_merchant.each_pair do |merchant, invoice_count|
-      merchants << merchant if invoice_count <= (z - 2)
+      merchants << merchant if invoice_count <= z
     end
     merchants
   end
