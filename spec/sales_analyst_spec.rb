@@ -128,7 +128,7 @@ RSpec.describe SalesAnalyst do
       expected_deviation = (Math.sqrt((((3 - 6.5)**2) + ((7 - 6.5)**2) + ((4 - 6.5)**2) + ((12 - 6.5)**2)) / 3.0)).round(2)
       actual_deviation = sales_analyst.average_invoices_per_merchant_standard_deviation
 
-      
+      expect(expected_deviation).to eq actual_deviation
     end
   end
 end
