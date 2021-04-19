@@ -58,9 +58,15 @@ class SalesAnalyst
     end
   end
 
+  def merchants_with_items
+    merchants_with_items = num_of_items_per_merchant.select do |merchant, num_of_items|
+      num_of_items != 0
+    end.keys
+  end
+
   def average_average_price_per_merchant
-    sum_of_averages = all_merchants.sum do |merchant|
-      average_item_price_for_merchant(merchant.id) unless num_of_items_per_merchant[merchant].zero?
+    sum_of_averages = merchants_with_items.sum do |merchant|
+      average_item_price_for_merchant(merchant.id)
     end
     average_average_price = sum_of_averages / all_merchants.length
     average_average_price.round(2)
