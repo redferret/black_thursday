@@ -233,4 +233,14 @@ RSpec.describe SalesAnalyst do
       expect(sales_analyst.top_days_by_invoice_count).to eq expected
     end
   end
+
+  describe '#invoice_status' do
+    it 'returns percentage represented by symmbol argument' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+
+      expect(sales_analyst.invoice_status(:pending)).to eq 11.11
+      expect(sales_analyst.invoice_status(:shipped)).to eq 22.22
+      expect(sales_analyst.invoice_status(:returned)).to eq 66.67
+    end
+  end
 end

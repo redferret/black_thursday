@@ -176,6 +176,13 @@ class SalesAnalyst
     top_days
   end
 
+  def invoice_status(status)
+    with_status = all_invoices.select do |invoice|
+                    invoice.status == status
+                  end.length
+    (with_status.to_f / all_invoices.length * 100).round(2)
+  end
+
 
   def all_items
     @sales_engine.all_items
