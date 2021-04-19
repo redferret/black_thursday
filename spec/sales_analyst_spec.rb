@@ -30,7 +30,6 @@ RSpec.describe SalesAnalyst do
 
       actual = sales_analyst.num_of_items_per_merchant
 
-
       expect(actual).to be_a Hash
       expect(actual).to eq expected_hash
     end
@@ -49,7 +48,7 @@ RSpec.describe SalesAnalyst do
   describe '#average_items_per_merchant_standard_deviation' do
     it 'calculates standard deviation for average items per merchant' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
-      expected_deviation = (Math.sqrt((((3 - 2.6)**2) + ((7 - 2.6)**2) + ((4 - 2.6)**2) + ((12 - 2.6)**2) + (40.56)) / 9.0)).round(2)
+      expected_deviation = (Math.sqrt((((3 - 2.6)**2) + ((7 - 2.6)**2) + ((4 - 2.6)**2) + ((12 - 2.6)**2) + 40.56) / 9.0)).round(2)
       actual_deviation = sales_analyst.average_items_per_merchant_standard_deviation
 
       expect(actual_deviation).to eq expected_deviation
@@ -59,7 +58,7 @@ RSpec.describe SalesAnalyst do
   describe '#standard_deviations_of_mean' do
     it 'calculates the n standard deviation of the mean of items per merchant' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
-      std_dev = (Math.sqrt((((3 - 2.6)**2) + ((7 - 2.6)**2) + ((4 - 2.6)**2) + ((12 - 2.6)**2) + (40.56)) / 9.0)).round(2)
+      std_dev = (Math.sqrt((((3 - 2.6)**2) + ((7 - 2.6)**2) + ((4 - 2.6)**2) + ((12 - 2.6)**2) + 40.56) / 9.0)).round(2)
       mean = 6.5
       expected_range = mean + std_dev
       actual_range = sales_analyst.standard_deviations_of_mean(mean, std_dev)
@@ -126,7 +125,7 @@ RSpec.describe SalesAnalyst do
     it 'returns the average number of invoices per merchant' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
 
-      expect(sales_analyst.average_invoices_per_merchant). to eq 3.6
+      expect(sales_analyst.average_invoices_per_merchant).to eq 3.6
     end
   end
 
@@ -160,8 +159,8 @@ RSpec.describe SalesAnalyst do
   describe '#average_invoices_per_merchant_standard_deviation' do
     it 'returns the standard deviation of invoices per merchant' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
-      expected_deviation = (Math.sqrt((((1 - 3.6)**2) + ((2 - 3.6)**2) + ((3 - 3.6)**2)+ ((3 - 3.6)**2)+ ((3 - 3.6)**2)+ 
-      ((3 - 3.6)**2)+ ((3 - 3.6)**2)+ ((3 - 3.6)**2)+ ((3 - 3.6)**2) + ((12 - 3.6)**2)) / 9.0)).round(2)
+      expected_deviation = (Math.sqrt((((1 - 3.6)**2) + ((2 - 3.6)**2) + ((3 - 3.6)**2) + ((3 - 3.6)**2) + ((3 - 3.6)**2) +
+      ((3 - 3.6)**2) + ((3 - 3.6)**2) + ((3 - 3.6)**2) + ((3 - 3.6)**2) + ((12 - 3.6)**2)) / 9.0)).round(2)
       actual_deviation = sales_analyst.average_invoices_per_merchant_standard_deviation
 
       expect(expected_deviation).to eq actual_deviation

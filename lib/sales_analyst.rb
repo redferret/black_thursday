@@ -59,8 +59,8 @@ class SalesAnalyst
   end
 
   def merchants_with_items
-    merchants_with_items = num_of_items_per_merchant.select do |merchant, num_of_items|
-      num_of_items != 0
+    merchants_with_items = num_of_items_per_merchant.reject do |_merchant, num_of_items|
+      num_of_items.zero?
     end.keys
   end
 
@@ -114,7 +114,7 @@ class SalesAnalyst
 
     merchants = []
     num_of_invoices_per_merchant.each_pair do |merchant, invoice_count|
-      merchants << merchant if invoice_count >= z 
+      merchants << merchant if invoice_count >= z
     end
     merchants
   end
@@ -146,43 +146,42 @@ class SalesAnalyst
 
   def convert_wday_integers_to_hash
     invoice_created_at_by_weekday.map do |integer|
-      if integer == 0
+      case integer
+      when 0
         integer = 'Sunday'
-      elsif integer == 1
+      when 1
         integer = 'Monday'
-      elsif integer == 2
+      when 2
         integer = 'Tuesday'
-      elsif integer == 3 
+      when 3
         integer = 'Wednesday'
-      elsif integer == 4
+      when 4
         integer = 'Thursday'
-      elsif integer == 5
+      when 5
         integer = 'Friday'
-      elsif integer == 6
+      when 6
         integer = 'Saturday'
       end
     end.tally
   end
 
   def top_days_by_invoice_count
-    threshold = standard_deviations_of_mean(average_invoices_per_merchant, average_invoices_per_merchant_standard_deviation)
+    threshold = standard_deviations_of_mean(average_invoices_per_merchant,
+                                            average_invoices_per_merchant_standard_deviation)
     top_days = []
     weekday_hash = convert_wday_integers_to_hash
     weekday_hash.map do |weekday, invoices|
-      if invoices > threshold
-        top_days << weekday
-      end
+      top_days << weekday if invoices > threshold
     end
     top_days
   end
 
   def invoice_status(status)
     with_status = all_invoices.select do |invoice|
-                    invoice.status == status
-                  end.length
+      invoice.status == status
+    end.length
     (with_status.to_f / all_invoices.length * 100).round(2)
   end
-
 
   def all_items
     @sales_engine.all_items
