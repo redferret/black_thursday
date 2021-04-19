@@ -87,4 +87,8 @@ class SalesAnalyst
   def all_merchants
     @sales_engine.all_merchants
   end
+
+  def all_invoices
+    @sales_engine.all_invoices
+  end
 end

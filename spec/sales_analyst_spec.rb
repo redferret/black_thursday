@@ -105,4 +105,13 @@ RSpec.describe SalesAnalyst do
       expect(actual_items.length).to eq 3
     end
   end
+
+  describe '#all_invoices' do
+    it 'returns all invoices' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+
+
+      expect(sales_analyst.all_invoices.length).to eq 10
+    end
+  end
 end

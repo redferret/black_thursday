@@ -1,4 +1,5 @@
 require './lib/item_repository'
+require './lib/invoice_repository'
 require './lib/sales_analyst'
 
 class SalesAnalystMocks
@@ -23,6 +24,8 @@ class SalesAnalystMocks
     items_as_hashes += ItemMocks.items_as_hashes(unit_price: 50.0, number_of_hashes: 12,
                                                  merchant_id_range: (3..3))
 
+    invoices_as_hashes = InvoiceMocks.invoices_as_hashes(number_of_hashes: 10)
+
     @@price_sums_for_each_merchant = merchants_as_mocks.each_with_object({}) do |merchant, sums_by_merchant|
       item_hashes = items_as_hashes.find_all do |item_hash|
         item_hash[:merchant_id] == merchant.id
@@ -32,17 +35,21 @@ class SalesAnalystMocks
     end
 
     items_as_mocks = ItemMocks.items_as_mocks(eg, items_as_hashes)
+    invoices_as_mocks = InvoiceMocks.invoices_as_mocks(eg, invoices_as_hashes)
 
     eg.allow_any_instance_of(ItemRepository).to eg.receive(:create_items).and_return(items_as_mocks)
     eg.allow_any_instance_of(MerchantRepository).to eg.receive(:create_merchants).and_return(merchants_as_mocks)
+    eg.allow_any_instance_of(InvoiceRepository).to eg.receive(:create_invoices).and_return(invoices_as_mocks)
 
     item_repository = ItemRepository.new('fake_file')
     merchant_repository = MerchantRepository.new('fake_file')
+    invoice_repository = InvoiceRepository.new('fake_file')
 
     eg.allow(sales_engine).to eg.receive(:items).and_return item_repository
     eg.allow(sales_engine).to eg.receive(:merchants).and_return merchant_repository
     eg.allow(sales_engine).to eg.receive(:all_items).and_return item_repository.items
     eg.allow(sales_engine).to eg.receive(:all_merchants).and_return merchant_repository.merchants
+    eg.allow(sales_engine).to eg.receive(:all_invoices).and_return invoice_repository.invoices
     sales_analyst
   end
 end
