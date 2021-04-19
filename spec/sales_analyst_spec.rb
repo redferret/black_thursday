@@ -180,15 +180,15 @@ RSpec.describe SalesAnalyst do
     end
   end
 
-  # describe '#bottom_merchants_by_invoice_count' do
-  #   it 'returns an array of merchants two StDevs above mean' do
-  #     sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
-  #     merchant_ids = [0]
-  #     actual_merchants = sales_analyst.bottom_merchants_by_invoice_count
+  describe '#bottom_merchants_by_invoice_count' do
+    it 'returns an array of merchants two StDevs above mean' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+      merchant_ids = [0]
+      actual_merchants = sales_analyst.bottom_merchants_by_invoice_count
 
-  #     actual_merchants.each do |merchant|
-  #       expect(merchant_ids.include?(merchant.id)).to eq true
-  #     end
-  #   end
-  # end
+      actual_merchants.each do |merchant|
+        expect(merchant_ids.include?(merchant.id)).to eq true
+      end
+    end
+  end
 end
