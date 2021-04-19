@@ -121,4 +121,14 @@ RSpec.describe SalesAnalyst do
       expect(sales_analyst.average_invoices_per_merchant). to eq 2.5
     end
   end
+
+  describe '#average_invoices_per_merchant_standard_deviation' do
+    it 'returns the standard deviation of invoices per merchant' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+      expected_deviation = (Math.sqrt((((3 - 6.5)**2) + ((7 - 6.5)**2) + ((4 - 6.5)**2) + ((12 - 6.5)**2)) / 3.0)).round(2)
+      actual_deviation = sales_analyst.average_invoices_per_merchant_standard_deviation
+
+      
+    end
+  end
 end

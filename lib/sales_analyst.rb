@@ -85,6 +85,23 @@ class SalesAnalyst
     average.round(2)
   end
 
+  def num_of_invoices_per_merchant
+    all_merchants.each_with_object({}) do |merchant, total_per_merchant|
+      total_invoices = all_invoices.count do |invoice|
+        invoice.merchant_id == merchant.id
+      end
+      total_per_merchant[merchant] = total_invoices
+    end
+  end
+
+  def average_invoices_per_merchant_standard_deviation
+    invoice_count_per_merchant = num_of_invoices_per_merchant
+    mean = average_invoices_per_merchant
+
+    invoice_counts = invoice_count_per_merchant.values
+    std_dev = standard_deviation(invoice_counts, mean)
+  end
+
   def all_items
     @sales_engine.all_items
   end
