@@ -122,6 +122,27 @@ RSpec.describe SalesAnalyst do
     end
   end
 
+  describe 'num_of_invoices_per_merchant' do
+    it 'returns a hash with merchants as keys and invoices as values' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+
+      sales_engine = sales_analyst.sales_engine
+      merchants_as_mocks = sales_engine.merchants.all
+
+      expected_hash = {
+        merchants_as_mocks[0] => 3,
+        merchants_as_mocks[1] => 7,
+        merchants_as_mocks[2] => 4,
+        merchants_as_mocks[3] => 12
+      }
+
+      actual = sales_analyst.num_of_invoices_per_merchant
+
+      expect(actual).to be_a Hash
+      expect(actual).to eq expected_hash
+    end
+  end
+
   describe '#average_invoices_per_merchant_standard_deviation' do
     it 'returns the standard deviation of invoices per merchant' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
