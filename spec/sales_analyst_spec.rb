@@ -229,8 +229,23 @@ RSpec.describe SalesAnalyst do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
 
       expected = ['Tuesday']
-
       expect(sales_analyst.top_days_by_invoice_count).to eq expected
+    end
+  end
+
+  describe '#average_invoices_per_day' do
+    it 'returns the average number of invoices per day' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+
+      expect(sales_analyst.average_invoices_per_day).to eq 5
+    end
+  end
+
+  describe '#average_invoices_per_day_standard_deviation' do
+    it 'returns the standard deviation in invoices per day' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+
+      expect(sales_analyst.average_invoices_per_day_standard_deviation).to eq 9.7
     end
   end
 
