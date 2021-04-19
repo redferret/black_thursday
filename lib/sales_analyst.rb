@@ -133,8 +133,14 @@ class SalesAnalyst
   end
 
   def invoice_created_at_times
-    all_invoices.map do |invoice|
-      Time.parse(invoice.created_at)
+    if all_invoices[0].created_at.class == String
+      all_invoices.map do |invoice|
+        Time.parse(invoice.created_at)
+      end
+    else 
+      all_invoices.map do |invoice|
+        invoice.created_at
+      end
     end
   end
 
@@ -165,9 +171,20 @@ class SalesAnalyst
     end.tally
   end
 
+  def average_invoices_per_day
+    convert_wday_integers_to_hash.values.sum / 7
+  end
+
+  def average_invoices_per_day_standard_deviation
+    values = convert_wday_integers_to_hash.values
+    mean = average_invoices_per_day
+    sums = values.sum { |value| (value - mean)**2 }
+    std_dev = Math.sqrt(sums / (values.length - 1).to_f)
+    std_dev.round(2)
+  end
+
   def top_days_by_invoice_count
-    threshold = standard_deviations_of_mean(average_invoices_per_merchant,
-                                            average_invoices_per_merchant_standard_deviation)
+    threshold = standard_deviations_of_mean(average_invoices_per_day, average_invoices_per_day_standard_deviation)
     top_days = []
     weekday_hash = convert_wday_integers_to_hash
     weekday_hash.map do |weekday, invoices|

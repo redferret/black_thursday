@@ -228,7 +228,8 @@ RSpec.describe SalesAnalyst do
     it 'returns an array of days 1StdDev above in invoices created' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
 
-      expected = ['Friday', 'Tuesday']
+      expected = ['Tuesday']
+
       expect(sales_analyst.top_days_by_invoice_count).to eq expected
     end
   end
