@@ -113,10 +113,10 @@ class SalesAnalyst
     std_dev = average_invoices_per_merchant_standard_deviation
 
     z = standard_deviations_of_mean(mean, std_dev, 2)
-        
+
     merchants = []
     num_of_invoices_per_merchant.each_pair do |merchant, invoice_count|
-      merchants << merchant if invoice_count >= z 
+      merchants << merchant if invoice_count >= z
     end
     merchants
   end
@@ -134,6 +134,10 @@ class SalesAnalyst
     merchants
   end
 
+  def paid_in_full?(invoice_id)
+    transaction_repo = @sales_engine.transactions
+    transaction_repo.any_success?(invoice_id)
+  end
 
   def all_items
     @sales_engine.all_items
@@ -145,5 +149,17 @@ class SalesAnalyst
 
   def all_invoices
     @sales_engine.all_invoices
+  end
+
+  def all_transactions
+    @sales_engine.all_transactions
+  end
+
+  def all_invoice_items
+    @sales_engine.all_invoice_items
+  end
+
+  def all_customers
+    @sales_engine.all_customers
   end
 end

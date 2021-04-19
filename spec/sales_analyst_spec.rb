@@ -3,6 +3,7 @@ require 'rspec'
 require './data/item_mocks'
 require './data/merchant_mocks'
 require './data/invoice_mocks'
+require './data/transaction_mocks'
 require './lib/sales_analyst'
 require './lib/sales_engine'
 require './spec/sales_analyst_mocks'
@@ -151,7 +152,7 @@ RSpec.describe SalesAnalyst do
       }
 
       actual = sales_analyst.num_of_invoices_per_merchant
-      require 'pry'; binding.pry
+
       expect(actual).to be_a Hash
       expect(actual).to eq expected_hash
     end
@@ -160,7 +161,7 @@ RSpec.describe SalesAnalyst do
   describe '#average_invoices_per_merchant_standard_deviation' do
     it 'returns the standard deviation of invoices per merchant' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
-      expected_deviation = (Math.sqrt((((1 - 3.6)**2) + ((2 - 3.6)**2) + ((3 - 3.6)**2)+ ((3 - 3.6)**2)+ ((3 - 3.6)**2)+ 
+      expected_deviation = (Math.sqrt((((1 - 3.6)**2) + ((2 - 3.6)**2) + ((3 - 3.6)**2)+ ((3 - 3.6)**2)+ ((3 - 3.6)**2)+
       ((3 - 3.6)**2)+ ((3 - 3.6)**2)+ ((3 - 3.6)**2)+ ((3 - 3.6)**2) + ((12 - 3.6)**2)) / 9.0)).round(2)
       actual_deviation = sales_analyst.average_invoices_per_merchant_standard_deviation
 
@@ -189,6 +190,26 @@ RSpec.describe SalesAnalyst do
       actual_merchants.each do |merchant|
         expect(merchant_ids.include?(merchant.id)).to eq true
       end
+    end
+  end
+
+  describe '#paid_in_full?' do
+    it 'returns true if the Invoice with specified id is PIF' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+      t_repo = sales_analyst.sales_engine.transactions
+      allow(t_repo).to receive(:any_success?).and_return(true)
+      invoice = sales_analyst.all_invoices.first
+
+      expect(sales_analyst.paid_in_full?(invoice.id)).to eq true
+    end
+
+    it 'returns false if the Invoice with specified id has no successful transaction' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+      t_repo = sales_analyst.sales_engine.transactions
+      allow(t_repo).to receive(:any_success?).and_return(false)
+      invoice = sales_analyst.all_invoices.last
+
+      expect(sales_analyst.paid_in_full?(invoice.id)).to eq false
     end
   end
 end

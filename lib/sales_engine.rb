@@ -45,4 +45,16 @@ class SalesEngine
   def all_invoices
     @invoices.all
   end
+
+  def all_transactions
+    @transactions.all
+  end
+
+  def all_invoice_items
+    @invoice_items.all
+  end
+
+  def all_customers
+    @invoice_items.all
+  end
 end
