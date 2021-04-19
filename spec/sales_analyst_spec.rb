@@ -105,7 +105,7 @@ RSpec.describe SalesAnalyst do
   end
 
   describe '#golden_items' do
-    xit 'returns all items 2+ std deviations above the mean price' do
+    it 'returns all items 2+ std deviations above the mean price' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
 
       actual_items = sales_analyst.golden_items
@@ -115,33 +115,39 @@ RSpec.describe SalesAnalyst do
   end
 
   describe '#all_invoices' do
-    xit 'returns all invoices' do
+    it 'returns all invoices' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
 
-      expect(sales_analyst.all_invoices.length).to eq 26
+      expect(sales_analyst.all_invoices.length).to eq 36
     end
   end
 
   describe '#average_invoices_per_merchant' do
-    xit 'returns the average number of invoices per merchant' do
+    it 'returns the average number of invoices per merchant' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
 
-      expect(sales_analyst.average_invoices_per_merchant). to eq 6.5
+      expect(sales_analyst.average_invoices_per_merchant). to eq 3.6
     end
   end
 
   describe 'num_of_invoices_per_merchant' do
-    xit 'returns a hash with merchants as keys and invoices as values' do
+    it 'returns a hash with merchants as keys and invoices as values' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
 
       sales_engine = sales_analyst.sales_engine
       merchants_as_mocks = sales_engine.merchants.all
 
       expected_hash = {
-        merchants_as_mocks[0] => 3,
-        merchants_as_mocks[1] => 7,
-        merchants_as_mocks[2] => 4,
-        merchants_as_mocks[3] => 12
+        merchants_as_mocks[0] => 1,
+        merchants_as_mocks[1] => 2,
+        merchants_as_mocks[2] => 3,
+        merchants_as_mocks[3] => 3,
+        merchants_as_mocks[4] => 3,
+        merchants_as_mocks[5] => 3,
+        merchants_as_mocks[6] => 3,
+        merchants_as_mocks[7] => 3,
+        merchants_as_mocks[8] => 3,
+        merchants_as_mocks[9] => 12
       }
 
       actual = sales_analyst.num_of_invoices_per_merchant
@@ -152,9 +158,10 @@ RSpec.describe SalesAnalyst do
   end
 
   describe '#average_invoices_per_merchant_standard_deviation' do
-    xit 'returns the standard deviation of invoices per merchant' do
+    it 'returns the standard deviation of invoices per merchant' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
-      expected_deviation = (Math.sqrt((((3 - 6.5)**2) + ((7 - 6.5)**2) + ((4 - 6.5)**2) + ((12 - 6.5)**2)) / 3.0)).round(2)
+      expected_deviation = (Math.sqrt((((1 - 3.6)**2) + ((2 - 3.6)**2) + ((3 - 3.6)**2)+ ((3 - 3.6)**2)+ ((3 - 3.6)**2)+ 
+      ((3 - 3.6)**2)+ ((3 - 3.6)**2)+ ((3 - 3.6)**2)+ ((3 - 3.6)**2) + ((12 - 3.6)**2)) / 9.0)).round(2)
       actual_deviation = sales_analyst.average_invoices_per_merchant_standard_deviation
 
       expect(expected_deviation).to eq actual_deviation
@@ -162,9 +169,9 @@ RSpec.describe SalesAnalyst do
   end
 
   describe '#top_merchants_by_invoice_count' do
-    xit 'returns an array of merchants two StDevs above mean' do
+    it 'returns an array of merchants two StDevs above mean' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
-      merchant_ids = [3]
+      merchant_ids = [9]
       actual_merchants = sales_analyst.top_merchants_by_invoice_count
 
       actual_merchants.each do |merchant|
