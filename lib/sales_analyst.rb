@@ -110,10 +110,24 @@ class SalesAnalyst
 
     merchants = []
     num_of_invoices_per_merchant.each_pair do |merchant, invoice_count|
-      merchants << merchant if invoice_count >= z
+      merchants << merchant if invoice_count >= (z + 2)
     end
     merchants
   end
+
+  def bottom_merchants_by_invoice_count
+    mean = average_invoices_per_merchant
+    std_dev = average_invoices_per_merchant_standard_deviation
+
+    z = standard_deviations_of_mean(mean, std_dev)
+
+    merchants = []
+    num_of_invoices_per_merchant.each_pair do |merchant, invoice_count|
+      merchants << merchant if invoice_count <= (z - 2)
+    end
+    merchants
+  end
+
 
   def all_items
     @sales_engine.all_items
