@@ -141,10 +141,7 @@ class SalesAnalyst
 
   def invoice_total(invoice_id)
     invoice_item_repo = @sales_engine.invoice_items
-    all_ii_for_invoice = invoice_item_repo.find_all_by_invoice_id(invoice_id)
-    all_ii_for_invoice.sum do |invoice_item|
-      invoice_item.total
-    end
+    invoice_item_repo.total_for_invoice(invoice_id)
   end
 
   def all_items

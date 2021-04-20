@@ -303,7 +303,6 @@ describe InvoiceItemRepository do
         created_at: Time.now,
         updated_at: Time.now
       }
-
       ii_repo.create(new_invoice_item)
 
       expect(ii_repo.all.length).to eq 11
@@ -311,6 +310,27 @@ describe InvoiceItemRepository do
       ii_repo.delete(100)
 
       expect(ii_repo.all.length).to eq 11
+    end
+  end
+
+  describe '#total_for_invoice' do
+    it 'returns the total for all InvoiceItems with specified invoice_id' do
+      mock_data = InvoiceItemMocks.invoice_items_as_mocks(self)
+      allow_any_instance_of(InvoiceItemRepository).to receive(:create_invoice_items).and_return(mock_data)
+      ii_repo = InvoiceItemRepository.new('fake.csv')
+
+      new_invoice_item = {
+        id: nil,
+        item_id: 17,
+        invoice_id: 81,
+        quantity: 1,
+        unit_price: '1099',
+        created_at: Time.now,
+        updated_at: Time.now
+      }
+      ii_repo.create(new_invoice_item)
+
+      expect(ii_repo.total_for_invoice(81)).to eq 10.99
     end
   end
 end
