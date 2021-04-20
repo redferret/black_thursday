@@ -1,5 +1,6 @@
 require './data/item_mocks'
 require './data/merchant_mocks'
+require './data/invoice_mocks'
 require './lib/sales_analyst'
 require './lib/sales_engine'
 require './spec/sales_analyst_mocks'
@@ -16,7 +17,13 @@ RSpec.describe SalesAnalyst do
         merchants_as_mocks[0] => 3,
         merchants_as_mocks[1] => 7,
         merchants_as_mocks[2] => 4,
-        merchants_as_mocks[3] => 12
+        merchants_as_mocks[3] => 12,
+        merchants_as_mocks[4] => 0,
+        merchants_as_mocks[5] => 0,
+        merchants_as_mocks[6] => 0,
+        merchants_as_mocks[7] => 0,
+        merchants_as_mocks[8] => 0,
+        merchants_as_mocks[9] => 0
       }
 
       actual = sales_analyst.num_of_items_per_merchant
@@ -29,7 +36,7 @@ RSpec.describe SalesAnalyst do
   describe '#average_items_per_merchant' do
     it 'averages the items per merchant' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
-      expected_average = 6.5
+      expected_average = 2.6
       actual_average = sales_analyst.average_items_per_merchant
 
       expect(actual_average).to eq expected_average
@@ -39,7 +46,7 @@ RSpec.describe SalesAnalyst do
   describe '#average_items_per_merchant_standard_deviation' do
     it 'calculates standard deviation for average items per merchant' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
-      expected_deviation = (Math.sqrt((((3 - 6.5)**2) + ((7 - 6.5)**2) + ((4 - 6.5)**2) + ((12 - 6.5)**2)) / 3.0)).round(2)
+      expected_deviation = (Math.sqrt((((3 - 2.6)**2) + ((7 - 2.6)**2) + ((4 - 2.6)**2) + ((12 - 2.6)**2) + 40.56) / 9.0)).round(2)
       actual_deviation = sales_analyst.average_items_per_merchant_standard_deviation
 
       expect(actual_deviation).to eq expected_deviation
@@ -49,7 +56,7 @@ RSpec.describe SalesAnalyst do
   describe '#standard_deviations_of_mean' do
     it 'calculates the n standard deviation of the mean of items per merchant' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
-      std_dev = Math.sqrt((((3 - 6.5)**2) + ((7 - 6.5)**2) + ((4 - 6.5)**2) + ((12 - 6.5)**2)) / 3.0)
+      std_dev = (Math.sqrt((((3 - 2.6)**2) + ((7 - 2.6)**2) + ((4 - 2.6)**2) + ((12 - 2.6)**2) + 40.56) / 9.0)).round(2)
       mean = 6.5
       expected_range = mean + std_dev
       actual_range = sales_analyst.standard_deviations_of_mean(mean, std_dev)
@@ -88,7 +95,7 @@ RSpec.describe SalesAnalyst do
       sum_of_averages = 200.0
 
       actual_avg_of_averages = sales_analyst.average_average_price_per_merchant
-      expected_avg_of_averages = sum_of_averages / 4.0
+      expected_avg_of_averages = sum_of_averages / 10.0
 
       expect(actual_avg_of_averages).to eq expected_avg_of_averages
     end
@@ -101,6 +108,152 @@ RSpec.describe SalesAnalyst do
       actual_items = sales_analyst.golden_items
 
       expect(actual_items.length).to eq 3
+    end
+  end
+
+  describe '#all_invoices' do
+    it 'returns all invoices' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+
+      expect(sales_analyst.all_invoices.length).to eq 36
+    end
+  end
+
+  describe '#average_invoices_per_merchant' do
+    it 'returns the average number of invoices per merchant' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+
+      expect(sales_analyst.average_invoices_per_merchant).to eq 3.6
+    end
+  end
+
+  describe 'num_of_invoices_per_merchant' do
+    it 'returns a hash with merchants as keys and invoices as values' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+
+      sales_engine = sales_analyst.sales_engine
+      merchants_as_mocks = sales_engine.merchants.all
+
+      expected_hash = {
+        merchants_as_mocks[0] => 1,
+        merchants_as_mocks[1] => 2,
+        merchants_as_mocks[2] => 3,
+        merchants_as_mocks[3] => 3,
+        merchants_as_mocks[4] => 3,
+        merchants_as_mocks[5] => 3,
+        merchants_as_mocks[6] => 3,
+        merchants_as_mocks[7] => 3,
+        merchants_as_mocks[8] => 3,
+        merchants_as_mocks[9] => 12
+      }
+
+      actual = sales_analyst.num_of_invoices_per_merchant
+
+      expect(actual).to be_a Hash
+      expect(actual).to eq expected_hash
+    end
+  end
+
+  describe '#average_invoices_per_merchant_standard_deviation' do
+    it 'returns the standard deviation of invoices per merchant' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+      expected_deviation = (Math.sqrt((((1 - 3.6)**2) + ((2 - 3.6)**2) + ((3 - 3.6)**2) + ((3 - 3.6)**2) + ((3 - 3.6)**2) +
+      ((3 - 3.6)**2) + ((3 - 3.6)**2) + ((3 - 3.6)**2) + ((3 - 3.6)**2) + ((12 - 3.6)**2)) / 9.0)).round(2)
+      actual_deviation = sales_analyst.average_invoices_per_merchant_standard_deviation
+
+      expect(expected_deviation).to eq actual_deviation
+    end
+  end
+
+  describe '#top_merchants_by_invoice_count' do
+    it 'returns an array of merchants two StDevs above mean' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+      merchant_ids = [9]
+      actual_merchants = sales_analyst.top_merchants_by_invoice_count
+
+      actual_merchants.each do |merchant|
+        expect(merchant_ids.include?(merchant.id)).to eq true
+      end
+    end
+  end
+
+  describe '#bottom_merchants_by_invoice_count' do
+    it 'returns an array of merchants two StDevs above mean' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+      merchant_ids = [0]
+      actual_merchants = sales_analyst.bottom_merchants_by_invoice_count
+
+      actual_merchants.each do |merchant|
+        expect(merchant_ids.include?(merchant.id)).to eq true
+      end
+    end
+  end
+
+  describe '#invoice_created_at_times' do
+    it 'returns an array of invoice times as Time objects' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+
+      expect(sales_analyst.invoice_created_at_times.first).is_a? Time
+      expect(sales_analyst.invoice_created_at_times).is_a? Array
+      expect(sales_analyst.invoice_created_at_times.length).to eq 36
+    end
+  end
+
+  describe '#invoice_created_at_by_weekday' do
+    it 'returns an array of weekdays corresponding to day created' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+
+      expect(sales_analyst.invoice_created_at_by_weekday.first).to eq 'Saturday'
+      expect(sales_analyst.invoice_created_at_by_weekday).is_a? Array
+    end
+  end
+
+  describe '#convert_wday_integers_to_hash' do
+    it 'creates a hash with weekdays as keys and num_of_invoices as values' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+
+      expected = {
+        'Friday' => 9,
+        'Saturday' => 4,
+        'Tuesday' => 21,
+        'Wednesday' => 2
+      }
+      expect(sales_analyst.convert_wday_integers_to_hash).to eq expected
+    end
+  end
+
+  describe '#top_days_by_invoice_count' do
+    it 'returns an array of days 1StdDev above in invoices created' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+
+      expected = ['Tuesday']
+      expect(sales_analyst.top_days_by_invoice_count).to eq expected
+    end
+  end
+
+  describe '#average_invoices_per_day' do
+    it 'returns the average number of invoices per day' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+
+      expect(sales_analyst.average_invoices_per_day).to eq 5
+    end
+  end
+
+  describe '#average_invoices_per_day_standard_deviation' do
+    it 'returns the standard deviation in invoices per day' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+
+      expect(sales_analyst.average_invoices_per_day_standard_deviation).to eq 9.7
+    end
+  end
+
+  describe '#invoice_status' do
+    it 'returns percentage represented by symmbol argument' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+
+      expect(sales_analyst.invoice_status(:pending)).to eq 11.11
+      expect(sales_analyst.invoice_status(:shipped)).to eq 22.22
+      expect(sales_analyst.invoice_status(:returned)).to eq 66.67
     end
   end
 end
