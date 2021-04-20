@@ -17,6 +17,12 @@ class Repository
     @models.find { |model| model.id == id }
   end
 
+  def find_by
+    @models.find do |model|
+      yield(model) if block_given?
+    end
+  end
+
   def find_all_by
     @models.find_all do |model|
       yield(model) if block_given?
