@@ -107,8 +107,7 @@ class SalesAnalyst
   end
 
   def top_merchants_by_invoice_count
-    high_invoice_count = standard_deviations_of_mean(average_invoices_per_merchant,
-     average_invoices_per_merchant_standard_deviation, 2)
+    high_invoice_count = standard_deviations_of_mean(average_invoices_per_merchant, average_invoices_per_merchant_standard_deviation, 2)
     merchants = []
     num_of_invoices_per_merchant.each_pair do |merchant, invoice_count|
       merchants << merchant if invoice_count >= high_invoice_count
@@ -117,8 +116,7 @@ class SalesAnalyst
   end
 
   def bottom_merchants_by_invoice_count
-    low_invoice_count = standard_deviations_of_mean(average_invoices_per_merchant,
-     average_invoices_per_merchant_standard_deviation, -2)
+    low_invoice_count = standard_deviations_of_mean(average_invoices_per_merchant, average_invoices_per_merchant_standard_deviation, -2)
     merchants = []
     num_of_invoices_per_merchant.each_pair do |merchant, invoice_count|
       merchants << merchant if invoice_count <= low_invoice_count
