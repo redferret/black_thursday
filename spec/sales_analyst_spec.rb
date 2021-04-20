@@ -230,9 +230,6 @@ RSpec.describe SalesAnalyst do
 
   describe '#total_revenue_by_date' do
     it 'returns the total revenue for a given date' do
-      # finds all of the successful transactions for a given date
-      # then calculates the total price for the invoice the transaction pays
-      # the returns the sum of those totals
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
       invoice = sales_analyst.all_invoices.first
       allow(invoice).to receive(:created_at) { Time.parse('2020-10-20') }
