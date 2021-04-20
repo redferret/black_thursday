@@ -101,10 +101,8 @@ class SalesAnalyst
   end
 
   def average_invoices_per_merchant_standard_deviation
-    invoice_count_per_merchant = num_of_invoices_per_merchant
     mean = average_invoices_per_merchant
-
-    invoice_counts = invoice_count_per_merchant.values
+    invoice_counts = num_of_invoices_per_merchant.values
     std_dev = standard_deviation(invoice_counts, mean)
   end
 
