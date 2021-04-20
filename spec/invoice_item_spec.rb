@@ -149,4 +149,21 @@ describe InvoiceItem do
       expect(invoice_item.unit_price_to_dollars).to eq 10.99
     end
   end
+
+  describe '#total' do
+    it 'returns the total price for the InvoiceItem' do
+      ii_details = {
+        id: 6,
+        item_id: 7,
+        invoice_id: 8,
+        quantity: 1,
+        unit_price: '1099',
+        created_at: Time.now,
+        updated_at: Time.now
+      }
+      invoice_item = InvoiceItem.new(ii_details)
+
+      expect(invoice_item.total).to eq 10.99
+    end
+  end
 end
