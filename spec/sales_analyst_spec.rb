@@ -218,15 +218,10 @@ RSpec.describe SalesAnalyst do
     it 'returns the $ amount of the Invoice with specified id' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
       allow_any_instance_of(Array).to receive(:find_all_by_invoice_id) { sales_analyst.all_invoice_items }
-      invoice_item_1 = sales_analyst.all_invoice_items[0]
-      allow(invoice_item_1).to receive(:total) { 20.00 }
-      invoice_item_2 = sales_analyst.all_invoice_items[1]
-      allow(invoice_item_2).to receive(:total) { 20.00 }
-      invoice_item_3 = sales_analyst.all_invoice_items[2]
-      allow(invoice_item_3).to receive(:total) { 20.00 }
-      invoice_item_4 = sales_analyst.all_invoice_items[3]
-      allow(invoice_item_4).to receive(:total) { 20.00 }
-      # allow_any_instance_of(RSpec::Mocks::InstanceVerifyingDouble).to_receive(:total).and_return(20.00)
+      invoice_items = sales_analyst.all_invoice_items
+      invoice_items.each do |invoice_item|
+        allow(invoice_item).to receive(:total) { 20.00 }
+      end
 
       expect(sales_analyst.invoice_total(0)).to eq 80.00
     end
