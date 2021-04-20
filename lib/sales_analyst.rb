@@ -208,7 +208,11 @@ class SalesAnalyst
 
   def invoice_total(invoice_id)
     invoice_item_repo = @sales_engine.invoice_items
-    invoice_item_repo.total_for_invoice(invoice_id)
+    if invoice_paid_in_full?(invoice_id)
+      invoice_item_repo.total_for_invoice(invoice_id)
+    else
+      0
+    end
   end
 
   def total_revenue_by_date(date)
@@ -238,8 +242,7 @@ class SalesAnalyst
   end
 
   def top_revenue_earners(x = 20)
-    require "pry"; binding.pry
-    # revenue_list = revenue_by_merchant.sort_by {|merchant, revenue| revenue}.reverse
+    revenue_list = revenue_by_merchant.sort_by {|merchant, revenue| revenue}.reverse
     merchants_by_revenue = revenue_list.map { |array| array[0] }
     top_earners = merchants_by_revenue.first(x)
   end

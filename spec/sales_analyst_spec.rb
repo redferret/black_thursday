@@ -217,12 +217,9 @@ RSpec.describe SalesAnalyst do
   describe '#invoice_total' do
     it 'returns the $ amount of the Invoice with specified id' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+      allow(sales_analyst).to receive(:invoice_paid_in_full?) { true }
       ii_repo = sales_analyst.sales_engine.invoice_items
-      allow(ii_repo).to receive(:find_all_by_invoice_id) { sales_analyst.all_invoice_items }
-      invoice_items = sales_analyst.all_invoice_items
-      invoice_items.each do |invoice_item|
-        allow(invoice_item).to receive(:total) { 20.00 }
-      end
+      allow(ii_repo).to receive(:total_for_invoice) { 80.00 }
 
       expect(sales_analyst.invoice_total(0)).to eq 80.00
     end
@@ -231,6 +228,7 @@ RSpec.describe SalesAnalyst do
   describe '#total_revenue_by_date' do
     it 'returns the total revenue for a given date' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+      allow(sales_analyst).to receive(:invoice_paid_in_full?) { true }
       invoice = sales_analyst.all_invoices.first
       allow(invoice).to receive(:created_at) { Time.parse('2020-10-20') }
       invoice_items = sales_analyst.all_invoice_items
