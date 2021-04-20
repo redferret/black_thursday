@@ -10,7 +10,7 @@ describe CustomerRepository do
   describe '#initialize' do
     it 'exists' do
       mock_data = CustomerMocks.customers_as_mocks(self)
-      allow_any_instance_of(CustomerRepository).to receive(:create_customers).and_return(mock_data)
+      allow(FileIo).to receive(:process_csv).and_return(mock_data)
       c_repo = CustomerRepository.new('fake.csv')
 
       expect(c_repo).is_a? CustomerRepository
@@ -18,17 +18,17 @@ describe CustomerRepository do
 
     it 'has a customers array' do
       mock_data = CustomerMocks.customers_as_mocks(self)
-      allow_any_instance_of(CustomerRepository).to receive(:create_customers).and_return(mock_data)
+      allow(FileIo).to receive(:process_csv).and_return(mock_data)
       c_repo = CustomerRepository.new('fake.csv')
 
-      expect(c_repo.customers).is_a? Array
+      expect(c_repo.all).is_a? Array
     end
   end
 
   describe '#all' do
     it 'returns an array of all customers' do
       mock_data = CustomerMocks.customers_as_mocks(self)
-      allow_any_instance_of(CustomerRepository).to receive(:create_customers).and_return(mock_data)
+      allow(FileIo).to receive(:process_csv).and_return(mock_data)
       c_repo = CustomerRepository.new('fake.csv')
 
       expect(c_repo.all.length).to eq 10
@@ -38,10 +38,10 @@ describe CustomerRepository do
   describe '#find_by_id' do
     it 'returns a Customer with matching id' do
       mock_data = CustomerMocks.customers_as_mocks(self)
-      allow_any_instance_of(CustomerRepository).to receive(:create_customers).and_return(mock_data)
+      allow(FileIo).to receive(:process_csv).and_return(mock_data)
       c_repo = CustomerRepository.new('fake.csv')
 
-      expected = c_repo.customers.first
+      expected = c_repo.all.first
       expect(c_repo.find_by_id(0)).to eq expected
     end
   end
@@ -51,7 +51,7 @@ describe CustomerRepository do
       mock_hashes = CustomerMocks.customers_as_hashes(number_of_hashes: 4, first_name: 'Marky')
       mock_hashes += CustomerMocks.customers_as_hashes
       mock_data = CustomerMocks.customers_as_mocks(self, mock_hashes)
-      allow_any_instance_of(CustomerRepository).to receive(:create_customers).and_return(mock_data)
+      allow(FileIo).to receive(:process_csv).and_return(mock_data)
       c_repo = CustomerRepository.new('fake.csv')
 
       expect(c_repo.find_all_by_first_name('Marky').length).to eq 4
@@ -64,7 +64,7 @@ describe CustomerRepository do
       mock_hashes = CustomerMocks.customers_as_hashes(number_of_hashes: 4, last_name: 'Marky')
       mock_hashes += CustomerMocks.customers_as_hashes
       mock_data = CustomerMocks.customers_as_mocks(self, mock_hashes)
-      allow_any_instance_of(CustomerRepository).to receive(:create_customers).and_return(mock_data)
+      allow(FileIo).to receive(:process_csv).and_return(mock_data)
       c_repo = CustomerRepository.new('fake.csv')
 
       expect(c_repo.find_all_by_last_name('Marky').length).to eq 4
@@ -75,11 +75,10 @@ describe CustomerRepository do
   describe '#create' do
     it 'creates a new Customer instance with provided attributes' do
       mock_data = CustomerMocks.customers_as_mocks(self)
-      allow_any_instance_of(CustomerRepository).to receive(:create_customers).and_return(mock_data)
+      allow(FileIo).to receive(:process_csv).and_return(mock_data)
       c_repo = CustomerRepository.new('fake.csv')
 
       new_customer_attributes = {
-        id: nil,
         first_name: 'Yan',
         last_name: 'Cancook',
         created_at: Time.now,
@@ -90,7 +89,7 @@ describe CustomerRepository do
 
       c_repo.create(new_customer_attributes)
 
-      expected = c_repo.customers.last
+      expected = c_repo.all.last
       expect(expected).is_a? Customer
       expect(c_repo.all.length).to eq 11
       expect(expected.first_name).to eq 'Yan'
@@ -98,11 +97,10 @@ describe CustomerRepository do
 
     it 'new customer has an id equal to max_id plus 1' do
       mock_data = CustomerMocks.customers_as_mocks(self)
-      allow_any_instance_of(CustomerRepository).to receive(:create_customers).and_return(mock_data)
+      allow(FileIo).to receive(:process_csv).and_return(mock_data)
       c_repo = CustomerRepository.new('fake.csv')
 
       new_customer_attributes = {
-        id: nil,
         first_name: 'Yan',
         last_name: 'Cancook',
         created_at: Time.now,
@@ -119,11 +117,10 @@ describe CustomerRepository do
   describe '#update' do
     it 'updates the customer with corresponding id' do
       mock_data = CustomerMocks.customers_as_mocks(self)
-      allow_any_instance_of(CustomerRepository).to receive(:create_customers).and_return(mock_data)
+      allow(FileIo).to receive(:process_csv).and_return(mock_data)
       c_repo = CustomerRepository.new('fake.csv')
 
       new_customer_attributes = {
-        id: nil,
         first_name: 'Yan',
         last_name: 'Cancook',
         created_at: Time.now,
@@ -148,11 +145,10 @@ describe CustomerRepository do
 
     it 'does not update unknown customer' do
       mock_data = CustomerMocks.customers_as_mocks(self)
-      allow_any_instance_of(CustomerRepository).to receive(:create_customers).and_return(mock_data)
+      allow(FileIo).to receive(:process_csv).and_return(mock_data)
       c_repo = CustomerRepository.new('fake.csv')
 
       new_customer_attributes = {
-        id: nil,
         first_name: 'Yan',
         last_name: 'Cancook',
         created_at: Time.now,
@@ -167,7 +163,7 @@ describe CustomerRepository do
       }
 
       c_repo.update(1000, changed_customer_attributes)
-      expected = c_repo.customers.map { |customer| customer.first_name }
+      expected = c_repo.all.map { |customer| customer.first_name }
       expect(expected.include?('Johnny')).to eq false
     end
   end
@@ -175,11 +171,10 @@ describe CustomerRepository do
   describe '#delete' do
     it 'deletes customer with provided id' do
       mock_data = CustomerMocks.customers_as_mocks(self)
-      allow_any_instance_of(CustomerRepository).to receive(:create_customers).and_return(mock_data)
+      allow(FileIo).to receive(:process_csv).and_return(mock_data)
       c_repo = CustomerRepository.new('fake.csv')
 
       new_customer_attributes = {
-        id: nil,
         first_name: 'Yan',
         last_name: 'Cancook',
         created_at: Time.now,
@@ -197,11 +192,10 @@ describe CustomerRepository do
 
     it 'does nothing with unknown id' do
       mock_data = CustomerMocks.customers_as_mocks(self)
-      allow_any_instance_of(CustomerRepository).to receive(:create_customers).and_return(mock_data)
+      allow(FileIo).to receive(:process_csv).and_return(mock_data)
       c_repo = CustomerRepository.new('fake.csv')
 
       new_customer_attributes = {
-        id: nil,
         first_name: 'Yan',
         last_name: 'Cancook',
         created_at: Time.now,
