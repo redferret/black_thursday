@@ -258,7 +258,10 @@ describe TransactionRepository do
       mock_data = TransactionMocks.transactions_as_mocks(self, mock_hashes)
       allow_any_instance_of(TransactionRepository).to receive(:create_transactions).and_return(mock_data)
       t_repo = TransactionRepository.new('fake.csv')
-      allow_any_instance_of(RSpec::Mocks::InstanceVerifyingDouble).to receive(:success?) { false }
+      transactions = t_repo.transactions
+      transactions.each do |transaction|
+        allow(transaction).to receive(:success?) { false }
+      end 
 
       expect(t_repo.any_success?(8)).to eq false
     end
