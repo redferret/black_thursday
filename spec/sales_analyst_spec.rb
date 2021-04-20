@@ -202,10 +202,10 @@ RSpec.describe SalesAnalyst do
   end
 
   describe '#invoice_created_at_by_weekday' do
-    it 'returns an array of integers corresponding to weekday created' do
+    it 'returns an array of weekdays corresponding to day created' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
 
-      expect(sales_analyst.invoice_created_at_by_weekday.first).to eq 6
+      expect(sales_analyst.invoice_created_at_by_weekday.first).to eq 'Saturday'
       expect(sales_analyst.invoice_created_at_by_weekday).is_a? Array
     end
   end

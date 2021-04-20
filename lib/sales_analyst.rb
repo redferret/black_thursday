@@ -145,30 +145,16 @@ class SalesAnalyst
   end
 
   def invoice_created_at_by_weekday
-    invoice_created_at_times.map do |time|
+    weekdays = invoice_created_at_times.map do |time|
       time.wday
+    end
+    by_day = weekdays.map do |weekday|
+      Date::DAYNAMES[weekday]
     end
   end
 
   def convert_wday_integers_to_hash
-    invoice_created_at_by_weekday.map do |integer|
-      case integer
-      when 0
-        integer = 'Sunday'
-      when 1
-        integer = 'Monday'
-      when 2
-        integer = 'Tuesday'
-      when 3
-        integer = 'Wednesday'
-      when 4
-        integer = 'Thursday'
-      when 5
-        integer = 'Friday'
-      when 6
-        integer = 'Saturday'
-      end
-    end.tally
+    invoice_created_at_by_weekday.tally
   end
 
   def average_invoices_per_day
