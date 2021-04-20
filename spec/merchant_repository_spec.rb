@@ -72,9 +72,9 @@ describe MerchantRepository do
       allow(FileIo).to receive(:process_csv).and_return(mock_data)
       m_repo = MerchantRepository.new('fake.csv')
 
-      m_repo.create({name: 'Merchant 0'})
-      m_repo.create({name: 'Merchant 0'})
-      m_repo.create({name: 'Merchant 0'})
+      m_repo.create({ name: 'Merchant 0' })
+      m_repo.create({ name: 'Merchant 0' })
+      m_repo.create({ name: 'Merchant 0' })
 
       merchants = m_repo.find_all_by_name('Merchant 0')
       merchants.each do |merchant|
@@ -113,7 +113,7 @@ describe MerchantRepository do
       m_repo = MerchantRepository.new('fake.csv')
       allow(m_repo).to receive(:newest_id).and_return(10)
 
-      m_repo.create({name: 'Sami'})
+      m_repo.create({ name: 'Sami' })
       new_merchant = m_repo.all.last.name
 
       expect(m_repo.all.length).to eq 11
@@ -127,9 +127,9 @@ describe MerchantRepository do
       allow(FileIo).to receive(:process_csv).and_return(mock_data)
       m_repo = MerchantRepository.new('fake.csv')
 
-      m_repo.create({name: 'Sami'})
+      m_repo.create({ name: 'Sami' })
       new_merchant = m_repo.all.last
-      m_repo.update(10, {name: 'Dustin Huntsman'})
+      m_repo.update(10, { name: 'Dustin Huntsman' })
 
       expect(new_merchant.name).to eq 'Dustin Huntsman'
     end
@@ -140,7 +140,7 @@ describe MerchantRepository do
       allow(FileIo).to receive(:process_csv).and_return(mock_data)
       m_repo = MerchantRepository.new('fake.csv')
 
-      m_repo.create({id: 0, name: 'Sami'})
+      m_repo.create({ id: 0, name: 'Sami' })
       new_merchant = m_repo.all.last
       m_repo.update(56, { name: 'Dustin Huntsman' })
     end

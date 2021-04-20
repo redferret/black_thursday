@@ -34,7 +34,7 @@ class Repository
     @models << model
   end
 
-  def update(id, attributes)
+  def update(id, _attributes)
     model = find_by_id(id)
     unless model.nil?
       yield(model) if block_given?
