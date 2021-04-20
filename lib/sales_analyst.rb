@@ -59,8 +59,8 @@ class SalesAnalyst
   end
 
   def merchants_with_items
-    merchants_with_items = num_of_items_per_merchant.select do |merchant, num_of_items|
-      num_of_items != 0
+    merchants_with_items = num_of_items_per_merchant.reject do |_merchant, num_of_items|
+      num_of_items.zero?
     end.keys
   end
 
@@ -130,6 +130,74 @@ class SalesAnalyst
       merchants << merchant if invoice_count <= z
     end
     merchants
+  end
+
+  def invoice_created_at_times
+    if all_invoices[0].created_at.class == String
+      all_invoices.map do |invoice|
+        Time.parse(invoice.created_at)
+      end
+    else
+      all_invoices.map do |invoice|
+        invoice.created_at
+      end
+    end
+  end
+
+  def invoice_created_at_by_weekday
+    invoice_created_at_times.map do |time|
+      time.wday
+    end
+  end
+
+  def convert_wday_integers_to_hash
+    invoice_created_at_by_weekday.map do |integer|
+      case integer
+        when 0
+          integer = 'Sunday'
+        when 1
+          integer = 'Monday'
+        when 2
+          integer = 'Tuesday'
+        when 3
+          integer = 'Wednesday'
+        when 4
+          integer = 'Thursday'
+        when 5
+          integer = 'Friday'
+        when 6
+          integer = 'Saturday'
+      end
+    end.tally
+  end
+
+  def average_invoices_per_day
+    convert_wday_integers_to_hash.values.sum / 7
+  end
+
+  def average_invoices_per_day_standard_deviation
+    values = convert_wday_integers_to_hash.values
+    mean = average_invoices_per_day
+    sums = values.sum { |value| (value - mean)**2 }
+    std_dev = Math.sqrt(sums / (values.length - 1).to_f)
+    std_dev.round(2)
+  end
+
+  def top_days_by_invoice_count
+    threshold = standard_deviations_of_mean(average_invoices_per_day, average_invoices_per_day_standard_deviation)
+    top_days = []
+    weekday_hash = convert_wday_integers_to_hash
+    weekday_hash.map do |weekday, invoices|
+      top_days << weekday if invoices > threshold
+    end
+    top_days
+  end
+
+  def invoice_status(status)
+    with_status = all_invoices.select do |invoice|
+      invoice.status == status
+    end.length
+    (with_status.to_f / all_invoices.length * 100).round(2)
   end
 
   def invoice_paid_in_full?(invoice_id)
