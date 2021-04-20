@@ -139,6 +139,13 @@ class SalesAnalyst
     transaction_repo.any_success?(invoice_id)
   end
 
+  def invoice_total(invoice_id)
+    invoice_items = all_invoice_items.find_all_by_invoice_id(invoice_id)
+    invoice_items.sum do |invoice_item|
+      invoice_item.total
+    end
+  end
+
   def all_items
     @sales_engine.all_items
   end

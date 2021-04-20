@@ -3,6 +3,7 @@ require 'rspec'
 require './data/item_mocks'
 require './data/merchant_mocks'
 require './data/invoice_mocks'
+require './data/invoice_item_mocks'
 require './data/transaction_mocks'
 require './lib/sales_analyst'
 require './lib/sales_engine'
@@ -210,6 +211,24 @@ RSpec.describe SalesAnalyst do
       invoice = sales_analyst.all_invoices.last
 
       expect(sales_analyst.paid_in_full?(invoice.id)).to eq false
+    end
+  end
+
+  describe '#invoice_total' do
+    it 'returns the $ amount of the Invoice with specified id' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+      allow_any_instance_of(Array).to receive(:find_all_by_invoice_id) { sales_analyst.all_invoice_items }
+      invoice_item_1 = sales_analyst.all_invoice_items[0]
+      allow(invoice_item_1).to receive(:total) { 20.00 }
+      invoice_item_2 = sales_analyst.all_invoice_items[1]
+      allow(invoice_item_2).to receive(:total) { 20.00 }
+      invoice_item_3 = sales_analyst.all_invoice_items[2]
+      allow(invoice_item_3).to receive(:total) { 20.00 }
+      invoice_item_4 = sales_analyst.all_invoice_items[3]
+      allow(invoice_item_4).to receive(:total) { 20.00 }
+      # allow_any_instance_of(RSpec::Mocks::InstanceVerifyingDouble).to_receive(:total).and_return(20.00)
+
+      expect(sales_analyst.invoice_total(0)).to eq 80.00
     end
   end
 end

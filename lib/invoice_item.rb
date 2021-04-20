@@ -48,4 +48,8 @@ class InvoiceItem
 
     Time.parse(@updated_at)
   end
+
+  def total
+    @unit_price * @quantity
+  end
 end
