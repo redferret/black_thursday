@@ -194,14 +194,14 @@ RSpec.describe SalesAnalyst do
     end
   end
 
-  describe '#paid_in_full?' do
+  describe '#invoice_paid_in_full?' do
     it 'returns true if the Invoice with specified id is PIF' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
       t_repo = sales_analyst.sales_engine.transactions
       allow(t_repo).to receive(:any_success?).and_return(true)
       invoice = sales_analyst.all_invoices.first
 
-      expect(sales_analyst.paid_in_full?(invoice.id)).to eq true
+      expect(sales_analyst.invoice_paid_in_full?(invoice.id)).to eq true
     end
 
     it 'returns false if the Invoice with specified id has no successful transaction' do
@@ -210,7 +210,7 @@ RSpec.describe SalesAnalyst do
       allow(t_repo).to receive(:any_success?).and_return(false)
       invoice = sales_analyst.all_invoices.last
 
-      expect(sales_analyst.paid_in_full?(invoice.id)).to eq false
+      expect(sales_analyst.invoice_paid_in_full?(invoice.id)).to eq false
     end
   end
 

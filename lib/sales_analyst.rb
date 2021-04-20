@@ -134,7 +134,7 @@ class SalesAnalyst
     merchants
   end
 
-  def paid_in_full?(invoice_id)
+  def invoice_paid_in_full?(invoice_id)
     transaction_repo = @sales_engine.transactions
     transaction_repo.any_success?(invoice_id)
   end
