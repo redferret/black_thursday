@@ -70,4 +70,10 @@ class InvoiceItemRepository
     invoice_item = find_by_id(id)
     @invoice_items.delete(invoice_item)
   end
+
+  def total_for_invoice(invoice_id)
+    find_all_by_invoice_id(invoice_id).sum do |invoice_item|
+      invoice_item.total
+    end
+  end
 end

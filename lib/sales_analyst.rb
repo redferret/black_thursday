@@ -5,6 +5,7 @@ class SalesAnalyst
 
   def initialize(sales_engine)
     @sales_engine = sales_engine
+    # @item_repo = sales_engine.items
   end
 
   def num_of_items_per_merchant
@@ -178,6 +179,52 @@ class SalesAnalyst
     (with_status.to_f / all_invoices.length * 100).round(2)
   end
 
+  def invoice_paid_in_full?(invoice_id)
+    transaction_repo = @sales_engine.transactions
+    transaction_repo.any_success?(invoice_id)
+  end
+
+  def invoice_total(invoice_id)
+    invoice_item_repo = @sales_engine.invoice_items
+    if invoice_paid_in_full?(invoice_id)
+      invoice_item_repo.total_for_invoice(invoice_id)
+    else
+      0
+    end
+  end
+
+  def total_revenue_by_date(date)
+    # should make a method in InvoiceRepo for find_all_by_date
+    invoices_for_date = all_invoices.find_all do |invoice|
+      invoice.created_at == date
+    end
+    invoices_for_date.sum do |invoice|
+      invoice_total(invoice.id)
+    end
+  end
+
+  def invoices_by_merchant
+    invoice_repo = @sales_engine.invoices
+    all_merchants.reduce({}) do |hash, merchant|
+      hash[merchant] = invoice_repo.find_all_by_merchant_id(merchant.id)
+      hash
+    end
+  end
+
+  def revenue_by_merchant
+    invoices_by_merchant.transform_values do |invoices|
+      invoices.sum do |invoice|
+        invoice_total(invoice.id).to_f
+      end
+    end
+  end
+
+  def top_revenue_earners(x = 20)
+    revenue_list = revenue_by_merchant.sort_by {|merchant, revenue| revenue}.reverse
+    merchants_by_revenue = revenue_list.map { |array| array[0] }
+    top_earners = merchants_by_revenue.first(x)
+  end
+
   def all_items
     @sales_engine.all_items
   end
@@ -188,5 +235,17 @@ class SalesAnalyst
 
   def all_invoices
     @sales_engine.all_invoices
+  end
+
+  def all_transactions
+    @sales_engine.all_transactions
+  end
+
+  def all_invoice_items
+    @sales_engine.all_invoice_items
+  end
+
+  def all_customers
+    @sales_engine.all_customers
   end
 end
