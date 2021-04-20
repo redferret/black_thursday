@@ -227,4 +227,22 @@ RSpec.describe SalesAnalyst do
       expect(sales_analyst.invoice_total(0)).to eq 80.00
     end
   end
+
+  describe '#total_revenue_by_date' do
+    it 'returns the total revenue for a given date' do
+      # finds all of the successful transactions for a given date
+      # then calculates the total price for the invoice the transaction pays
+      # the returns the sum of those totals
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+      invoice = sales_analyst.all_invoices.first
+      allow(invoice).to receive(:created_at) { Time.parse('2020-10-20') }
+      invoice_items = sales_analyst.all_invoice_items
+      invoice_items.each do |invoice_item|
+        allow(invoice_item).to receive(:total) { 20.00 }
+      end
+      date = Time.parse('2020-10-20')
+
+      expect(sales_analyst.total_revenue_by_date(date)).to eq 80.00
+    end
+  end
 end

@@ -144,6 +144,15 @@ class SalesAnalyst
     invoice_item_repo.total_for_invoice(invoice_id)
   end
 
+  def total_revenue_by_date(date)
+    invoices_for_date = all_invoices.find_all do |invoice|
+      invoice.created_at == date
+    end
+    invoices_for_date.sum do |invoice|
+      invoice_total(invoice.id)
+    end
+  end
+
   def all_items
     @sales_engine.all_items
   end
