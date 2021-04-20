@@ -59,7 +59,7 @@ class SalesAnalyst
   end
 
   def merchants_with_items
-    merchants_with_items = num_of_items_per_merchant.reject do |_merchant, num_of_items|
+    num_of_items_per_merchant.reject do |_merchant, num_of_items|
       num_of_items.zero?
     end.keys
   end
@@ -103,31 +103,25 @@ class SalesAnalyst
   def average_invoices_per_merchant_standard_deviation
     mean = average_invoices_per_merchant
     invoice_counts = num_of_invoices_per_merchant.values
-    std_dev = standard_deviation(invoice_counts, mean)
+    standard_deviation(invoice_counts, mean)
   end
 
   def top_merchants_by_invoice_count
-    mean = average_invoices_per_merchant
-    std_dev = average_invoices_per_merchant_standard_deviation
-
-    z = standard_deviations_of_mean(mean, std_dev, 2)
-
+    high_invoice_count = standard_deviations_of_mean(average_invoices_per_merchant,
+     average_invoices_per_merchant_standard_deviation, 2)
     merchants = []
     num_of_invoices_per_merchant.each_pair do |merchant, invoice_count|
-      merchants << merchant if invoice_count >= z
+      merchants << merchant if invoice_count >= high_invoice_count
     end
     merchants
   end
 
   def bottom_merchants_by_invoice_count
-    mean = average_invoices_per_merchant
-    std_dev = average_invoices_per_merchant_standard_deviation
-
-    z = standard_deviations_of_mean(mean, std_dev, -2)
-
+    low_invoice_count = standard_deviations_of_mean(average_invoices_per_merchant,
+     average_invoices_per_merchant_standard_deviation, -2)
     merchants = []
     num_of_invoices_per_merchant.each_pair do |merchant, invoice_count|
-      merchants << merchant if invoice_count <= z
+      merchants << merchant if invoice_count <= low_invoice_count
     end
     merchants
   end
@@ -137,7 +131,7 @@ class SalesAnalyst
       all_invoices.map do |invoice|
         Time.parse(invoice.created_at)
       end
-    else 
+    else
       all_invoices.map do |invoice|
         invoice.created_at
       end
@@ -148,7 +142,7 @@ class SalesAnalyst
     weekdays = invoice_created_at_times.map do |time|
       time.wday
     end
-    by_day = weekdays.map do |weekday|
+    weekdays.map do |weekday|
       Date::DAYNAMES[weekday]
     end
   end
