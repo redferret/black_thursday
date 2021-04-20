@@ -1,3 +1,5 @@
+require 'csv'
+
 class FileIo
   def self.process_csv(filename, type)
     elements = []
