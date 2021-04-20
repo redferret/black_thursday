@@ -217,7 +217,8 @@ RSpec.describe SalesAnalyst do
   describe '#invoice_total' do
     it 'returns the $ amount of the Invoice with specified id' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
-      allow_any_instance_of(Array).to receive(:find_all_by_invoice_id) { sales_analyst.all_invoice_items }
+      ii_repo = sales_analyst.sales_engine.invoice_items
+      allow(ii_repo).to receive(:find_all_by_invoice_id) { sales_analyst.all_invoice_items }
       invoice_items = sales_analyst.all_invoice_items
       invoice_items.each do |invoice_item|
         allow(invoice_item).to receive(:total) { 20.00 }

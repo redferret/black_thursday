@@ -9,7 +9,7 @@ class InvoiceItem
     @id = details[:id].to_i
     @item_id = details[:item_id].to_i
     @invoice_id = details[:invoice_id].to_i
-    @quantity = details[:quantity]
+    @quantity = details[:quantity].to_i
     @unit_price = BigDecimal(details[:unit_price]) / 100
     @created_at = details[:created_at]
     @updated_at = details[:updated_at]
