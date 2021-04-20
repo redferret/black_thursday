@@ -19,12 +19,6 @@ class InvoiceItem
     @unit_price.to_f
   end
 
-  def update_id(id)
-    return false if id.nil?
-
-    @id = id
-  end
-
   def update_quantity(quantity)
     @quantity = quantity unless quantity.nil?
   end
@@ -33,7 +27,11 @@ class InvoiceItem
     @unit_price = unit_price unless unit_price.nil?
   end
 
-  def new_updated_at_time
+  def update_id(id)
+    @id = id.to_i
+  end
+
+  def update_time
     @updated_at = Time.now
   end
 

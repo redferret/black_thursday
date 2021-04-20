@@ -14,4 +14,12 @@ class Merchant
   def update_name(name)
     @name = name
   end
+
+  def update_time
+    @updated_at = Time.now
+  end
+
+  def update_id(id)
+    @id = id
+  end
 end

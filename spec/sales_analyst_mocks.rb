@@ -30,16 +30,16 @@ class SalesAnalystMocks
 
     items_as_mocks = ItemMocks.items_as_mocks(eg, items_as_hashes)
 
-    eg.allow_any_instance_of(ItemRepository).to eg.receive(:create_items).and_return(items_as_mocks)
-    eg.allow_any_instance_of(MerchantRepository).to eg.receive(:create_merchants).and_return(merchants_as_mocks)
-
+    eg.allow(FileIo).to eg.receive(:process_csv).and_return(items_as_mocks)
     item_repository = ItemRepository.new('fake_file')
+
+    eg.allow(FileIo).to eg.receive(:process_csv).and_return(merchants_as_mocks)
     merchant_repository = MerchantRepository.new('fake_file')
 
     eg.allow(sales_engine).to eg.receive(:items).and_return item_repository
     eg.allow(sales_engine).to eg.receive(:merchants).and_return merchant_repository
-    eg.allow(sales_engine).to eg.receive(:all_items).and_return item_repository.items
-    eg.allow(sales_engine).to eg.receive(:all_merchants).and_return merchant_repository.merchants
+    eg.allow(sales_engine).to eg.receive(:all_items).and_return item_repository.all
+    eg.allow(sales_engine).to eg.receive(:all_merchants).and_return merchant_repository.all
     sales_analyst
   end
 end
