@@ -35,6 +35,12 @@ class SalesAnalystMocks
     invoices_as_hashes += InvoiceMocks.invoices_as_hashes(number_of_hashes: 3, random_dates: false, created_at: proc { Time.new(2020, 9, 19) }, status: :returned, merchant_id: (8))
     invoices_as_hashes += InvoiceMocks.invoices_as_hashes(number_of_hashes: 12, random_dates: false, created_at: proc { Time.new(2020, 10, 20) }, status: :returned, merchant_id: (9))
 
+
+    transactions_as_hashes = TransactionMocks.transactions_as_hashes(random_dates: false, invoice_id: 0, result: :success)
+
+    invoice_items_as_hashes = InvoiceItemMocks.invoice_items_as_hashes(number_of_hashes: 4, invoice_id: 0, quantity: 2, unit_price: 10.00,
+      item_id: 0)
+
     @@price_sums_for_each_merchant = merchants_as_mocks.each_with_object({}) do |merchant, sums_by_merchant|
       item_hashes = items_as_hashes.find_all do |item_hash|
         item_hash[:merchant_id] == merchant.id
@@ -63,6 +69,7 @@ class SalesAnalystMocks
     eg.allow(sales_engine).to eg.receive(:items).and_return item_repository
     eg.allow(sales_engine).to eg.receive(:merchants).and_return merchant_repository
     eg.allow(sales_engine).to eg.receive(:transactions).and_return transaction_repository
+    eg.allow(sales_engine).to eg.receive(:invoices).and_return invoice_repository
     eg.allow(sales_engine).to eg.receive(:invoice_items).and_return invoice_item_repository
     eg.allow(sales_engine).to eg.receive(:all_items).and_return item_repository.items
     eg.allow(sales_engine).to eg.receive(:all_merchants).and_return merchant_repository.merchants

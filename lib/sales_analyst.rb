@@ -5,6 +5,7 @@ class SalesAnalyst
 
   def initialize(sales_engine)
     @sales_engine = sales_engine
+    # @item_repo = sales_engine.items
   end
 
   def num_of_items_per_merchant
@@ -211,12 +212,36 @@ class SalesAnalyst
   end
 
   def total_revenue_by_date(date)
+    # should make a method in InvoiceRepo for find_all_by_date
     invoices_for_date = all_invoices.find_all do |invoice|
       invoice.created_at == date
     end
     invoices_for_date.sum do |invoice|
       invoice_total(invoice.id)
     end
+  end
+
+  def invoices_by_merchant
+    invoice_repo = @sales_engine.invoices
+    all_merchants.reduce({}) do |hash, merchant|
+      hash[merchant] = invoice_repo.find_all_by_merchant_id(merchant.id)
+      hash
+    end
+  end
+
+  def revenue_by_merchant
+    invoices_by_merchant.transform_values do |invoices|
+      invoices.sum do |invoice|
+        invoice_total(invoice.id).to_f
+      end
+    end
+  end
+
+  def top_revenue_earners(x = 20)
+    require "pry"; binding.pry
+    # revenue_list = revenue_by_merchant.sort_by {|merchant, revenue| revenue}.reverse
+    merchants_by_revenue = revenue_list.map { |array| array[0] }
+    top_earners = merchants_by_revenue.first(x)
   end
 
   def all_items
