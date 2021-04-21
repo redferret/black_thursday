@@ -23,14 +23,26 @@ RSpec.describe SalesAnalyst do
   end
 
   describe '#find_top_by' do
-    xit 'needs tests' do
+    it 'finds top item in sorted_array' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+      sorted_items = [4, 3, 2]
 
+      expect(sales_analyst.find_top_by(sorted_items)).to eq [4]
+    end
+
+    it 'finds top items in sorted_array with ties' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+      sorted_items = [4, 4, 3, 2]
+
+      expect(sales_analyst.find_top_by(sorted_items)).to eq [4, 4]
     end
   end
 
   describe '#top_days_by_invoice_count' do
-    xit 'fails because there are no tests for it' do
+    it 'returns days of the week with the most invoices' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
 
+      expect(sales_analyst.top_days_by_invoice_count).to eq ["Tuesday"]
     end
   end
 
