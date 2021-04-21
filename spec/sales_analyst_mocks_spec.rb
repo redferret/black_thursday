@@ -2,6 +2,7 @@ require './data/invoice_mocks'
 require './data/item_mocks'
 require './data/merchant_mocks'
 require './data/sales_analyst_mocks'
+
 require './lib/sales_analyst'
 
 

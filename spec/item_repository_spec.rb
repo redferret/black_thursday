@@ -1,5 +1,6 @@
 require './data/item_mocks'
 require './data/mockable'
+
 require './lib/item'
 require './lib/item_repository'
 require './lib/file_io'
@@ -63,8 +64,8 @@ describe ItemRepository do
       mock_data = ItemMocks.items_as_mocks(self)
       allow(FileIo).to receive(:process_csv).and_return(mock_data)
       item_repository = ItemRepository.new('fake.csv')
-
       expected = item_repository.all.first
+
       expect(item_repository.find_by_name('Item 0')).to eq expected
     end
   end
@@ -160,6 +161,7 @@ describe ItemRepository do
         updated_at: Time.now,
         merchant_id: 2
       }
+
       expect(item_repository.create(new_item)).is_a? Item
     end
 
@@ -206,8 +208,8 @@ describe ItemRepository do
       }
 
       item_repository.update(10, attributes)
-
       expected = item_repository.find_by_id(10)
+
       expect(expected.name).to eq 'Pen'
       expect(expected.description).to eq 'Writes with ink'
       expect(expected.unit_price).to eq BigDecimal(12.99, 4)
