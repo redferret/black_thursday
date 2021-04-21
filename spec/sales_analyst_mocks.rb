@@ -81,6 +81,8 @@ class SalesAnalystMocks
     eg.allow_any_instance_of(InvoiceItemRepository).to eg.receive(:create_invoice_items).and_return(invoice_items_as_mocks)
 
     item_repository = ItemRepository.new('fake_file')
+
+    eg.allow(FileIo).to eg.receive(:process_csv).and_return(merchants_as_mocks)
     merchant_repository = MerchantRepository.new('fake_file')
     invoice_repository = InvoiceRepository.new('fake_file')
     transaction_repository = TransactionRepository.new('fake_file')

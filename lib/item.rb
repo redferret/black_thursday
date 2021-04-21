@@ -1,28 +1,21 @@
-require 'time'
+require './lib/model'
 
-class Item
-  attr_reader :id,
-              :name,
+class Item < Model
+  attr_reader :name,
               :description,
               :unit_price,
               :merchant_id
 
-  def initialize(details)
-    @id = details[:id].to_i
-    @name = details[:name]
-    @description = details[:description]
-    @unit_price = BigDecimal(details[:unit_price]) / 100
-    @created_at = details[:created_at]
-    @updated_at = details[:updated_at]
-    @merchant_id = details[:merchant_id].to_i
+  def initialize(attributes)
+    super
+    @name = attributes[:name]
+    @description = attributes[:description]
+    @unit_price = BigDecimal(attributes[:unit_price]) / 100
+    @merchant_id = attributes[:merchant_id].to_i
   end
 
   def unit_price_to_dollars
     @unit_price.to_f
-  end
-
-  def update_id(id)
-    @id = id
   end
 
   def update_name(name)
@@ -35,21 +28,5 @@ class Item
 
   def update_unit_price(unit_price)
     @unit_price = unit_price unless unit_price.nil?
-  end
-
-  def update_time
-    @updated_at = Time.now
-  end
-
-  def created_at
-    return @created_at if @created_at.instance_of?(Time)
-
-    Time.parse(@created_at)
-  end
-
-  def updated_at
-    return @updated_at if @updated_at.instance_of?(Time)
-
-    Time.parse(@updated_at)
   end
 end
