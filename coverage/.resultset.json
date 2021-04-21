@@ -1545,11 +1545,11 @@
           1,
           20,
           null,
-          9,
+          4,
           null,
-          2,
+          8,
           null,
-          9,
+          8,
           null,
           null,
           null
@@ -3051,13 +3051,14 @@
           null,
           1,
           1,
-          null,
-          1,
-          1,
-          1,
           1,
           null,
           1,
+          1,
+          1,
+          1,
+          null,
+          null,
           null,
           1,
           1,
@@ -3197,6 +3198,22 @@
           39,
           null,
           39,
+          null,
+          null
+        ]
+      },
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/data/sales_engine_mocks.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          9,
+          9,
+          null,
+          9,
+          null,
+          9,
           null,
           null
         ]
@@ -3685,22 +3702,6 @@
           2,
           5,
           null,
-          null,
-          null
-        ]
-      },
-      "/Users/nwz/mod_1_projects/3_project/black_thursday/spec/sales_engine_mocks.rb": {
-        "lines": [
-          1,
-          null,
-          1,
-          1,
-          9,
-          9,
-          null,
-          9,
-          null,
-          9,
           null,
           null
         ]
@@ -4238,9 +4239,9 @@
           1,
           25,
           null,
-          14,
-          null,
           11,
+          null,
+          14,
           null,
           null,
           null
@@ -4271,6 +4272,8 @@
           1,
           1,
           1,
+          1,
+          null,
           null,
           1,
           1,
@@ -4282,7 +4285,7 @@
           1,
           1,
           null,
-          1,
+          null,
           null,
           1,
           1,
@@ -4982,6 +4985,6 @@
         ]
       }
     },
-    "timestamp": 1619023889
+    "timestamp": 1619024025
   }
 }

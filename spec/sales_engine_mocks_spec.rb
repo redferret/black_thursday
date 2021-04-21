@@ -1,4 +1,4 @@
-require './spec/sales_engine_mocks'
+require './data/sales_engine_mocks'
 
 RSpec.describe SalesEngineMocks do
   describe '#sales_engine' do

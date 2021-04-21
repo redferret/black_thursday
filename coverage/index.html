@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2021-04-21T10:51:29-06:00">2021-04-21T10:51:29-06:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2021-04-21T10:53:45-06:00">2021-04-21T10:53:45-06:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -139,11 +139,22 @@
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#ae1ca4680e7a1947678d1c8deb9066919d6edbe9" class="src_link" title="data/sales_analyst_mocks.rb">data/sales_analyst_mocks.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">152</td>
+            <td class="cell--number">153</td>
             <td class="cell--number">78</td>
             <td class="cell--number">78</td>
             <td class="cell--number">0</td>
             <td class="cell--number">199.65</td>
+            
+          </tr>
+        
+          <tr class="t-file">
+            <td class="strong t-file__name"><a href="#884227ba3747520b04f87bbfbba9c006c70a6847" class="src_link" title="data/sales_engine_mocks.rb">data/sales_engine_mocks.rb</a></td>
+            <td class="green strong cell--number t-file__coverage">100.00 %</td>
+            <td class="cell--number">12</td>
+            <td class="cell--number">7</td>
+            <td class="cell--number">7</td>
+            <td class="cell--number">0</td>
+            <td class="cell--number">5.57</td>
             
           </tr>
         
@@ -555,17 +566,6 @@
           </tr>
         
           <tr class="t-file">
-            <td class="strong t-file__name"><a href="#241de4c7a30a3502cf27d40dc4e0790a94342e35" class="src_link" title="spec/sales_engine_mocks.rb">spec/sales_engine_mocks.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">12</td>
-            <td class="cell--number">7</td>
-            <td class="cell--number">7</td>
-            <td class="cell--number">0</td>
-            <td class="cell--number">5.57</td>
-            
-          </tr>
-        
-          <tr class="t-file">
             <td class="strong t-file__name"><a href="#bf5d722720b4bf980dda253726c8ed86e3ed866f" class="src_link" title="spec/sales_engine_mocks_spec.rb">spec/sales_engine_mocks_spec.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
             <td class="cell--number">11</td>
@@ -579,7 +579,7 @@
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#2130eecc71347603b25358909e39301ab5144cc0" class="src_link" title="spec/sales_engine_spec.rb">spec/sales_engine_spec.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">101</td>
+            <td class="cell--number">103</td>
             <td class="cell--number">65</td>
             <td class="cell--number">65</td>
             <td class="cell--number">0</td>
@@ -1782,8 +1782,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="9" data-linenumber="35">
-            <span class="hits">9</span>
+          <li class="covered" data-hits="4" data-linenumber="35">
+            <span class="hits">4</span>
             
 
             
@@ -1804,8 +1804,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="37">
-            <span class="hits">2</span>
+          <li class="covered" data-hits="8" data-linenumber="37">
+            <span class="hits">8</span>
             
 
             
@@ -1826,8 +1826,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="9" data-linenumber="39">
-            <span class="hits">9</span>
+          <li class="covered" data-hits="8" data-linenumber="39">
+            <span class="hits">8</span>
             
 
             
@@ -3281,24 +3281,24 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="5">
+          <li class="covered" data-hits="1" data-linenumber="5">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">require &#39;./data/sales_engine_mocks&#39;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="6">
             
             
 
             
 
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="6">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">require &#39;./lib/item_repository&#39;</code>
           </li>
         </div>
       
@@ -3309,7 +3309,7 @@
 
             
 
-            <code class="ruby">require &#39;./lib/invoice_repository&#39;</code>
+            <code class="ruby">require &#39;./lib/item_repository&#39;</code>
           </li>
         </div>
       
@@ -3320,7 +3320,7 @@
 
             
 
-            <code class="ruby">require &#39;./lib/invoice_item_repository&#39;</code>
+            <code class="ruby">require &#39;./lib/invoice_repository&#39;</code>
           </li>
         </div>
       
@@ -3331,29 +3331,29 @@
 
             
 
+            <code class="ruby">require &#39;./lib/invoice_item_repository&#39;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="10">
+            <span class="hits">1</span>
+            
+
+            
+
             <code class="ruby">require &#39;./lib/sales_analyst&#39;</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="10">
+          <li class="never" data-hits="" data-linenumber="11">
             
             
 
             
 
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="11">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">require &#39;./spec/sales_engine_mocks&#39;</code>
           </li>
         </div>
       
@@ -3369,13 +3369,13 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="13">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="13">
+            
             
 
             
 
-            <code class="ruby">class SalesAnalystMocks</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -3386,7 +3386,7 @@
 
             
 
-            <code class="ruby">  def self.price_means_for_each_merchant</code>
+            <code class="ruby">class SalesAnalystMocks</code>
           </li>
         </div>
       
@@ -3397,18 +3397,18 @@
 
             
 
-            <code class="ruby">    @@price_means_for_each_merchant</code>
+            <code class="ruby">  def self.price_means_for_each_merchant</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="16">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="16">
+            <span class="hits">1</span>
             
 
-            <code class="ruby">  end</code>
+            
+
+            <code class="ruby">    @@price_means_for_each_merchant</code>
           </li>
         </div>
       
@@ -3419,12 +3419,23 @@
 
             
 
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="18">
+            
+            
+
+            
+
             <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="18">
+          <li class="covered" data-hits="1" data-linenumber="19">
             <span class="hits">1</span>
             
 
@@ -3435,7 +3446,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="39" data-linenumber="19">
+          <li class="covered" data-hits="39" data-linenumber="20">
             <span class="hits">39</span>
             
 
@@ -3446,7 +3457,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="20">
+          <li class="never" data-hits="" data-linenumber="21">
             
             
 
@@ -3457,7 +3468,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="21">
+          <li class="never" data-hits="" data-linenumber="22">
             
             
 
@@ -3468,7 +3479,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="39" data-linenumber="22">
+          <li class="covered" data-hits="39" data-linenumber="23">
             <span class="hits">39</span>
             
 
@@ -3479,24 +3490,13 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="23">
-            
-            
-
-            
-
-            <code class="ruby">      name: &#39;Lucky Merch&#39;,</code>
-          </li>
-        </div>
-      
-        <div>
           <li class="never" data-hits="" data-linenumber="24">
             
             
 
             
 
-            <code class="ruby">      created_at: Time.new(2020, 7, 20),</code>
+            <code class="ruby">      name: &#39;Lucky Merch&#39;,</code>
           </li>
         </div>
       
@@ -3507,7 +3507,7 @@
 
             
 
-            <code class="ruby">      updated_at: Time.new(2020, 7, 20)</code>
+            <code class="ruby">      created_at: Time.new(2020, 7, 20),</code>
           </li>
         </div>
       
@@ -3518,7 +3518,7 @@
 
             
 
-            <code class="ruby">    }</code>
+            <code class="ruby">      updated_at: Time.new(2020, 7, 20)</code>
           </li>
         </div>
       
@@ -3529,12 +3529,23 @@
 
             
 
+            <code class="ruby">    }</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="28">
+            
+            
+
+            
+
             <code class="ruby">    merchant2 = {</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="39" data-linenumber="28">
+          <li class="covered" data-hits="39" data-linenumber="29">
             <span class="hits">39</span>
             
 
@@ -3545,7 +3556,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="29">
+          <li class="never" data-hits="" data-linenumber="30">
             
             
 
@@ -3556,7 +3567,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="30">
+          <li class="never" data-hits="" data-linenumber="31">
             
             
 
@@ -3567,7 +3578,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="31">
+          <li class="never" data-hits="" data-linenumber="32">
             
             
 
@@ -3578,7 +3589,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="32">
+          <li class="never" data-hits="" data-linenumber="33">
             
             
 
@@ -3589,7 +3600,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="33">
+          <li class="never" data-hits="" data-linenumber="34">
             
             
 
@@ -3600,7 +3611,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="39" data-linenumber="34">
+          <li class="covered" data-hits="39" data-linenumber="35">
             <span class="hits">39</span>
             
 
@@ -3611,7 +3622,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="35">
+          <li class="never" data-hits="" data-linenumber="36">
             
             
 
@@ -3622,7 +3633,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="39" data-linenumber="36">
+          <li class="covered" data-hits="39" data-linenumber="37">
             <span class="hits">39</span>
             
 
@@ -3633,7 +3644,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="37">
+          <li class="never" data-hits="" data-linenumber="38">
             
             
 
@@ -3644,7 +3655,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="39" data-linenumber="38">
+          <li class="covered" data-hits="39" data-linenumber="39">
             <span class="hits">39</span>
             
 
@@ -3655,7 +3666,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="39">
+          <li class="never" data-hits="" data-linenumber="40">
             
             
 
@@ -3666,7 +3677,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="40">
+          <li class="never" data-hits="" data-linenumber="41">
             
             
 
@@ -3677,7 +3688,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="39" data-linenumber="41">
+          <li class="covered" data-hits="39" data-linenumber="42">
             <span class="hits">39</span>
             
 
@@ -3688,7 +3699,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="42">
+          <li class="never" data-hits="" data-linenumber="43">
             
             
 
@@ -3699,7 +3710,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="39" data-linenumber="43">
+          <li class="covered" data-hits="39" data-linenumber="44">
             <span class="hits">39</span>
             
 
@@ -3710,7 +3721,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="44">
+          <li class="never" data-hits="" data-linenumber="45">
             
             
 
@@ -3721,7 +3732,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="39" data-linenumber="45">
+          <li class="covered" data-hits="39" data-linenumber="46">
             <span class="hits">39</span>
             
 
@@ -3732,7 +3743,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="46">
+          <li class="never" data-hits="" data-linenumber="47">
             
             
 
@@ -3743,7 +3754,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="39" data-linenumber="47">
+          <li class="covered" data-hits="39" data-linenumber="48">
             <span class="hits">39</span>
             
 
@@ -3754,7 +3765,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="39" data-linenumber="48">
+          <li class="covered" data-hits="39" data-linenumber="49">
             <span class="hits">39</span>
             
 
@@ -3765,7 +3776,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="49">
+          <li class="never" data-hits="" data-linenumber="50">
             
             
 
@@ -3776,7 +3787,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="39" data-linenumber="50">
+          <li class="covered" data-hits="39" data-linenumber="51">
             <span class="hits">39</span>
             
 
@@ -3787,7 +3798,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="51">
+          <li class="never" data-hits="" data-linenumber="52">
             
             
 
@@ -3798,7 +3809,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="39" data-linenumber="52">
+          <li class="covered" data-hits="39" data-linenumber="53">
             <span class="hits">39</span>
             
 
@@ -3809,7 +3820,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="53">
+          <li class="never" data-hits="" data-linenumber="54">
             
             
 
@@ -3820,7 +3831,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="54">
+          <li class="never" data-hits="" data-linenumber="55">
             
             
 
@@ -3831,7 +3842,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="39" data-linenumber="55">
+          <li class="covered" data-hits="39" data-linenumber="56">
             <span class="hits">39</span>
             
 
@@ -3842,7 +3853,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="56">
+          <li class="never" data-hits="" data-linenumber="57">
             
             
 
@@ -3853,7 +3864,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="78" data-linenumber="57">
+          <li class="covered" data-hits="78" data-linenumber="58">
             <span class="hits">78</span>
             
 
@@ -3864,7 +3875,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="58">
+          <li class="never" data-hits="" data-linenumber="59">
             
             
 
@@ -3875,7 +3886,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="59">
+          <li class="never" data-hits="" data-linenumber="60">
             
             
 
@@ -3886,7 +3897,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="39" data-linenumber="60">
+          <li class="covered" data-hits="39" data-linenumber="61">
             <span class="hits">39</span>
             
 
@@ -3897,7 +3908,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="117" data-linenumber="61">
+          <li class="covered" data-hits="117" data-linenumber="62">
             <span class="hits">117</span>
             
 
@@ -3908,7 +3919,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="62">
+          <li class="never" data-hits="" data-linenumber="63">
             
             
 
@@ -3919,7 +3930,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="39" data-linenumber="63">
+          <li class="covered" data-hits="39" data-linenumber="64">
             <span class="hits">39</span>
             
 
@@ -3930,7 +3941,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="64">
+          <li class="never" data-hits="" data-linenumber="65">
             
             
 
@@ -3941,7 +3952,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="117" data-linenumber="65">
+          <li class="covered" data-hits="117" data-linenumber="66">
             <span class="hits">117</span>
             
 
@@ -3952,7 +3963,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="66">
+          <li class="never" data-hits="" data-linenumber="67">
             
             
 
@@ -3963,7 +3974,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="67">
+          <li class="never" data-hits="" data-linenumber="68">
             
             
 
@@ -3974,7 +3985,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="39" data-linenumber="68">
+          <li class="covered" data-hits="39" data-linenumber="69">
             <span class="hits">39</span>
             
 
@@ -3985,7 +3996,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="69">
+          <li class="never" data-hits="" data-linenumber="70">
             
             
 
@@ -3996,7 +4007,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="117" data-linenumber="70">
+          <li class="covered" data-hits="117" data-linenumber="71">
             <span class="hits">117</span>
             
 
@@ -4007,7 +4018,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="71">
+          <li class="never" data-hits="" data-linenumber="72">
             
             
 
@@ -4018,7 +4029,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="72">
+          <li class="never" data-hits="" data-linenumber="73">
             
             
 
@@ -4029,7 +4040,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="39" data-linenumber="73">
+          <li class="covered" data-hits="39" data-linenumber="74">
             <span class="hits">39</span>
             
 
@@ -4040,7 +4051,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="74">
+          <li class="never" data-hits="" data-linenumber="75">
             
             
 
@@ -4051,7 +4062,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="117" data-linenumber="75">
+          <li class="covered" data-hits="117" data-linenumber="76">
             <span class="hits">117</span>
             
 
@@ -4062,7 +4073,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="76">
+          <li class="never" data-hits="" data-linenumber="77">
             
             
 
@@ -4073,7 +4084,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="77">
+          <li class="never" data-hits="" data-linenumber="78">
             
             
 
@@ -4084,7 +4095,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="39" data-linenumber="78">
+          <li class="covered" data-hits="39" data-linenumber="79">
             <span class="hits">39</span>
             
 
@@ -4095,7 +4106,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="79">
+          <li class="never" data-hits="" data-linenumber="80">
             
             
 
@@ -4106,7 +4117,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="117" data-linenumber="80">
+          <li class="covered" data-hits="117" data-linenumber="81">
             <span class="hits">117</span>
             
 
@@ -4117,7 +4128,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="81">
+          <li class="never" data-hits="" data-linenumber="82">
             
             
 
@@ -4128,7 +4139,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="82">
+          <li class="never" data-hits="" data-linenumber="83">
             
             
 
@@ -4139,7 +4150,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="39" data-linenumber="83">
+          <li class="covered" data-hits="39" data-linenumber="84">
             <span class="hits">39</span>
             
 
@@ -4150,7 +4161,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="84">
+          <li class="never" data-hits="" data-linenumber="85">
             
             
 
@@ -4161,7 +4172,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="117" data-linenumber="85">
+          <li class="covered" data-hits="117" data-linenumber="86">
             <span class="hits">117</span>
             
 
@@ -4172,7 +4183,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="86">
+          <li class="never" data-hits="" data-linenumber="87">
             
             
 
@@ -4183,7 +4194,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="87">
+          <li class="never" data-hits="" data-linenumber="88">
             
             
 
@@ -4194,7 +4205,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="39" data-linenumber="88">
+          <li class="covered" data-hits="39" data-linenumber="89">
             <span class="hits">39</span>
             
 
@@ -4205,7 +4216,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="89">
+          <li class="never" data-hits="" data-linenumber="90">
             
             
 
@@ -4216,7 +4227,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="117" data-linenumber="90">
+          <li class="covered" data-hits="117" data-linenumber="91">
             <span class="hits">117</span>
             
 
@@ -4227,7 +4238,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="91">
+          <li class="never" data-hits="" data-linenumber="92">
             
             
 
@@ -4238,7 +4249,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="92">
+          <li class="never" data-hits="" data-linenumber="93">
             
             
 
@@ -4249,7 +4260,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="39" data-linenumber="93">
+          <li class="covered" data-hits="39" data-linenumber="94">
             <span class="hits">39</span>
             
 
@@ -4260,7 +4271,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="94">
+          <li class="never" data-hits="" data-linenumber="95">
             
             
 
@@ -4271,7 +4282,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="468" data-linenumber="95">
+          <li class="covered" data-hits="468" data-linenumber="96">
             <span class="hits">468</span>
             
 
@@ -4282,7 +4293,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="96">
+          <li class="never" data-hits="" data-linenumber="97">
             
             
 
@@ -4293,7 +4304,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="97">
+          <li class="never" data-hits="" data-linenumber="98">
             
             
 
@@ -4304,7 +4315,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="98">
+          <li class="never" data-hits="" data-linenumber="99">
             
             
 
@@ -4315,7 +4326,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="39" data-linenumber="99">
+          <li class="covered" data-hits="39" data-linenumber="100">
             <span class="hits">39</span>
             
 
@@ -4326,7 +4337,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="100">
+          <li class="never" data-hits="" data-linenumber="101">
             
             
 
@@ -4337,7 +4348,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="39" data-linenumber="101">
+          <li class="covered" data-hits="39" data-linenumber="102">
             <span class="hits">39</span>
             
 
@@ -4348,7 +4359,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="102">
+          <li class="never" data-hits="" data-linenumber="103">
             
             
 
@@ -4359,7 +4370,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="103">
+          <li class="never" data-hits="" data-linenumber="104">
             
             
 
@@ -4370,7 +4381,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="39" data-linenumber="104">
+          <li class="covered" data-hits="39" data-linenumber="105">
             <span class="hits">39</span>
             
 
@@ -4381,7 +4392,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="105">
+          <li class="never" data-hits="" data-linenumber="106">
             
             
 
@@ -4392,7 +4403,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="106">
+          <li class="never" data-hits="" data-linenumber="107">
             
             
 
@@ -4403,7 +4414,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="39" data-linenumber="107">
+          <li class="covered" data-hits="39" data-linenumber="108">
             <span class="hits">39</span>
             
 
@@ -4414,7 +4425,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="390" data-linenumber="108">
+          <li class="covered" data-hits="390" data-linenumber="109">
             <span class="hits">390</span>
             
 
@@ -4425,7 +4436,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="10920" data-linenumber="109">
+          <li class="covered" data-hits="10920" data-linenumber="110">
             <span class="hits">10920</span>
             
 
@@ -4436,7 +4447,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="110">
+          <li class="never" data-hits="" data-linenumber="111">
             
             
 
@@ -4447,7 +4458,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="390" data-linenumber="111">
+          <li class="covered" data-hits="390" data-linenumber="112">
             <span class="hits">390</span>
             
 
@@ -4458,7 +4469,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="234" data-linenumber="112">
+          <li class="covered" data-hits="234" data-linenumber="113">
             <span class="hits">234</span>
             
 
@@ -4469,7 +4480,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="234" data-linenumber="113">
+          <li class="covered" data-hits="234" data-linenumber="114">
             <span class="hits">234</span>
             
 
@@ -4480,7 +4491,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="114">
+          <li class="never" data-hits="" data-linenumber="115">
             
             
 
@@ -4491,7 +4502,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="115">
+          <li class="never" data-hits="" data-linenumber="116">
             
             
 
@@ -4502,24 +4513,13 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="116">
+          <li class="never" data-hits="" data-linenumber="117">
             
             
 
             
 
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="39" data-linenumber="117">
-            <span class="hits">39</span>
-            
-
-            
-
-            <code class="ruby">    items_as_mocks = ItemMocks.items_as_mocks(eg, items_as_hashes)</code>
           </li>
         </div>
       
@@ -4530,7 +4530,7 @@
 
             
 
-            <code class="ruby">    invoices_as_mocks = InvoiceMocks.invoices_as_mocks(eg, invoices_as_hashes)</code>
+            <code class="ruby">    items_as_mocks = ItemMocks.items_as_mocks(eg, items_as_hashes)</code>
           </li>
         </div>
       
@@ -4541,7 +4541,7 @@
 
             
 
-            <code class="ruby">    invoice_items_as_mocks = InvoiceItemMocks.invoice_items_as_mocks(eg, invoice_items_as_hashes)</code>
+            <code class="ruby">    invoices_as_mocks = InvoiceMocks.invoices_as_mocks(eg, invoices_as_hashes)</code>
           </li>
         </div>
       
@@ -4552,29 +4552,29 @@
 
             
 
+            <code class="ruby">    invoice_items_as_mocks = InvoiceItemMocks.invoice_items_as_mocks(eg, invoice_items_as_hashes)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="39" data-linenumber="121">
+            <span class="hits">39</span>
+            
+
+            
+
             <code class="ruby">    transactions_as_mocks = TransactionMocks.transactions_as_mocks(eg, transactions_as_hashes)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="121">
+          <li class="never" data-hits="" data-linenumber="122">
             
             
 
             
 
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="39" data-linenumber="122">
-            <span class="hits">39</span>
-            
-
-            
-
-            <code class="ruby">    eg.allow(FileIo).to eg.receive(:process_csv).and_return(items_as_mocks)</code>
           </li>
         </div>
       
@@ -4585,29 +4585,29 @@
 
             
 
+            <code class="ruby">    eg.allow(FileIo).to eg.receive(:process_csv).and_return(items_as_mocks)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="39" data-linenumber="124">
+            <span class="hits">39</span>
+            
+
+            
+
             <code class="ruby">    item_repository = ItemRepository.new(&#39;fake_file&#39;)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="124">
+          <li class="never" data-hits="" data-linenumber="125">
             
             
 
             
 
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="39" data-linenumber="125">
-            <span class="hits">39</span>
-            
-
-            
-
-            <code class="ruby">    eg.allow(FileIo).to eg.receive(:process_csv).and_return(merchants_as_mocks)</code>
           </li>
         </div>
       
@@ -4618,29 +4618,29 @@
 
             
 
+            <code class="ruby">    eg.allow(FileIo).to eg.receive(:process_csv).and_return(merchants_as_mocks)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="39" data-linenumber="127">
+            <span class="hits">39</span>
+            
+
+            
+
             <code class="ruby">    merchant_repository = MerchantRepository.new(&#39;fake_file&#39;)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="127">
+          <li class="never" data-hits="" data-linenumber="128">
             
             
 
             
 
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="39" data-linenumber="128">
-            <span class="hits">39</span>
-            
-
-            
-
-            <code class="ruby">    eg.allow(FileIo).to eg.receive(:process_csv).and_return(invoices_as_mocks)</code>
           </li>
         </div>
       
@@ -4651,29 +4651,29 @@
 
             
 
+            <code class="ruby">    eg.allow(FileIo).to eg.receive(:process_csv).and_return(invoices_as_mocks)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="39" data-linenumber="130">
+            <span class="hits">39</span>
+            
+
+            
+
             <code class="ruby">    invoice_repository = InvoiceRepository.new(&#39;fake_file&#39;)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="130">
+          <li class="never" data-hits="" data-linenumber="131">
             
             
 
             
 
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="39" data-linenumber="131">
-            <span class="hits">39</span>
-            
-
-            
-
-            <code class="ruby">    eg.allow(FileIo).to eg.receive(:process_csv).and_return(transactions_as_mocks)</code>
           </li>
         </div>
       
@@ -4684,29 +4684,29 @@
 
             
 
+            <code class="ruby">    eg.allow(FileIo).to eg.receive(:process_csv).and_return(transactions_as_mocks)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="39" data-linenumber="133">
+            <span class="hits">39</span>
+            
+
+            
+
             <code class="ruby">    transaction_repository = TransactionRepository.new(&#39;fake_file&#39;)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="133">
+          <li class="never" data-hits="" data-linenumber="134">
             
             
 
             
 
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="39" data-linenumber="134">
-            <span class="hits">39</span>
-            
-
-            
-
-            <code class="ruby">    eg.allow(FileIo).to eg.receive(:process_csv).and_return(invoice_items_as_mocks)</code>
           </li>
         </div>
       
@@ -4717,12 +4717,23 @@
 
             
 
+            <code class="ruby">    eg.allow(FileIo).to eg.receive(:process_csv).and_return(invoice_items_as_mocks)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="39" data-linenumber="136">
+            <span class="hits">39</span>
+            
+
+            
+
             <code class="ruby">    invoice_item_repository = InvoiceItemRepository.new(&#39;fake_file&#39;)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="136">
+          <li class="never" data-hits="" data-linenumber="137">
             
             
 
@@ -4733,7 +4744,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="39" data-linenumber="137">
+          <li class="covered" data-hits="39" data-linenumber="138">
             <span class="hits">39</span>
             
 
@@ -4744,24 +4755,13 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="138">
+          <li class="never" data-hits="" data-linenumber="139">
             
             
 
             
 
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="39" data-linenumber="139">
-            <span class="hits">39</span>
-            
-
-            
-
-            <code class="ruby">    eg.allow(sales_engine).to eg.receive(:items).and_return item_repository</code>
           </li>
         </div>
       
@@ -4772,7 +4772,7 @@
 
             
 
-            <code class="ruby">    eg.allow(sales_engine).to eg.receive(:merchants).and_return merchant_repository</code>
+            <code class="ruby">    eg.allow(sales_engine).to eg.receive(:items).and_return item_repository</code>
           </li>
         </div>
       
@@ -4783,7 +4783,7 @@
 
             
 
-            <code class="ruby">    eg.allow(sales_engine).to eg.receive(:transactions).and_return transaction_repository</code>
+            <code class="ruby">    eg.allow(sales_engine).to eg.receive(:merchants).and_return merchant_repository</code>
           </li>
         </div>
       
@@ -4794,7 +4794,7 @@
 
             
 
-            <code class="ruby">    eg.allow(sales_engine).to eg.receive(:invoices).and_return invoice_repository</code>
+            <code class="ruby">    eg.allow(sales_engine).to eg.receive(:transactions).and_return transaction_repository</code>
           </li>
         </div>
       
@@ -4805,7 +4805,7 @@
 
             
 
-            <code class="ruby">    eg.allow(sales_engine).to eg.receive(:invoice_items).and_return invoice_item_repository</code>
+            <code class="ruby">    eg.allow(sales_engine).to eg.receive(:invoices).and_return invoice_repository</code>
           </li>
         </div>
       
@@ -4816,7 +4816,7 @@
 
             
 
-            <code class="ruby">    eg.allow(sales_engine).to eg.receive(:all_items).and_return item_repository.all</code>
+            <code class="ruby">    eg.allow(sales_engine).to eg.receive(:invoice_items).and_return invoice_item_repository</code>
           </li>
         </div>
       
@@ -4827,7 +4827,7 @@
 
             
 
-            <code class="ruby">    eg.allow(sales_engine).to eg.receive(:all_merchants).and_return merchant_repository.all</code>
+            <code class="ruby">    eg.allow(sales_engine).to eg.receive(:all_items).and_return item_repository.all</code>
           </li>
         </div>
       
@@ -4838,7 +4838,7 @@
 
             
 
-            <code class="ruby">    eg.allow(sales_engine).to eg.receive(:all_invoices).and_return invoice_repository.all</code>
+            <code class="ruby">    eg.allow(sales_engine).to eg.receive(:all_merchants).and_return merchant_repository.all</code>
           </li>
         </div>
       
@@ -4849,7 +4849,7 @@
 
             
 
-            <code class="ruby">    eg.allow(sales_engine).to eg.receive(:all_transactions).and_return transaction_repository.all</code>
+            <code class="ruby">    eg.allow(sales_engine).to eg.receive(:all_invoices).and_return invoice_repository.all</code>
           </li>
         </div>
       
@@ -4860,12 +4860,23 @@
 
             
 
+            <code class="ruby">    eg.allow(sales_engine).to eg.receive(:all_transactions).and_return transaction_repository.all</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="39" data-linenumber="149">
+            <span class="hits">39</span>
+            
+
+            
+
             <code class="ruby">    eg.allow(sales_engine).to eg.receive(:all_invoice_items).and_return invoice_item_repository.all</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="149">
+          <li class="never" data-hits="" data-linenumber="150">
             
             
 
@@ -4876,7 +4887,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="39" data-linenumber="150">
+          <li class="covered" data-hits="39" data-linenumber="151">
             <span class="hits">39</span>
             
 
@@ -4887,7 +4898,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="151">
+          <li class="never" data-hits="" data-linenumber="152">
             
             
 
@@ -4898,7 +4909,170 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="152">
+          <li class="never" data-hits="" data-linenumber="153">
+            
+            
+
+            
+
+            <code class="ruby">end</code>
+          </li>
+        </div>
+      
+    </ol>
+  </pre>
+</div>
+
+      
+        <div class="source_table" id="884227ba3747520b04f87bbfbba9c006c70a6847">
+  <div class="header">
+    <h3>data/sales_engine_mocks.rb</h3>
+    <h4>
+      <span class="green">
+  100.0%
+</span>
+
+      lines covered
+    </h4>
+
+    
+
+    <div class="t-line-summary">
+      <b>7</b> relevant lines.
+      <span class="green"><b>7</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
+    </div>
+
+    
+
+  </div>
+
+  <pre>
+    <ol>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="1">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">require &#39;./lib/repository&#39;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="2">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="3">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">class SalesEngineMocks</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="4">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  def self.sales_engine(eg)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="9" data-linenumber="5">
+            <span class="hits">9</span>
+            
+
+            
+
+            <code class="ruby">    eg.allow_any_instance_of(Repository).to eg.receive(:load_models)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="9" data-linenumber="6">
+            <span class="hits">9</span>
+            
+
+            
+
+            <code class="ruby">    eg.allow_any_instance_of(Repository).to eg.receive(:all)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="7">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="9" data-linenumber="8">
+            <span class="hits">9</span>
+            
+
+            
+
+            <code class="ruby">    files = { items: &#39;./file1.csv&#39;, merchants: &#39;./file2.csv&#39;, invoices: &#39;./file3.csv&#39;,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="9">
+            
+            
+
+            
+
+            <code class="ruby">              transactions: &#39;./file4.csv&#39;, invoice_items: &#39;./file5.csv&#39;, customers: &#39;./file6.csv&#39; }</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="9" data-linenumber="10">
+            <span class="hits">9</span>
+            
+
+            
+
+            <code class="ruby">    SalesEngine.from_csv(files)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="11">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="12">
             
             
 
@@ -5468,8 +5642,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="14" data-linenumber="49">
-            <span class="hits">14</span>
+          <li class="covered" data-hits="11" data-linenumber="49">
+            <span class="hits">11</span>
             
 
             
@@ -5490,8 +5664,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="11" data-linenumber="51">
-            <span class="hits">11</span>
+          <li class="covered" data-hits="14" data-linenumber="51">
+            <span class="hits">14</span>
             
 
             
@@ -46584,169 +46758,6 @@
 </div>
 
       
-        <div class="source_table" id="241de4c7a30a3502cf27d40dc4e0790a94342e35">
-  <div class="header">
-    <h3>spec/sales_engine_mocks.rb</h3>
-    <h4>
-      <span class="green">
-  100.0%
-</span>
-
-      lines covered
-    </h4>
-
-    
-
-    <div class="t-line-summary">
-      <b>7</b> relevant lines.
-      <span class="green"><b>7</b> lines covered</span> and
-      <span class="red"><b>0</b> lines missed.</span>
-    </div>
-
-    
-
-  </div>
-
-  <pre>
-    <ol>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="1">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">require &#39;./lib/repository&#39;</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="2">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="3">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">class SalesEngineMocks</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="4">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  def self.sales_engine(eg)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="9" data-linenumber="5">
-            <span class="hits">9</span>
-            
-
-            
-
-            <code class="ruby">    eg.allow_any_instance_of(Repository).to eg.receive(:load_models)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="9" data-linenumber="6">
-            <span class="hits">9</span>
-            
-
-            
-
-            <code class="ruby">    eg.allow_any_instance_of(Repository).to eg.receive(:all)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="7">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="9" data-linenumber="8">
-            <span class="hits">9</span>
-            
-
-            
-
-            <code class="ruby">    files = { items: &#39;./file1.csv&#39;, merchants: &#39;./file2.csv&#39;, invoices: &#39;./file3.csv&#39;,</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="9">
-            
-            
-
-            
-
-            <code class="ruby">              transactions: &#39;./file4.csv&#39;, invoice_items: &#39;./file5.csv&#39;, customers: &#39;./file6.csv&#39; }</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="9" data-linenumber="10">
-            <span class="hits">9</span>
-            
-
-            
-
-            <code class="ruby">    SalesEngine.from_csv(files)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="11">
-            
-            
-
-            
-
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="12">
-            
-            
-
-            
-
-            <code class="ruby">end</code>
-          </li>
-        </div>
-      
-    </ol>
-  </pre>
-</div>
-
-      
         <div class="source_table" id="bf5d722720b4bf980dda253726c8ed86e3ed866f">
   <div class="header">
     <h3>spec/sales_engine_mocks_spec.rb</h3>
@@ -46780,7 +46791,7 @@
 
             
 
-            <code class="ruby">require &#39;./spec/sales_engine_mocks&#39;</code>
+            <code class="ruby">require &#39;./data/sales_engine_mocks&#39;</code>
           </li>
         </div>
       
@@ -46998,7 +47009,7 @@
 
             
 
-            <code class="ruby">require &#39;./data/transaction_mocks&#39;</code>
+            <code class="ruby">require &#39;./data/merchant_mocks&#39;</code>
           </li>
         </div>
       
@@ -47009,12 +47020,23 @@
 
             
 
-            <code class="ruby">require &#39;./data/merchant_mocks&#39;</code>
+            <code class="ruby">require &#39;./data/sales_engine_mocks&#39;</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="9">
+          <li class="covered" data-hits="1" data-linenumber="9">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">require &#39;./data/transaction_mocks&#39;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="10">
             
             
 
@@ -47025,24 +47047,13 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="10">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="11">
+            
             
 
             
 
-            <code class="ruby">require &#39;./lib/customer&#39;</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="11">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">require &#39;./lib/file_io&#39;</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -47053,7 +47064,7 @@
 
             
 
-            <code class="ruby">require &#39;./lib/invoice&#39;</code>
+            <code class="ruby">require &#39;./lib/customer&#39;</code>
           </li>
         </div>
       
@@ -47064,7 +47075,7 @@
 
             
 
-            <code class="ruby">require &#39;./lib/invoice_item&#39;</code>
+            <code class="ruby">require &#39;./lib/file_io&#39;</code>
           </li>
         </div>
       
@@ -47075,7 +47086,7 @@
 
             
 
-            <code class="ruby">require &#39;./lib/item&#39;</code>
+            <code class="ruby">require &#39;./lib/invoice&#39;</code>
           </li>
         </div>
       
@@ -47086,7 +47097,7 @@
 
             
 
-            <code class="ruby">require &#39;./lib/merchant&#39;</code>
+            <code class="ruby">require &#39;./lib/invoice_item&#39;</code>
           </li>
         </div>
       
@@ -47097,7 +47108,7 @@
 
             
 
-            <code class="ruby">require &#39;./lib/sales_engine&#39;</code>
+            <code class="ruby">require &#39;./lib/item&#39;</code>
           </li>
         </div>
       
@@ -47108,7 +47119,7 @@
 
             
 
-            <code class="ruby">require &#39;./lib/sales_analyst&#39;</code>
+            <code class="ruby">require &#39;./lib/merchant&#39;</code>
           </li>
         </div>
       
@@ -47119,18 +47130,18 @@
 
             
 
-            <code class="ruby">require &#39;./lib/transaction&#39;</code>
+            <code class="ruby">require &#39;./lib/sales_engine&#39;</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="19">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="19">
+            <span class="hits">1</span>
             
 
-            <code class="ruby"></code>
+            
+
+            <code class="ruby">require &#39;./lib/sales_analyst&#39;</code>
           </li>
         </div>
       
@@ -47141,7 +47152,7 @@
 
             
 
-            <code class="ruby">require &#39;./spec/sales_engine_mocks&#39;</code>
+            <code class="ruby">require &#39;./lib/transaction&#39;</code>
           </li>
         </div>
       
@@ -47157,24 +47168,24 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="22">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="22">
+            
             
 
             
 
-            <code class="ruby">describe SalesEngine do</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="23">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="23">
+            
             
 
             
 
-            <code class="ruby">  describe &#39;#from_csv&#39; do</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -47185,7 +47196,7 @@
 
             
 
-            <code class="ruby">    it &#39;creates a new instance of SalesEngine&#39; do</code>
+            <code class="ruby">describe SalesEngine do</code>
           </li>
         </div>
       
@@ -47196,18 +47207,18 @@
 
             
 
-            <code class="ruby">      sales_engine = SalesEngineMocks.sales_engine(self)</code>
+            <code class="ruby">  describe &#39;#from_csv&#39; do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="26">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="26">
+            <span class="hits">1</span>
             
 
-            <code class="ruby"></code>
+            
+
+            <code class="ruby">    it &#39;creates a new instance of SalesEngine&#39; do</code>
           </li>
         </div>
       
@@ -47218,7 +47229,7 @@
 
             
 
-            <code class="ruby">      expect(sales_engine).to be_a SalesEngine</code>
+            <code class="ruby">      sales_engine = SalesEngineMocks.sales_engine(self)</code>
           </li>
         </div>
       
@@ -47229,18 +47240,18 @@
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="29">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="29">
+            <span class="hits">1</span>
             
 
-            <code class="ruby">  end</code>
+            
+
+            <code class="ruby">      expect(sales_engine).to be_a SalesEngine</code>
           </li>
         </div>
       
@@ -47251,29 +47262,29 @@
 
             
 
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="31">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="32">
+            
+            
+
+            
+
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="31">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  describe &#39;#items&#39; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="32">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    it &#39;has an ItemRepository&#39; do</code>
           </li>
         </div>
       
@@ -47284,18 +47295,18 @@
 
             
 
-            <code class="ruby">      sales_engine = SalesEngineMocks.sales_engine(self)</code>
+            <code class="ruby">  describe &#39;#items&#39; do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="34">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="34">
+            <span class="hits">1</span>
             
 
-            <code class="ruby"></code>
+            
+
+            <code class="ruby">    it &#39;has an ItemRepository&#39; do</code>
           </li>
         </div>
       
@@ -47306,18 +47317,18 @@
 
             
 
-            <code class="ruby">      expect(sales_engine.items).to be_an ItemRepository</code>
+            <code class="ruby">      sales_engine = SalesEngineMocks.sales_engine(self)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="36">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="36">
+            
             
 
             
 
-            <code class="ruby">      sales_engine.all_items</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -47328,29 +47339,29 @@
 
             
 
+            <code class="ruby">      expect(sales_engine.items).to be_an ItemRepository</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="38">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      sales_engine.all_items</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="39">
+            <span class="hits">1</span>
+            
+
+            
+
             <code class="ruby">      expect(sales_engine.items).to have_received(:all)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="38">
-            
-            
-
-            
-
-            <code class="ruby">    end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="39">
-            
-            
-
-            
-
-            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -47361,29 +47372,29 @@
 
             
 
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="41">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="42">
+            
+            
+
+            
+
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="41">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  describe &#39;#merchants&#39; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="42">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    it &#39;has an MerchantRepository&#39; do</code>
           </li>
         </div>
       
@@ -47394,18 +47405,18 @@
 
             
 
-            <code class="ruby">      sales_engine = SalesEngineMocks.sales_engine(self)</code>
+            <code class="ruby">  describe &#39;#merchants&#39; do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="44">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="44">
+            <span class="hits">1</span>
             
 
-            <code class="ruby"></code>
+            
+
+            <code class="ruby">    it &#39;has an MerchantRepository&#39; do</code>
           </li>
         </div>
       
@@ -47416,18 +47427,18 @@
 
             
 
-            <code class="ruby">      expect(sales_engine.merchants).to be_a MerchantRepository</code>
+            <code class="ruby">      sales_engine = SalesEngineMocks.sales_engine(self)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="46">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="46">
+            
             
 
             
 
-            <code class="ruby">      sales_engine.all_merchants</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -47438,29 +47449,29 @@
 
             
 
+            <code class="ruby">      expect(sales_engine.merchants).to be_a MerchantRepository</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="48">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      sales_engine.all_merchants</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="49">
+            <span class="hits">1</span>
+            
+
+            
+
             <code class="ruby">      expect(sales_engine.merchants).to have_received(:all)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="48">
-            
-            
-
-            
-
-            <code class="ruby">    end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="49">
-            
-            
-
-            
-
-            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -47471,29 +47482,29 @@
 
             
 
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="51">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="52">
+            
+            
+
+            
+
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="51">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  describe &#39;#invoices&#39; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="52">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    it &#39;has an InvoiceRepository&#39; do</code>
           </li>
         </div>
       
@@ -47504,18 +47515,18 @@
 
             
 
-            <code class="ruby">      sales_engine = SalesEngineMocks.sales_engine(self)</code>
+            <code class="ruby">  describe &#39;#invoices&#39; do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="54">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="54">
+            <span class="hits">1</span>
             
 
-            <code class="ruby"></code>
+            
+
+            <code class="ruby">    it &#39;has an InvoiceRepository&#39; do</code>
           </li>
         </div>
       
@@ -47526,18 +47537,18 @@
 
             
 
-            <code class="ruby">      expect(sales_engine.invoices).to be_an InvoiceRepository</code>
+            <code class="ruby">      sales_engine = SalesEngineMocks.sales_engine(self)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="56">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="56">
+            
             
 
             
 
-            <code class="ruby">      sales_engine.all_invoices</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -47548,29 +47559,29 @@
 
             
 
+            <code class="ruby">      expect(sales_engine.invoices).to be_an InvoiceRepository</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="58">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      sales_engine.all_invoices</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="59">
+            <span class="hits">1</span>
+            
+
+            
+
             <code class="ruby">      expect(sales_engine.invoices).to have_received(:all)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="58">
-            
-            
-
-            
-
-            <code class="ruby">    end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="59">
-            
-            
-
-            
-
-            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -47581,29 +47592,29 @@
 
             
 
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="61">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="62">
+            
+            
+
+            
+
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="61">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  describe &#39;#transactions&#39; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="62">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    it &#39;has an TransactionRepository&#39; do</code>
           </li>
         </div>
       
@@ -47614,18 +47625,18 @@
 
             
 
-            <code class="ruby">      sales_engine = SalesEngineMocks.sales_engine(self)</code>
+            <code class="ruby">  describe &#39;#transactions&#39; do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="64">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="64">
+            <span class="hits">1</span>
             
 
-            <code class="ruby"></code>
+            
+
+            <code class="ruby">    it &#39;has an TransactionRepository&#39; do</code>
           </li>
         </div>
       
@@ -47636,18 +47647,18 @@
 
             
 
-            <code class="ruby">      expect(sales_engine.transactions).to be_an TransactionRepository</code>
+            <code class="ruby">      sales_engine = SalesEngineMocks.sales_engine(self)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="66">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="66">
+            
             
 
             
 
-            <code class="ruby">      sales_engine.all_transactions</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -47658,29 +47669,29 @@
 
             
 
+            <code class="ruby">      expect(sales_engine.transactions).to be_an TransactionRepository</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="68">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      sales_engine.all_transactions</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="69">
+            <span class="hits">1</span>
+            
+
+            
+
             <code class="ruby">      expect(sales_engine.transactions).to have_received(:all)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="68">
-            
-            
-
-            
-
-            <code class="ruby">    end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="69">
-            
-            
-
-            
-
-            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -47691,29 +47702,29 @@
 
             
 
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="71">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="72">
+            
+            
+
+            
+
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="71">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  describe &#39;#invoice_items&#39; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="72">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    it &#39;has an InvoiceItemRepository&#39; do</code>
           </li>
         </div>
       
@@ -47724,7 +47735,7 @@
 
             
 
-            <code class="ruby">      sales_engine = SalesEngineMocks.sales_engine(self)</code>
+            <code class="ruby">  describe &#39;#invoice_items&#39; do</code>
           </li>
         </div>
       
@@ -47735,18 +47746,18 @@
 
             
 
-            <code class="ruby">      invoice_item_repo = sales_engine.invoice_items</code>
+            <code class="ruby">    it &#39;has an InvoiceItemRepository&#39; do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="75">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="75">
+            <span class="hits">1</span>
             
 
-            <code class="ruby"></code>
+            
+
+            <code class="ruby">      sales_engine = SalesEngineMocks.sales_engine(self)</code>
           </li>
         </div>
       
@@ -47757,18 +47768,18 @@
 
             
 
-            <code class="ruby">      expect(invoice_item_repo).to be_an InvoiceItemRepository</code>
+            <code class="ruby">      invoice_item_repo = sales_engine.invoice_items</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="77">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="77">
+            
             
 
             
 
-            <code class="ruby">      sales_engine.all_invoice_items</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -47779,29 +47790,29 @@
 
             
 
+            <code class="ruby">      expect(invoice_item_repo).to be_an InvoiceItemRepository</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="79">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      sales_engine.all_invoice_items</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="80">
+            <span class="hits">1</span>
+            
+
+            
+
             <code class="ruby">      expect(sales_engine.invoice_items).to have_received(:all)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="79">
-            
-            
-
-            
-
-            <code class="ruby">    end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="80">
-            
-            
-
-            
-
-            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -47812,29 +47823,29 @@
 
             
 
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="82">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="83">
+            
+            
+
+            
+
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="82">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  describe &#39;#customers&#39; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="83">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    it &#39;has a CustomerRepository&#39; do</code>
           </li>
         </div>
       
@@ -47845,7 +47856,7 @@
 
             
 
-            <code class="ruby">      sales_engine = SalesEngineMocks.sales_engine(self)</code>
+            <code class="ruby">  describe &#39;#customers&#39; do</code>
           </li>
         </div>
       
@@ -47856,111 +47867,12 @@
 
             
 
-            <code class="ruby">      customer_repo = sales_engine.customers</code>
+            <code class="ruby">    it &#39;has a CustomerRepository&#39; do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="86">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="87">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      expect(customer_repo).to be_a CustomerRepository</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="88">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      sales_engine.all_customers</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="89">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      expect(sales_engine.customers).to have_received(:all)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="90">
-            
-            
-
-            
-
-            <code class="ruby">    end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="91">
-            
-            
-
-            
-
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="92">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="93">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  describe &#39;#analyst&#39; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="94">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    it &#39;returns a new instance of SalesAnalyst&#39; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="95">
+          <li class="covered" data-hits="1" data-linenumber="86">
             <span class="hits">1</span>
             
 
@@ -47971,18 +47883,18 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="96">
+          <li class="covered" data-hits="1" data-linenumber="87">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">      sales_analyst = sales_engine.analyst</code>
+            <code class="ruby">      customer_repo = sales_engine.customers</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="97">
+          <li class="never" data-hits="" data-linenumber="88">
             
             
 
@@ -47993,18 +47905,40 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="98">
+          <li class="covered" data-hits="1" data-linenumber="89">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">      expect(sales_analyst).to be_a SalesAnalyst</code>
+            <code class="ruby">      expect(customer_repo).to be_a CustomerRepository</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="99">
+          <li class="covered" data-hits="1" data-linenumber="90">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      sales_engine.all_customers</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="91">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      expect(sales_engine.customers).to have_received(:all)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="92">
             
             
 
@@ -48015,7 +47949,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="100">
+          <li class="never" data-hits="" data-linenumber="93">
             
             
 
@@ -48026,7 +47960,106 @@
         </div>
       
         <div>
+          <li class="never" data-hits="" data-linenumber="94">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="95">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  describe &#39;#analyst&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="96">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    it &#39;returns a new instance of SalesAnalyst&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="97">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      sales_engine = SalesEngineMocks.sales_engine(self)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="98">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      sales_analyst = sales_engine.analyst</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="99">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="100">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      expect(sales_analyst).to be_a SalesAnalyst</code>
+          </li>
+        </div>
+      
+        <div>
           <li class="never" data-hits="" data-linenumber="101">
+            
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="102">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="103">
             
             
 
