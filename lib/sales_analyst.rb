@@ -233,6 +233,27 @@ class SalesAnalyst
     end
   end
 
+  def merchants_registered_for_month(month)
+    all_merchants.select do |merchant|
+      date = Date.parse(merchant.created_at.to_s)
+      index = date.month
+      Date::MONTHNAMES[index] == month
+    end
+  end
+
+  def merchants_with_only_one_item
+    num_of_items_per_merchant.select do |key, value|
+      value == 1
+    end.keys
+  end
+
+  def merchants_with_only_one_item_registered_in_month(month)
+    merchs_w_1 = merchants_with_only_one_item
+    merchants_registered_for_month(month).select do |merchant|
+      merchs_w_1.include?(merchant)
+    end
+  end
+
   def all_items
     @item_repo.items
   end
