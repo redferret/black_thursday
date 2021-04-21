@@ -2,11 +2,13 @@ require 'csv'
 
 require './data/invoice_mocks'
 require './data/invoice_item_mocks'
-require './spec/sales_engine_mocks'
+
 require './lib/item_repository'
 require './lib/invoice_repository'
 require './lib/invoice_item_repository'
 require './lib/sales_analyst'
+
+require './spec/sales_engine_mocks'
 
 class SalesAnalystMocks
   def self.price_means_for_each_merchant

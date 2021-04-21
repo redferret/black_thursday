@@ -2,10 +2,11 @@ require './data/item_mocks'
 require './data/merchant_mocks'
 require './data/invoice_mocks'
 require './data/invoice_item_mocks'
+require './data/sales_analyst_mocks'
 require './data/transaction_mocks'
 require './lib/sales_analyst'
 require './lib/sales_engine'
-require './spec/sales_analyst_mocks'
+
 
 RSpec.describe SalesAnalyst do
   describe '#merchants_with_only_one_item' do
