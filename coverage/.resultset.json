@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/richard/turing/mod1/black_thursday/spec/customer_mocks_spec.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/spec/customer_mocks_spec.rb": {
         "lines": [
           1,
           null,
@@ -78,7 +78,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/data/customer_mocks.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/data/customer_mocks.rb": {
         "lines": [
           1,
           null,
@@ -111,7 +111,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/data/mockable.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/data/mockable.rb": {
         "lines": [
           1,
           null,
@@ -170,7 +170,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/spec/customer_repository_spec.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/spec/customer_repository_spec.rb": {
         "lines": [
           1,
           null,
@@ -387,7 +387,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/lib/customer.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/lib/customer.rb": {
         "lines": [
           1,
           null,
@@ -403,17 +403,19 @@
           null,
           1,
           1,
+          null,
           1,
           null,
           null,
           1,
           1,
+          null,
           1,
           null,
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/lib/model.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/lib/model.rb": {
         "lines": [
           1,
           null,
@@ -436,17 +438,19 @@
           null,
           1,
           10,
+          null,
           3,
           null,
           null,
           1,
           19,
+          null,
           3,
           null,
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/lib/customer_repository.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/lib/customer_repository.rb": {
         "lines": [
           1,
           null,
@@ -489,7 +493,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/lib/repository.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/lib/repository.rb": {
         "lines": [
           1,
           null,
@@ -542,7 +546,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/lib/file_io.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/lib/file_io.rb": {
         "lines": [
           1,
           null,
@@ -557,7 +561,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/spec/customer_spec.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/spec/customer_spec.rb": {
         "lines": [
           1,
           null,
@@ -625,7 +629,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/spec/file_io_spec.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/spec/file_io_spec.rb": {
         "lines": [
           1,
           1,
@@ -669,7 +673,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/lib/item.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/lib/item.rb": {
         "lines": [
           1,
           null,
@@ -705,7 +709,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/lib/merchant.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/lib/merchant.rb": {
         "lines": [
           1,
           null,
@@ -731,7 +735,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/spec/invoice_item_mocks_spec.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/spec/invoice_item_mocks_spec.rb": {
         "lines": [
           1,
           null,
@@ -754,6 +758,7 @@
           1,
           1,
           1,
+          null,
           1,
           null,
           null,
@@ -818,7 +823,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/data/invoice_item_mocks.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/data/invoice_item_mocks.rb": {
         "lines": [
           1,
           null,
@@ -855,7 +860,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/spec/invoice_item_repository_spec.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/spec/invoice_item_repository_spec.rb": {
         "lines": [
           1,
           1,
@@ -1163,7 +1168,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/lib/invoice_item.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/lib/invoice_item.rb": {
         "lines": [
           1,
           null,
@@ -1192,13 +1197,14 @@
           1,
           3,
           null,
+          null,
           1,
           2,
           null,
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/lib/invoice_item_repository.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/lib/invoice_item_repository.rb": {
         "lines": [
           1,
           null,
@@ -1234,6 +1240,7 @@
           3,
           null,
           null,
+          null,
           1,
           4,
           9,
@@ -1242,7 +1249,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/spec/invoice_item_spec.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/spec/invoice_item_spec.rb": {
         "lines": [
           1,
           1,
@@ -1414,7 +1421,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/spec/invoice_mocks_spec.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/spec/invoice_mocks_spec.rb": {
         "lines": [
           1,
           null,
@@ -1502,7 +1509,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/data/invoice_mocks.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/data/invoice_mocks.rb": {
         "lines": [
           1,
           null,
@@ -1538,9 +1545,9 @@
           1,
           20,
           null,
-          8,
-          null,
           4,
+          null,
+          8,
           null,
           8,
           null,
@@ -1548,7 +1555,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/spec/invoice_repository_spec.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/spec/invoice_repository_spec.rb": {
         "lines": [
           1,
           1,
@@ -1753,7 +1760,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/lib/invoice.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/lib/invoice.rb": {
         "lines": [
           1,
           null,
@@ -1775,7 +1782,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/lib/invoice_repository.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/lib/invoice_repository.rb": {
         "lines": [
           1,
           null,
@@ -1819,7 +1826,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/spec/invoice_spec.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/spec/invoice_spec.rb": {
         "lines": [
           1,
           null,
@@ -1955,7 +1962,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/spec/item_mocks_spec.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/spec/item_mocks_spec.rb": {
         "lines": [
           1,
           null,
@@ -2036,7 +2043,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/data/item_mocks.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/data/item_mocks.rb": {
         "lines": [
           1,
           null,
@@ -2071,7 +2078,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/spec/item_repository_spec.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/spec/item_repository_spec.rb": {
         "lines": [
           1,
           1,
@@ -2363,7 +2370,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/lib/item_repository.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/lib/item_repository.rb": {
         "lines": [
           1,
           1,
@@ -2423,7 +2430,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/spec/item_spec.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/spec/item_spec.rb": {
         "lines": [
           1,
           null,
@@ -2613,7 +2620,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/spec/merchant_mocks_spec.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/spec/merchant_mocks_spec.rb": {
         "lines": [
           1,
           null,
@@ -2673,7 +2680,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/data/merchant_mocks.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/data/merchant_mocks.rb": {
         "lines": [
           1,
           null,
@@ -2704,7 +2711,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/spec/merchant_repository_spec.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/spec/merchant_repository_spec.rb": {
         "lines": [
           1,
           1,
@@ -2855,7 +2862,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/lib/merchant_repository.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/lib/merchant_repository.rb": {
         "lines": [
           1,
           null,
@@ -2893,7 +2900,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/spec/merchant_spec.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/spec/merchant_spec.rb": {
         "lines": [
           1,
           null,
@@ -2946,7 +2953,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/spec/mockable_spec.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/spec/mockable_spec.rb": {
         "lines": [
           1,
           1,
@@ -3019,7 +3026,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/spec/sales_analyst_mocks_spec.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/spec/sales_analyst_mocks_spec.rb": {
         "lines": [
           1,
           1,
@@ -3038,7 +3045,180 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/lib/sales_analyst.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/data/sales_analyst_mocks.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          39,
+          null,
+          null,
+          39,
+          null,
+          null,
+          null,
+          null,
+          null,
+          39,
+          null,
+          null,
+          null,
+          null,
+          null,
+          39,
+          null,
+          39,
+          null,
+          39,
+          null,
+          null,
+          39,
+          null,
+          39,
+          null,
+          39,
+          null,
+          39,
+          39,
+          null,
+          39,
+          null,
+          39,
+          null,
+          null,
+          39,
+          null,
+          78,
+          null,
+          null,
+          39,
+          117,
+          null,
+          39,
+          null,
+          117,
+          null,
+          null,
+          39,
+          null,
+          117,
+          null,
+          null,
+          39,
+          null,
+          117,
+          null,
+          null,
+          39,
+          null,
+          117,
+          null,
+          null,
+          39,
+          null,
+          117,
+          null,
+          null,
+          39,
+          null,
+          117,
+          null,
+          null,
+          39,
+          null,
+          468,
+          null,
+          null,
+          null,
+          39,
+          null,
+          39,
+          null,
+          null,
+          39,
+          null,
+          null,
+          39,
+          390,
+          10920,
+          null,
+          390,
+          234,
+          234,
+          null,
+          null,
+          null,
+          39,
+          39,
+          39,
+          39,
+          null,
+          39,
+          39,
+          null,
+          39,
+          39,
+          null,
+          39,
+          39,
+          null,
+          39,
+          39,
+          null,
+          39,
+          39,
+          null,
+          39,
+          null,
+          39,
+          39,
+          39,
+          39,
+          39,
+          39,
+          39,
+          39,
+          39,
+          39,
+          null,
+          39,
+          null,
+          null
+        ]
+      },
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/data/sales_engine_mocks.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          9,
+          9,
+          null,
+          9,
+          null,
+          9,
+          null,
+          null
+        ]
+      },
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/lib/sales_analyst.rb": {
         "lines": [
           1,
           null,
@@ -3156,6 +3336,7 @@
           null,
           1,
           1,
+          null,
           1,
           1,
           10,
@@ -3165,6 +3346,7 @@
           null,
           1,
           1,
+          null,
           1,
           1,
           10,
@@ -3211,6 +3393,7 @@
           null,
           1,
           1,
+          null,
           1,
           1,
           4,
@@ -3233,7 +3416,6 @@
           null,
           null,
           1,
-          null,
           1,
           36,
           null,
@@ -3367,7 +3549,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/lib/sales_engine.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/lib/sales_engine.rb": {
         "lines": [
           1,
           1,
@@ -3434,7 +3616,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/lib/transaction.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/lib/transaction.rb": {
         "lines": [
           1,
           null,
@@ -3472,7 +3654,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/lib/transaction_repository.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/lib/transaction_repository.rb": {
         "lines": [
           1,
           null,
@@ -3524,134 +3706,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/spec/sales_analyst_mocks.rb": {
-        "lines": [
-          1,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          null,
-          null,
-          1,
-          39,
-          null,
-          null,
-          39,
-          null,
-          null,
-          null,
-          null,
-          null,
-          39,
-          null,
-          null,
-          null,
-          null,
-          null,
-          39,
-          null,
-          39,
-          null,
-          39,
-          null,
-          null,
-          39,
-          39,
-          39,
-          39,
-          39,
-          null,
-          78,
-          117,
-          156,
-          156,
-          156,
-          156,
-          156,
-          156,
-          156,
-          507,
-          null,
-          39,
-          39,
-          null,
-          39,
-          null,
-          null,
-          39,
-          390,
-          10920,
-          null,
-          390,
-          234,
-          234,
-          null,
-          null,
-          null,
-          39,
-          39,
-          39,
-          39,
-          null,
-          39,
-          39,
-          null,
-          39,
-          39,
-          null,
-          39,
-          39,
-          null,
-          39,
-          39,
-          null,
-          39,
-          39,
-          null,
-          39,
-          null,
-          39,
-          39,
-          39,
-          39,
-          39,
-          39,
-          39,
-          39,
-          39,
-          39,
-          null,
-          39,
-          null,
-          null
-        ]
-      },
-      "/Users/richard/turing/mod1/black_thursday/spec/sales_engine_mocks.rb": {
-        "lines": [
-          1,
-          null,
-          1,
-          1,
-          9,
-          9,
-          null,
-          9,
-          null,
-          9,
-          null,
-          null
-        ]
-      },
-      "/Users/richard/turing/mod1/black_thursday/spec/sales_analyst_spec.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/spec/sales_analyst_spec.rb": {
         "lines": [
           1,
           1,
@@ -3662,74 +3717,8 @@
           1,
           1,
           null,
-          1,
           null,
           1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          1,
-          null,
-          1,
-          1,
-          null,
-          null,
-          null,
-          1,
-          1,
-          1,
-          1,
-          null,
-          1,
-          null,
-          null,
-          1,
-          1,
-          1,
-          null,
-          1,
-          null,
-          null,
-          null,
-          1,
-          1,
-          1,
-          null,
-          1,
-          null,
-          null,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          null,
-          null,
-          null,
-          1,
-          1,
-          1,
-          1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          1,
-          1,
-          1,
-          null,
-          null,
-          null,
           1,
           1,
           1,
@@ -3746,6 +3735,72 @@
           1,
           1,
           1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
           null,
           1,
           1,
@@ -3764,7 +3819,6 @@
           null,
           null,
           1,
-          null,
           null,
           1,
           1,
@@ -3893,7 +3947,6 @@
           1,
           1,
           1,
-          2,
           1,
           1,
           null,
@@ -3988,7 +4041,6 @@
           1,
           1,
           370,
-          10,
           null,
           1,
           null,
@@ -4019,8 +4071,6 @@
           1,
           1,
           370,
-          10,
-          null,
           null,
           null,
           1,
@@ -4139,7 +4189,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/data/transaction_mocks.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/data/transaction_mocks.rb": {
         "lines": [
           1,
           null,
@@ -4189,15 +4239,15 @@
           1,
           25,
           null,
-          17,
+          11,
           null,
-          8,
+          14,
           null,
           null,
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/spec/sales_engine_mocks_spec.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/spec/sales_engine_mocks_spec.rb": {
         "lines": [
           1,
           null,
@@ -4212,7 +4262,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/spec/sales_engine_spec.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/spec/sales_engine_spec.rb": {
         "lines": [
           1,
           null,
@@ -4222,6 +4272,8 @@
           1,
           1,
           1,
+          1,
+          null,
           null,
           1,
           1,
@@ -4233,7 +4285,7 @@
           1,
           1,
           null,
-          1,
+          null,
           null,
           1,
           1,
@@ -4317,7 +4369,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/spec/transaction_mocks_spec.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/spec/transaction_mocks_spec.rb": {
         "lines": [
           1,
           null,
@@ -4415,7 +4467,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/spec/transaction_repository_spec.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/spec/transaction_repository_spec.rb": {
         "lines": [
           1,
           1,
@@ -4663,6 +4715,7 @@
           1,
           1,
           1,
+          null,
           1,
           1,
           1,
@@ -4674,6 +4727,7 @@
           null,
           1,
           1,
+          null,
           1,
           1,
           1,
@@ -4688,7 +4742,7 @@
           null
         ]
       },
-      "/Users/richard/turing/mod1/black_thursday/spec/transaction_spec.rb": {
+      "/Users/nwz/mod_1_projects/3_project/black_thursday/spec/transaction_spec.rb": {
         "lines": [
           1,
           null,
@@ -4931,6 +4985,6 @@
         ]
       }
     },
-    "timestamp": 1619018346
+    "timestamp": 1619024025
   }
 }

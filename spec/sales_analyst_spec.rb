@@ -2,10 +2,11 @@ require './data/item_mocks'
 require './data/merchant_mocks'
 require './data/invoice_mocks'
 require './data/invoice_item_mocks'
+require './data/sales_analyst_mocks'
 require './data/transaction_mocks'
 require './lib/sales_analyst'
 require './lib/sales_engine'
-require './spec/sales_analyst_mocks'
+
 
 RSpec.describe SalesAnalyst do
   describe '#merchants_with_only_one_item' do
@@ -137,7 +138,7 @@ RSpec.describe SalesAnalyst do
   describe '#standard_deviations_of_mean' do
     it 'calculates the n standard deviation of the mean of items per merchant' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
-      std_dev = (Math.sqrt((((3 - 2.6)**2) + ((7 - 2.6)**2) + ((4 - 2.6)**2) + ((12 - 2.6)**2) + 40.56) / 9.0)).round(2)
+      std_dev = 4.09
       mean = 6.5
       expected_range = mean + std_dev
       actual_range = sales_analyst.standard_deviations_of_mean(mean, std_dev)
@@ -236,8 +237,7 @@ RSpec.describe SalesAnalyst do
   describe '#average_invoices_per_merchant_standard_deviation' do
     it 'returns the standard deviation of invoices per merchant' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
-      expected_deviation = (Math.sqrt((((1 - 3.6)**2) + ((2 - 3.6)**2) + ((3 - 3.6)**2) + ((3 - 3.6)**2) + ((3 - 3.6)**2) +
-      ((3 - 3.6)**2) + ((3 - 3.6)**2) + ((3 - 3.6)**2) + ((3 - 3.6)**2) + ((12 - 3.6)**2)) / 9.0)).round(2)
+      expected_deviation = 3.03
       actual_deviation = sales_analyst.average_invoices_per_merchant_standard_deviation
 
       expect(expected_deviation).to eq actual_deviation

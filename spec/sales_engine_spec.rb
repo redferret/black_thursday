@@ -4,8 +4,10 @@ require './data/customer_mocks'
 require './data/invoice_mocks'
 require './data/invoice_item_mocks'
 require './data/item_mocks'
-require './data/transaction_mocks'
 require './data/merchant_mocks'
+require './data/sales_engine_mocks'
+require './data/transaction_mocks'
+
 
 require './lib/customer'
 require './lib/file_io'
@@ -17,7 +19,7 @@ require './lib/sales_engine'
 require './lib/sales_analyst'
 require './lib/transaction'
 
-require './spec/sales_engine_mocks'
+
 
 describe SalesEngine do
   describe '#from_csv' do
