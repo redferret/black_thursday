@@ -19,11 +19,13 @@ class Model
 
   def created_at
     return @created_at if @created_at.instance_of?(Time)
+
     @created_at = Time.parse(@created_at)
   end
 
   def updated_at
     return @updated_at if @updated_at.instance_of?(Time)
+
     @updated_at = Time.parse(@updated_at)
   end
 end

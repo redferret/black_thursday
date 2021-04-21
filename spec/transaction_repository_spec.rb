@@ -243,7 +243,8 @@ describe TransactionRepository do
 
   describe '#any_success?' do
     it 'returns true if successful Transaction exists for invoice_id' do
-      mock_hashes = TransactionMocks.transactions_as_hashes(number_of_hashes: 4, invoice_id: 8, result: :success)
+      mock_hashes = TransactionMocks.transactions_as_hashes(number_of_hashes: 4, invoice_id: 8,
+                                                            result: :success)
       mock_data = TransactionMocks.transactions_as_mocks(self, mock_hashes)
       allow(FileIo).to receive(:process_csv).and_return(mock_data)
       t_repo = TransactionRepository.new('fake.csv')
@@ -254,7 +255,8 @@ describe TransactionRepository do
     end
 
     it 'returns false if no successful Transaction exists for invoice_id' do
-      mock_hashes = TransactionMocks.transactions_as_hashes(number_of_hashes: 4, invoice_id: 8, result: :success)
+      mock_hashes = TransactionMocks.transactions_as_hashes(number_of_hashes: 4, invoice_id: 8,
+                                                            result: :success)
       mock_data = TransactionMocks.transactions_as_mocks(self, mock_hashes)
       allow(FileIo).to receive(:process_csv).and_return(mock_data)
       t_repo = TransactionRepository.new('fake.csv')

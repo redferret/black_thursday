@@ -25,6 +25,7 @@ class InvoiceItem < Model
   def update_unit_price(unit_price)
     @unit_price = unit_price unless unit_price.nil?
   end
+
   def total
     @unit_price * @quantity
   end

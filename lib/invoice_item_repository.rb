@@ -32,6 +32,7 @@ class InvoiceItemRepository < Repository
       invoice_item.update_unit_price(attributes[:unit_price])
     end
   end
+
   def total_for_invoice(invoice_id)
     find_all_by_invoice_id(invoice_id).sum do |invoice_item|
       invoice_item.total
