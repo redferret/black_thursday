@@ -1,4 +1,4 @@
-require './lib/model'
+require_relative './model'
 
 class Customer < Model
   attr_reader  :first_name,

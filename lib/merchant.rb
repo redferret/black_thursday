@@ -1,4 +1,4 @@
-require './lib/model'
+require_relative './model'
 
 class Merchant < Model
   attr_reader :name

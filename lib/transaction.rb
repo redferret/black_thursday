@@ -1,4 +1,4 @@
-require './lib/model'
+require_relative './model'
 
 class Transaction < Model
   attr_reader :invoice_id,
