@@ -14,7 +14,7 @@ class SalesAnalystMocks
   end
 
   def self.sales_analyst_mock(eg)
-    merchant_hashes = MerchantMocks.merchants_as_hashes(number_of_hashes: 8)
+    merchant_hashes = MerchantMocks.merchants_as_hashes(number_of_hashes: 8, random_dates: false)
 
     merchant1 = {
       id: 8,
