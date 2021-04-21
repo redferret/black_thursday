@@ -1,10 +1,20 @@
 require_relative './sales_engine'
 
 class SalesAnalyst
-  attr_reader :sales_engine
+  attr_reader :sales_engine,
+              :item_repo,
+              :transaction_repo,
+              :merchant_repo,
+              :invoice_repo,
+              :invoice_item_repo
 
   def initialize(sales_engine)
     @sales_engine = sales_engine
+    @item_repo = sales_engine.items
+    @transaction_repo = sales_engine.transactions
+    @merchant_repo = sales_engine.merchants
+    @invoice_repo = sales_engine.invoices
+    @invoice_item_repo = sales_engine.invoice_items
   end
 
   def num_of_items_per_merchant
@@ -22,10 +32,8 @@ class SalesAnalyst
   end
 
   def average_items_per_merchant_standard_deviation
-    item_count_per_merchant = num_of_items_per_merchant
     mean = average_items_per_merchant
-
-    item_counts = item_count_per_merchant.values
+    item_counts = num_of_items_per_merchant.values
     std_dev = standard_deviation(item_counts, mean)
   end
 
@@ -37,9 +45,7 @@ class SalesAnalyst
   def merchants_with_high_item_count
     mean = average_items_per_merchant
     std_dev = average_items_per_merchant_standard_deviation
-
     z = standard_deviations_of_mean(mean, std_dev)
-
     merchants = []
     num_of_items_per_merchant.each_pair do |merchant, item_count|
       merchants << merchant if item_count >= z
@@ -48,7 +54,7 @@ class SalesAnalyst
   end
 
   def average_item_price_for_merchant(merchant_id)
-    items = @sales_engine.items.find_all_by_merchant_id(merchant_id)
+    items = @item_repo.find_all_by_merchant_id(merchant_id)
     if items.empty?
       nil
     else
@@ -163,12 +169,10 @@ class SalesAnalyst
 
   def top_days_by_invoice_count
     threshold = standard_deviations_of_mean(average_invoices_per_day, average_invoices_per_day_standard_deviation)
-    top_days = []
     weekday_hash = convert_wday_integers_to_hash
-    weekday_hash.map do |weekday, invoices|
-      top_days << weekday if invoices > threshold
-    end
-    top_days
+    weekday_hash.select do |weekday, invoices|
+      invoices > threshold
+    end.keys
   end
 
   def invoice_status(status)
@@ -178,15 +182,144 @@ class SalesAnalyst
     (with_status.to_f / all_invoices.length * 100).round(2)
   end
 
+  def invoice_paid_in_full?(invoice_id)
+    @transaction_repo.any_success?(invoice_id)
+  end
+
+  def invoice_total(invoice_id)
+    invoice_paid_in_full?(invoice_id)? @invoice_item_repo.total_for_invoice(invoice_id) : 0
+  end
+
+  def total_revenue_by_date(date)
+    # should make a method in InvoiceRepo for find_all_by_date
+    invoices_for_date = all_invoices.find_all do |invoice|
+      invoice.created_at == date
+    end
+    invoices_for_date.sum do |invoice|
+      invoice_total(invoice.id)
+    end
+  end
+
+  def invoices_by_merchant
+    all_merchants.each_with_object({}) do |merchant, hash|
+      hash[merchant] = @invoice_repo.find_all_by_merchant_id(merchant.id)
+    end
+  end
+
+  def all_merchant_revenue
+    invoices_by_merchant.transform_values do |invoices|
+      invoices.sum { |invoice| invoice_total(invoice.id).to_f }
+    end
+  end
+
+  def top_revenue_earners(x = 20)
+    revenue_list = all_merchant_revenue.sort_by {|merchant, revenue| revenue}.reverse
+    merchants_by_revenue = revenue_list.map { |array| array[0] }
+    merchants_by_revenue.first(x)
+  end
+
+  def merchants_with_pending_invoices
+    all_merchants.find_all do |merchant|
+      invoices_by_merchant[merchant].any? do |invoice|
+        !invoice_paid_in_full?(invoice.id)
+      end
+    end
+  end
+
+  def paid_invoices_for_merchant(merchant_id)
+    invoices = @invoice_repo.find_all_by_merchant_id(merchant_id)
+    invoices.find_all do |invoice|
+      invoice_paid_in_full?(invoice.id)
+    end
+  end
+
+  def invoice_items_for_merchant(merchant_id)
+    paid_invoices = paid_invoices_for_merchant(merchant_id)
+    paid_invoices.reduce([]) do |array, invoice|
+      array += @invoice_item_repo.find_all_by_invoice_id(invoice.id)
+    end
+  end
+
+  def all_sold_items_for_merchant(merchant_id)
+    invoice_items = invoice_items_for_merchant(merchant_id)
+    invoice_items.each_with_object(Hash.new(0)) do |invoice_item, hash|
+      hash[invoice_item.item_id] += invoice_item.quantity
+    end
+  end
+
+  def find_top_by(sorted_items)
+    single_best = sorted_items.first
+    top_by = sorted_items.find_all do |item|
+      item[1] == single_best[1]
+    end
+  end
+
+  def most_sold_item_for_merchant(merchant_id)
+    items = all_sold_items_for_merchant(merchant_id)
+    sorted_items = items.sort_by {|item, count| count}.reverse
+    most_sold_items = find_top_by(sorted_items)
+    most_sold_items.map {|array| @item_repo.find_by_id(array[0])}
+  end
+
+  def best_item_for_merchant(merchant_id)
+    items = all_sold_items_for_merchant(merchant_id)
+    sorted_items = items.sort_by do |item, count|
+      item = @item_repo.find_by_id(item)
+      item.unit_price * count
+    end
+    most_valuable_items = find_top_by(sorted_items)
+    most_valuable_items.map {|array| @item_repo.find_by_id(array[0])}
+  end
+
+  def revenue_by_merchant(merchant_id)
+    invoices = paid_invoices_for_merchant(merchant_id)
+    invoices.sum do |invoice|
+      invoice_total(invoice.id)
+    end
+  end
+
+  def merchants_registered_for_month(month)
+    all_merchants.select do |merchant|
+      date = Date.parse(merchant.created_at.to_s)
+      index = date.month
+      Date::MONTHNAMES[index] == month
+    end
+  end
+
+  def merchants_with_only_one_item
+    num_of_items_per_merchant.select do |key, value|
+      value == 1
+    end.keys
+  end
+
+  def merchants_with_only_one_item_registered_in_month(month)
+    merchants_with_one_item = merchants_with_only_one_item
+    merchants_registered_for_month(month).select do |merchant|
+      merchants_with_one_item.include?(merchant)
+    end
+  end
+
   def all_items
-    @sales_engine.all_items
+    @item_repo.all
   end
 
   def all_merchants
-    @sales_engine.all_merchants
+    @merchant_repo.all
   end
 
   def all_invoices
-    @sales_engine.all_invoices
+    @invoice_repo.all
+  end
+
+  def all_transactions
+    @transaction_repo.all
+  end
+
+  def all_invoice_items
+    @invoice_item_repo.all
+  end
+
+  def all_customers
+    @customer_repo.all
   end
 end

@@ -29,6 +29,10 @@ class Transaction
     end
   end
 
+  def success?
+    @result == :success
+  end 
+
   def update_result(result)
     @result = result unless result.nil?
   end

@@ -240,4 +240,30 @@ describe TransactionRepository do
       expect(t_repo.transactions.length).to eq 10
     end
   end
+
+  describe '#any_success?' do
+    it 'returns true if successful Transaction exists for invoice_id' do
+      mock_hashes = TransactionMocks.transactions_as_hashes(number_of_hashes: 4, invoice_id: 8, result: :success)
+      mock_data = TransactionMocks.transactions_as_mocks(self, mock_hashes)
+      allow_any_instance_of(TransactionRepository).to receive(:create_transactions).and_return(mock_data)
+      t_repo = TransactionRepository.new('fake.csv')
+      first_transaction = t_repo.transactions.first
+      allow(first_transaction).to receive(:success?) { true }
+
+      expect(t_repo.any_success?(8)).to eq true
+    end
+
+    it 'returns false if no successful Transaction exists for invoice_id' do
+      mock_hashes = TransactionMocks.transactions_as_hashes(number_of_hashes: 4, invoice_id: 8, result: :success)
+      mock_data = TransactionMocks.transactions_as_mocks(self, mock_hashes)
+      allow_any_instance_of(TransactionRepository).to receive(:create_transactions).and_return(mock_data)
+      t_repo = TransactionRepository.new('fake.csv')
+      transactions = t_repo.transactions
+      transactions.each do |transaction|
+        allow(transaction).to receive(:success?) { false }
+      end 
+
+      expect(t_repo.any_success?(8)).to eq false
+    end
+  end
 end
