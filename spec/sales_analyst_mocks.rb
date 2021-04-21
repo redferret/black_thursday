@@ -32,11 +32,10 @@ class SalesAnalystMocks
     invoices_as_hashes += InvoiceMocks.invoices_as_hashes(number_of_hashes: 3, random_dates: false, created_at: proc { Time.new(2020, 7, 17) }, status: :returned, merchant_id: (6))
     invoices_as_hashes += InvoiceMocks.invoices_as_hashes(number_of_hashes: 3, random_dates: false, created_at: proc { Time.new(2020, 8, 18) }, status: :pending, merchant_id: (7))
     invoices_as_hashes += InvoiceMocks.invoices_as_hashes(number_of_hashes: 3, random_dates: false, created_at: proc { Time.new(2020, 9, 19) }, status: :returned, merchant_id: (8))
-    invoices_as_hashes += InvoiceMocks.invoices_as_hashes(number_of_hashes: 12, random_dates: false, created_at: proc { Time.new(2020, 10, 20) }, status: :returned, merchant_id: (0))
+    invoices_as_hashes += InvoiceMocks.invoices_as_hashes(number_of_hashes: 12, random_dates: false, created_at: proc { Time.new(2020, 10, 20) }, status: :returned, merchant_id: (9))
 
     transactions_as_hashes = TransactionMocks.transactions_as_hashes(random_dates: false, invoice_id: 0, result: :success)
     transactions_as_hashes += TransactionMocks.transactions_as_hashes(random_dates: false, invoice_id: 1, result: :failure)
-    transactions_as_hashes += TransactionMocks.transactions_as_hashes(random_dates: false, invoice_id: 9, result: :failure)
 
     invoice_items_as_hashes = InvoiceItemMocks.invoice_items_as_hashes(number_of_hashes: 4, invoice_id: 0, quantity: 2, unit_price: 10.00,
       item_id: 0)

@@ -242,7 +242,7 @@ class SalesAnalyst
 
   def invoice_items_for_merchant(merchant_id)
     paid_invoices = paid_invoices_for_merchant(merchant_id)
-    k = paid_invoices.reduce([]) do |array, invoice|
+    paid_invoices.reduce([]) do |array, invoice|
       array << @invoice_item_repo.find_all_by_invoice_id(invoice.id)
     end.flatten
   end

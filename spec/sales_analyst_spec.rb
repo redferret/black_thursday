@@ -349,7 +349,7 @@ RSpec.describe SalesAnalyst do
     it 'returns list of all sold items for the merchant' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
       allow(sales_analyst).to receive(:invoice_paid_in_full?).and_return(true)
-      merchant = sales_analyst.all_merchants[3]
+      merchant = sales_analyst.all_merchants[1]
 
       expect(sales_analyst.all_sold_items_for_merchant(merchant.id).length).to eq 1
     end
@@ -359,7 +359,7 @@ RSpec.describe SalesAnalyst do
     it 'returns list of invoice_items for the merchant' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
       allow(sales_analyst).to receive(:invoice_paid_in_full?).and_return(true)
-      merchant = sales_analyst.all_merchants[3]
+      merchant = sales_analyst.all_merchants[1]
 
       expect(sales_analyst.invoice_items_for_merchant(merchant.id).length).to eq 4
     end
@@ -369,9 +369,9 @@ RSpec.describe SalesAnalyst do
     it 'returns list of paid invoices for the merchant' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
       allow(sales_analyst).to receive(:invoice_paid_in_full?).and_return(true)
-      merchant = sales_analyst.all_merchants[3]
+      merchant = sales_analyst.all_merchants[1]
 
-      expect(sales_analyst.paid_invoices_for_merchant(merchant.id).length).to eq 3
+      expect(sales_analyst.paid_invoices_for_merchant(merchant.id).length).to eq 2
     end
   end
 
