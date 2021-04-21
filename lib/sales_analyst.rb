@@ -248,9 +248,9 @@ class SalesAnalyst
   end
 
   def merchants_with_only_one_item_registered_in_month(month)
-    merchs_w_1 = merchants_with_only_one_item
+    merchants_with_one_item = merchants_with_only_one_item
     merchants_registered_for_month(month).select do |merchant|
-      merchs_w_1.include?(merchant)
+      merchants_with_one_item.include?(merchant)
     end
   end
 
