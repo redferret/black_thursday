@@ -17,6 +17,7 @@ RSpec.describe MerchantMocks do
     it 'accepts custom hashes' do
       merchants_as_hashes = MerchantMocks.merchants_as_hashes(number_of_hashes: 2)
       merchants_as_mocks = MerchantMocks.merchants_as_mocks(self, merchants_as_hashes)
+
       expect(merchants_as_mocks.length).to eq 2
     end
   end
@@ -43,6 +44,7 @@ RSpec.describe MerchantMocks do
 
     it 'returns non random dates' do
       merchants_as_hashes = MerchantMocks.merchants_as_hashes(random_dates: false)
+      
       merchants_as_hashes.each do |merchant_hash|
         expect(merchant_hash[:created_at]).to eq '2021-01-01'
       end

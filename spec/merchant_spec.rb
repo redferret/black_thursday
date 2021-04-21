@@ -7,8 +7,8 @@ RSpec.describe Merchant do
         id: 5,
         name: 'Turing School'
       }
-
       m = Merchant.new(details)
+
       expect(m).to be_a Merchant
     end
 
@@ -17,8 +17,8 @@ RSpec.describe Merchant do
         id: 5,
         name: 'Turing School'
       }
-
       m = Merchant.new(details)
+
       expect(m.id).to eq 5
     end
 
@@ -27,8 +27,8 @@ RSpec.describe Merchant do
         id: 5,
         name: 'Turing School'
       }
-
       m = Merchant.new(details)
+
       expect(m.name).to eq 'Turing School'
     end
   end
@@ -39,10 +39,11 @@ RSpec.describe Merchant do
         id: 5,
         name: 'Turing School'
       }
-
       m = Merchant.new(details)
       new_name = 'Turing School of Software and Design'
+      
       m.update_name(new_name)
+
       expect(m.name).to eq new_name
     end
   end

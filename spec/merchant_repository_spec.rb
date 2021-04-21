@@ -1,4 +1,5 @@
 require './data/merchant_mocks'
+
 require './lib/merchant'
 require './lib/merchant_repository'
 
@@ -39,6 +40,7 @@ describe MerchantRepository do
 
       expected = m_repo.all.first
       actual = m_repo.find_by_id(0)
+
       expect(actual).to eq expected
     end
 
@@ -49,6 +51,7 @@ describe MerchantRepository do
       m_repo = MerchantRepository.new('fake.csv')
 
       actual = m_repo.find_by_id(30)
+
       expect(actual).to be_nil
     end
   end
@@ -61,6 +64,7 @@ describe MerchantRepository do
 
       expected = m_repo.all.first
       actual = m_repo.find_by_name('Merchant 0')
+
       expect(actual).to eq expected
     end
   end
@@ -70,12 +74,12 @@ describe MerchantRepository do
       mock_data = MerchantMocks.merchants_as_mocks(self)
       allow(FileIo).to receive(:process_csv).and_return(mock_data)
       m_repo = MerchantRepository.new('fake.csv')
-
       m_repo.create({ name: 'Merchant 0' })
       m_repo.create({ name: 'Merchant 0' })
       m_repo.create({ name: 'Merchant 0' })
 
       merchants = m_repo.find_all_by_name('Merchant 0')
+
       merchants.each do |merchant|
         expect(merchant.name).to eq 'Merchant 0'
       end
@@ -89,7 +93,9 @@ describe MerchantRepository do
       m_repo = MerchantRepository.new('fake.csv')
 
       expect(m_repo.all.length).to eq 10
+
       m_repo.delete(2)
+
       expect(m_repo.all.length).to eq 9
     end
 
@@ -100,7 +106,9 @@ describe MerchantRepository do
       m_repo = MerchantRepository.new('fake.csv')
 
       expect(m_repo.all.length).to eq 10
+
       m_repo.delete(56)
+
       expect(m_repo.all.length).to eq 10
     end
   end
@@ -142,6 +150,8 @@ describe MerchantRepository do
       m_repo.create({ id: 0, name: 'Sami' })
       new_merchant = m_repo.all.last
       m_repo.update(56, { name: 'Dustin Huntsman' })
+
+      expect(new_merchant.name).to eq 'Sami'
     end
   end
 end
