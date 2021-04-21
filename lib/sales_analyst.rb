@@ -233,6 +233,7 @@ class SalesAnalyst
     end
   end
 
+
   def most_sold_item_for_merchant(merchant_id)
     invoices = @invoice_repo.find_all_by_merchant_id(merchant_id)
     invoice_items = invoices.reduce([]) do |array, invoice|
