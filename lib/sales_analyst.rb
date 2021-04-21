@@ -169,12 +169,10 @@ class SalesAnalyst
 
   def top_days_by_invoice_count
     threshold = standard_deviations_of_mean(average_invoices_per_day, average_invoices_per_day_standard_deviation)
-    top_days = []
     weekday_hash = convert_wday_integers_to_hash
-    weekday_hash.map do |weekday, invoices|
-      top_days << weekday if invoices > threshold
-    end
-    top_days
+    weekday_hash.select do |weekday, invoices|
+      invoices > threshold
+    end.keys
   end
 
   def invoice_status(status)
@@ -189,11 +187,7 @@ class SalesAnalyst
   end
 
   def invoice_total(invoice_id)
-    if invoice_paid_in_full?(invoice_id)
-      @invoice_item_repo.total_for_invoice(invoice_id)
-    else
-      0
-    end
+    invoice_paid_in_full?(invoice_id)? @invoice_item_repo.total_for_invoice(invoice_id) : 0
   end
 
   def total_revenue_by_date(date)
@@ -207,9 +201,8 @@ class SalesAnalyst
   end
 
   def invoices_by_merchant
-    all_merchants.reduce({}) do |hash, merchant|
+    all_merchants.each_with_object({}) do |merchant, hash|
       hash[merchant] = @invoice_repo.find_all_by_merchant_id(merchant.id)
-      hash
     end
   end
 
