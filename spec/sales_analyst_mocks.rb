@@ -1,5 +1,8 @@
+require 'csv'
+
 require './data/invoice_mocks'
 require './data/invoice_item_mocks'
+require './spec/sales_engine_mocks'
 require './lib/item_repository'
 require './lib/invoice_repository'
 require './lib/invoice_item_repository'
@@ -11,10 +14,6 @@ class SalesAnalystMocks
   end
 
   def self.sales_analyst_mock(eg)
-    sales_engine = eg.instance_double('SalesEngine')
-    eg.allow(sales_engine).to eg.receive(:analyst).and_return SalesAnalyst.new(sales_engine)
-    sales_analyst = sales_engine.analyst
-
     merchants_as_mocks = MerchantMocks.merchants_as_mocks(eg)
 
     items_as_hashes = ItemMocks.items_as_hashes(unit_price: 1000.0,
@@ -35,8 +34,8 @@ class SalesAnalystMocks
     invoices_as_hashes += InvoiceMocks.invoices_as_hashes(number_of_hashes: 3, random_dates: false, created_at: proc { Time.new(2020, 9, 19) }, status: :returned, merchant_id: (8))
     invoices_as_hashes += InvoiceMocks.invoices_as_hashes(number_of_hashes: 12, random_dates: false, created_at: proc { Time.new(2020, 10, 20) }, status: :returned, merchant_id: (9))
 
-
     transactions_as_hashes = TransactionMocks.transactions_as_hashes(random_dates: false, invoice_id: 0, result: :success)
+    transactions_as_hashes += TransactionMocks.transactions_as_hashes(random_dates: false, invoice_id: 1, result: :failure)
 
     invoice_items_as_hashes = InvoiceItemMocks.invoice_items_as_hashes(number_of_hashes: 4, invoice_id: 0, quantity: 2, unit_price: 10.00,
       item_id: 0)
@@ -66,6 +65,8 @@ class SalesAnalystMocks
     transaction_repository = TransactionRepository.new('fake_file')
     invoice_item_repository = InvoiceItemRepository.new('fake_file')
 
+    sales_engine = eg.instance_double("SalesEngine")
+
     eg.allow(sales_engine).to eg.receive(:items).and_return item_repository
     eg.allow(sales_engine).to eg.receive(:merchants).and_return merchant_repository
     eg.allow(sales_engine).to eg.receive(:transactions).and_return transaction_repository
@@ -77,6 +78,6 @@ class SalesAnalystMocks
     eg.allow(sales_engine).to eg.receive(:all_transactions).and_return transaction_repository.transactions
     eg.allow(sales_engine).to eg.receive(:all_invoice_items).and_return invoice_item_repository.invoice_items
 
-    sales_analyst
+    SalesAnalyst.new(sales_engine)
   end
 end

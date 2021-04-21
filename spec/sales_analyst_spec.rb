@@ -308,4 +308,30 @@ RSpec.describe SalesAnalyst do
       expect(sales_analyst.top_revenue_earners(2).length).to eq 2
     end
   end
+
+  describe '#merchants_with_pending_invoices' do
+    it 'returns a list of merchants with pending invoices' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+      invoices = sales_analyst.all_invoices
+      allow(sales_analyst).to receive(:invoice_paid_in_full?).and_return(false)
+
+      expect(sales_analyst.merchants_with_pending_invoices.length).to eq 10
+    end
+
+    it 'returns a list of merchants with pending invoices' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+      invoices = sales_analyst.all_invoices
+      allow(sales_analyst).to receive(:invoice_paid_in_full?).and_return(true)
+
+
+      expect(sales_analyst.merchants_with_pending_invoices.length).to eq 0
+    end
+
+    it 'returns a list of merchants with pending invoices' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+      allow(sales_analyst).to receive(:invoice_paid_in_full?).and_return(false, true)
+
+      expect(sales_analyst.merchants_with_pending_invoices.length).to eq 1
+    end
+  end
 end
