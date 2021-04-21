@@ -206,16 +206,16 @@ class SalesAnalyst
     end
   end
 
-  def revenue_by_merchant
+  def all_merchant_revenue
     invoices_by_merchant.transform_values do |invoices|
       invoices.sum { |invoice| invoice_total(invoice.id).to_f }
     end
   end
 
   def top_revenue_earners(x = 20)
-    revenue_list = revenue_by_merchant.sort_by {|merchant, revenue| revenue}.reverse
+    revenue_list = all_merchant_revenue.sort_by {|merchant, revenue| revenue}.reverse
     merchants_by_revenue = revenue_list.map { |array| array[0] }
-    top_earners = merchants_by_revenue.first(x)
+    merchants_by_revenue.first(x)
   end
 
   def merchants_with_pending_invoices
@@ -223,6 +223,58 @@ class SalesAnalyst
       invoices_by_merchant[merchant].any? do |invoice|
         !invoice_paid_in_full?(invoice.id)
       end
+    end
+  end
+
+  def paid_invoices_for_merchant(merchant_id)
+    invoices = @invoice_repo.find_all_by_merchant_id(merchant_id)
+    invoices.find_all do |invoice|
+      invoice_paid_in_full?(invoice.id)
+    end
+  end
+
+  def invoice_items_for_merchant(merchant_id)
+    paid_invoices = paid_invoices_for_merchant(merchant_id)
+    paid_invoices.reduce([]) do |array, invoice|
+      array += @invoice_item_repo.find_all_by_invoice_id(invoice.id)
+    end
+  end
+
+  def all_sold_items_for_merchant(merchant_id)
+    invoice_items = invoice_items_for_merchant(merchant_id)
+    invoice_items.each_with_object(Hash.new(0)) do |invoice_item, hash|
+      hash[invoice_item.item_id] += invoice_item.quantity
+    end
+  end
+
+  def find_top_by(sorted_items)
+    single_best = sorted_items.first
+    top_by = sorted_items.find_all do |item|
+      item[1] == single_best[1]
+    end
+  end
+
+  def most_sold_item_for_merchant(merchant_id)
+    items = all_sold_items_for_merchant(merchant_id)
+    sorted_items = items.sort_by {|item, count| count}.reverse
+    most_sold_items = find_top_by(sorted_items)
+    most_sold_items.map {|array| @item_repo.find_by_id(array[0])}
+  end
+
+  def best_item_for_merchant(merchant_id)
+    items = all_sold_items_for_merchant(merchant_id)
+    sorted_items = items.sort_by do |item, count|
+      item = @item_repo.find_by_id(item)
+      item.unit_price * count
+    end
+    most_valuable_items = find_top_by(sorted_items)
+    most_valuable_items.map {|array| @item_repo.find_by_id(array[0])}
+  end
+
+  def revenue_by_merchant(merchant_id)
+    invoices = paid_invoices_for_merchant(merchant_id)
+    invoices.sum do |invoice|
+      invoice_total(invoice.id)
     end
   end
 
@@ -248,26 +300,26 @@ class SalesAnalyst
   end
 
   def all_items
-    @item_repo.items
+    @item_repo.all
   end
 
   def all_merchants
-    @merchant_repo.merchants
+    @merchant_repo.all
   end
 
   def all_invoices
-    @invoice_repo.invoices
+    @invoice_repo.all
   end
 
   def all_transactions
-    @transaction_repo.transactions
+    @transaction_repo.all
   end
 
   def all_invoice_items
-    @invoice_item_repo.invoice_items
+    @invoice_item_repo.all
   end
 
   def all_customers
-    @customer_repo.customers
+    @customer_repo.all
   end
 end

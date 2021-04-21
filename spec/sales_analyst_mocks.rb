@@ -9,28 +9,28 @@ require './lib/invoice_item_repository'
 require './lib/sales_analyst'
 
 class SalesAnalystMocks
-  def self.price_sums_for_each_merchant
-    @@price_sums_for_each_merchant
+  def self.price_means_for_each_merchant
+    @@price_means_for_each_merchant
   end
 
   def self.sales_analyst_mock(eg)
-    merchant_hashes = MerchantMocks.merchants_as_hashes(number_of_hashes: 3)
+    merchant_hashes = MerchantMocks.merchants_as_hashes(number_of_hashes: 8)
 
     merchant1 = {
-      id: 4,
+      id: 8,
       name: 'Lucky Merch',
       created_at: Time.new(2020, 7, 20),
       updated_at: Time.new(2020, 7, 20)
     }
     merchant2 = {
-      id: 5,
+      id: 9,
       name: 'Lucky Merch',
       created_at: Time.new(2020, 7, 20),
       updated_at: Time.new(2020, 7, 20)
     }
 
     merchant_hashes << merchant1 << merchant2
-    
+
     merchants_as_mocks = MerchantMocks.merchants_as_mocks(eg, merchant_hashes)
 
     items_as_hashes = ItemMocks.items_as_hashes(unit_price: 1000.0,
@@ -39,8 +39,8 @@ class SalesAnalystMocks
     items_as_hashes += ItemMocks.items_as_hashes(number_of_hashes: 7, merchant_id: 1, random_dates: false)
     items_as_hashes += ItemMocks.items_as_hashes(number_of_hashes: 4, merchant_id: 2, random_dates: false)
     items_as_hashes += ItemMocks.items_as_hashes(number_of_hashes: 12, merchant_id: 3, random_dates: false)
-    items_as_hashes += ItemMocks.items_as_hashes(number_of_hashes: 1, merchant_id: 4)
-    items_as_hashes += ItemMocks.items_as_hashes(number_of_hashes: 1, merchant_id: 5)
+    items_as_hashes += ItemMocks.items_as_hashes(number_of_hashes: 1, merchant_id: 8)
+    items_as_hashes += ItemMocks.items_as_hashes(number_of_hashes: 1, merchant_id: 9)
 
     invoices_as_hashes = InvoiceMocks.invoices_as_hashes(number_of_hashes: 1, random_dates: false, created_at: proc {Time.new(2020, 1, 11)}, status: :pending, merchant_id: (0))
     invoices_as_hashes += InvoiceMocks.invoices_as_hashes(number_of_hashes: 2, random_dates: false, created_at: proc { Time.new(2020, 2, 12) }, status: :shipped, merchant_id: (1))
@@ -59,12 +59,14 @@ class SalesAnalystMocks
     invoice_items_as_hashes = InvoiceItemMocks.invoice_items_as_hashes(number_of_hashes: 4, invoice_id: 0, quantity: 2, unit_price: 10.00,
       item_id: 0)
 
-    @@price_sums_for_each_merchant = merchants_as_mocks.each_with_object({}) do |merchant, sums_by_merchant|
+    @@price_means_for_each_merchant = merchants_as_mocks.each_with_object({}) do |merchant, means_by_merchant|
       item_hashes = items_as_hashes.find_all do |item_hash|
         item_hash[:merchant_id] == merchant.id
       end
-      sum_of_prices = Mockable.sum_item_prices_from_hash(item_hashes)
-      sums_by_merchant[merchant.id] = sum_of_prices
+      if item_hashes.length > 0
+        mean_of_prices = Mockable.mean_of_item_prices_from_hash(item_hashes)
+        means_by_merchant[merchant.id] = mean_of_prices
+      end
     end
 
     items_as_mocks = ItemMocks.items_as_mocks(eg, items_as_hashes)

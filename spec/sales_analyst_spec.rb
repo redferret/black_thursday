@@ -12,13 +12,19 @@ RSpec.describe SalesAnalyst do
   describe '#merchants_with_only_one_item' do
     it 'returns a list of merchants with only 1 item' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
-      merchant1 = sales_analyst.merchant_repo.find_by_id(4)
-      merchant2 = sales_analyst.merchant_repo.find_by_id(5)
+      merchant1 = sales_analyst.merchant_repo.find_by_id(8)
+      merchant2 = sales_analyst.merchant_repo.find_by_id(9)
 
       expected = [merchant1, merchant2]
 
       actual = sales_analyst.merchants_with_only_one_item
       expect(actual).to eq expected
+    end
+  end
+
+  describe '#find_top_by' do
+    it 'needs tests' do
+      fail
     end
   end
 
@@ -43,8 +49,8 @@ RSpec.describe SalesAnalyst do
   describe '#merchants_with_only_one_item_registered_in_month' do
     it 'returns a list of merchants with only 1 item registered in given month' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
-      merchant1 = sales_analyst.merchant_repo.find_by_id(4)
-      merchant2 = sales_analyst.merchant_repo.find_by_id(5)
+      merchant1 = sales_analyst.merchant_repo.find_by_id(8)
+      merchant2 = sales_analyst.merchant_repo.find_by_id(9)
 
       expected = [merchant1, merchant2]
 
@@ -69,8 +75,8 @@ RSpec.describe SalesAnalyst do
         merchants_as_mocks[5] => 0,
         merchants_as_mocks[6] => 0,
         merchants_as_mocks[7] => 0,
-        merchants_as_mocks[8] => 0,
-        merchants_as_mocks[9] => 0
+        merchants_as_mocks[8] => 1,
+        merchants_as_mocks[9] => 1
       }
 
       actual = sales_analyst.num_of_items_per_merchant
@@ -84,7 +90,7 @@ RSpec.describe SalesAnalyst do
   describe '#average_items_per_merchant' do
     it 'averages the items per merchant' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
-      expected_average = 2.6
+      expected_average = 2.8
       actual_average = sales_analyst.average_items_per_merchant
 
       expect(actual_average).to eq expected_average
@@ -94,7 +100,7 @@ RSpec.describe SalesAnalyst do
   describe '#average_items_per_merchant_standard_deviation' do
     it 'calculates standard deviation for average items per merchant' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
-      expected_deviation = (Math.sqrt((((3 - 2.6)**2) + ((7 - 2.6)**2) + ((4 - 2.6)**2) + ((12 - 2.6)**2) + (40.56)) / 9.0)).round(2)
+      expected_deviation = 3.97
       actual_deviation = sales_analyst.average_items_per_merchant_standard_deviation
 
       expect(actual_deviation).to eq expected_deviation
@@ -128,9 +134,8 @@ RSpec.describe SalesAnalyst do
   describe '#average_item_price_for_merchant' do
     it 'gets the average price for the given merchant' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
-      sum_for_test = SalesAnalystMocks.price_sums_for_each_merchant[3]
+      expected_average = SalesAnalystMocks.price_means_for_each_merchant[3]
       actual_average = sales_analyst.average_item_price_for_merchant(3)
-      expected_average = sum_for_test / 12.0
 
       expect(actual_average).to eq (expected_average).round(2)
     end
@@ -140,10 +145,9 @@ RSpec.describe SalesAnalyst do
     it 'get the average of all the averages for each merchant' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
       allow(sales_analyst).to receive(:average_item_price_for_merchant) { 50.0 }
-      sum_of_averages = 200.0
 
       actual_avg_of_averages = sales_analyst.average_average_price_per_merchant
-      expected_avg_of_averages = sum_of_averages / 10.0
+      expected_avg_of_averages = 30.0
 
       expect(actual_avg_of_averages).to eq expected_avg_of_averages
     end
@@ -308,7 +312,7 @@ RSpec.describe SalesAnalyst do
     end
   end
 
-  describe '#revenue by merchant' do
+  describe '#all_merchant_revenue' do
     it 'returns a hash of merchants sorted by revenue with revenue as values' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
       merchants = sales_analyst.all_merchants
@@ -320,7 +324,7 @@ RSpec.describe SalesAnalyst do
      }
       allow_any_instance_of(Hash).to receive(:transform_values).and_return(revenue_hash)
 
-      expect(sales_analyst.revenue_by_merchant).to eq revenue_hash
+      expect(sales_analyst.all_merchant_revenue).to eq revenue_hash
     end
   end
 
@@ -355,7 +359,7 @@ RSpec.describe SalesAnalyst do
   end
 
   describe '#merchants_with_pending_invoices' do
-    it 'returns a list of merchants with pending invoices' do
+    it 'returns a list of all merchants with pending invoices' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
       invoices = sales_analyst.all_invoices
       allow(sales_analyst).to receive(:invoice_paid_in_full?).and_return(false)
@@ -363,20 +367,89 @@ RSpec.describe SalesAnalyst do
       expect(sales_analyst.merchants_with_pending_invoices.length).to eq 10
     end
 
-    it 'returns a list of merchants with pending invoices' do
+    it 'returns empty array if no merchants with pending invoices' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
       invoices = sales_analyst.all_invoices
       allow(sales_analyst).to receive(:invoice_paid_in_full?).and_return(true)
 
-
       expect(sales_analyst.merchants_with_pending_invoices.length).to eq 0
     end
 
-    it 'returns a list of merchants with pending invoices' do
+    it 'returns a list of the only merchant with pending invoices' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
       allow(sales_analyst).to receive(:invoice_paid_in_full?).and_return(false, true)
 
       expect(sales_analyst.merchants_with_pending_invoices.length).to eq 1
+    end
+  end
+
+  describe '#most_sold_item_for_merchant' do
+    it 'returns the most sold item for a merchant' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+      merchant = sales_analyst.all_merchants[3]
+      item = sales_analyst.all_items.first
+      allow(sales_analyst).to receive(:invoice_paid_in_full?).and_return(true)
+
+      expect(sales_analyst.most_sold_item_for_merchant(merchant.id)).to eq [item]
+    end
+  end
+
+  describe '#all_sold_items_for_merchant' do
+    it 'returns list of all sold items for the merchant' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+      allow(sales_analyst).to receive(:invoice_paid_in_full?).and_return(true)
+      merchant = sales_analyst.all_merchants[1]
+
+      expect(sales_analyst.all_sold_items_for_merchant(merchant.id).length).to eq 1
+    end
+  end
+
+  describe '#invoice_items_for_merchant' do
+    it 'returns list of invoice_items for the merchant' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+      allow(sales_analyst).to receive(:invoice_paid_in_full?).and_return(true)
+      merchant = sales_analyst.all_merchants[1]
+
+      expect(sales_analyst.invoice_items_for_merchant(merchant.id).length).to eq 4
+    end
+  end
+
+  describe '#paid_invoices_for_merchant' do
+    it 'returns list of paid invoices for the merchant' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+      allow(sales_analyst).to receive(:invoice_paid_in_full?).and_return(true)
+      merchant = sales_analyst.all_merchants[1]
+
+      expect(sales_analyst.paid_invoices_for_merchant(merchant.id).length).to eq 2
+    end
+  end
+
+  describe '#revenue_by_merchant' do
+    it 'returns the revenue for that merchant' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+      allow(sales_analyst).to receive(:invoice_paid_in_full?).and_return(true)
+      merchant = sales_analyst.all_merchants[1]
+      invoice_items = sales_analyst.all_invoice_items
+      invoice_items.each do |invoice_item|
+        allow(invoice_item).to receive(:total) { 20.00 }
+      end
+
+      expect(sales_analyst.revenue_by_merchant(merchant.id)).to eq 80.0
+    end
+  end
+
+  describe '#best_item_for_merchant' do
+    it 'returns the best item for that merchant in terms of revenue' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+      allow(sales_analyst).to receive(:invoice_paid_in_full?).and_return(true)
+      merchant = sales_analyst.all_merchants[1]
+      invoice_items = sales_analyst.all_invoice_items
+      invoice_items.each do |invoice_item|
+        allow(invoice_item).to receive(:total) { 20.00 }
+      end
+      item = sales_analyst.all_items.first
+
+      expect(sales_analyst.best_item_for_merchant(merchant.id)).to eq [item]
     end
   end
 end
