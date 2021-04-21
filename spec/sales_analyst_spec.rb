@@ -334,4 +334,14 @@ RSpec.describe SalesAnalyst do
       expect(sales_analyst.merchants_with_pending_invoices.length).to eq 1
     end
   end
+
+  describe '#most_sold_item_for_merchant' do
+    it 'returns the most sold item for a merchant' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+      merchant = sales_analyst.all_merchants.first
+      item = sales_analyst.all_items.first
+
+      expect(sales_analyst.most_sold_item_for_merchant(merchant.id)).to eq [item]
+    end
+  end
 end

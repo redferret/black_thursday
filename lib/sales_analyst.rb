@@ -222,7 +222,7 @@ class SalesAnalyst
   def top_revenue_earners(x = 20)
     revenue_list = revenue_by_merchant.sort_by {|merchant, revenue| revenue}.reverse
     merchants_by_revenue = revenue_list.map { |array| array[0] }
-    top_earners = merchants_by_revenue.first(x)
+    merchants_by_revenue.first(x)
   end
 
   def merchants_with_pending_invoices
@@ -233,27 +233,44 @@ class SalesAnalyst
     end
   end
 
+  def most_sold_item_for_merchant(merchant_id)
+    invoices = @invoice_repo.find_all_by_merchant_id(merchant_id)
+    invoice_items = invoices.reduce([]) do |array, invoice|
+      array << @invoice_item_repo.find_all_by_invoice_id(invoice.id)
+    end.flatten
+    items_as_hash = invoice_items.reduce(Hash.new(0)) do |hash, invoice_item|
+      hash[invoice_item.item_id] += invoice_item.quantity
+      hash
+    end
+    sorted_items = items_as_hash.sort_by {|item, count| count}.reverse
+    single_most_sold = sorted_items.first
+    most_sold_items = sorted_items.find_all do |item|
+      item[1] == single_most_sold[1]
+    end
+    most_sold_items.map {|array| @item_repo.find_by_id(array[0])}
+  end
+
   def all_items
-    @item_repo.items
+    @item_repo.all
   end
 
   def all_merchants
-    @merchant_repo.merchants
+    @merchant_repo.all
   end
 
   def all_invoices
-    @invoice_repo.invoices
+    @invoice_repo.all
   end
 
   def all_transactions
-    @transaction_repo.transactions
+    @transaction_repo.all
   end
 
   def all_invoice_items
-    @invoice_item_repo.invoice_items
+    @invoice_item_repo.all
   end
 
   def all_customers
-    @customer_repo.customers
+    @customer_repo.all
   end
 end
