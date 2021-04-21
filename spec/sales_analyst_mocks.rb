@@ -74,18 +74,19 @@ class SalesAnalystMocks
     invoice_items_as_mocks = InvoiceItemMocks.invoice_items_as_mocks(eg, invoice_items_as_hashes)
     transactions_as_mocks = TransactionMocks.transactions_as_mocks(eg, transactions_as_hashes)
 
-    eg.allow_any_instance_of(ItemRepository).to eg.receive(:create_items).and_return(items_as_mocks)
-    eg.allow_any_instance_of(MerchantRepository).to eg.receive(:create_merchants).and_return(merchants_as_mocks)
-    eg.allow_any_instance_of(InvoiceRepository).to eg.receive(:create_invoices).and_return(invoices_as_mocks)
-    eg.allow_any_instance_of(TransactionRepository).to eg.receive(:create_transactions).and_return(transactions_as_mocks)
-    eg.allow_any_instance_of(InvoiceItemRepository).to eg.receive(:create_invoice_items).and_return(invoice_items_as_mocks)
-
+    eg.allow(FileIo).to eg.receive(:process_csv).and_return(items_as_mocks)
     item_repository = ItemRepository.new('fake_file')
 
     eg.allow(FileIo).to eg.receive(:process_csv).and_return(merchants_as_mocks)
     merchant_repository = MerchantRepository.new('fake_file')
+
+    eg.allow(FileIo).to eg.receive(:process_csv).and_return(invoices_as_mocks)
     invoice_repository = InvoiceRepository.new('fake_file')
+
+    eg.allow(FileIo).to eg.receive(:process_csv).and_return(transactions_as_mocks)
     transaction_repository = TransactionRepository.new('fake_file')
+
+    eg.allow(FileIo).to eg.receive(:process_csv).and_return(invoice_items_as_mocks)
     invoice_item_repository = InvoiceItemRepository.new('fake_file')
 
     sales_engine = eg.instance_double("SalesEngine")
@@ -95,11 +96,11 @@ class SalesAnalystMocks
     eg.allow(sales_engine).to eg.receive(:transactions).and_return transaction_repository
     eg.allow(sales_engine).to eg.receive(:invoices).and_return invoice_repository
     eg.allow(sales_engine).to eg.receive(:invoice_items).and_return invoice_item_repository
-    eg.allow(sales_engine).to eg.receive(:all_items).and_return item_repository.items
-    eg.allow(sales_engine).to eg.receive(:all_merchants).and_return merchant_repository.merchants
-    eg.allow(sales_engine).to eg.receive(:all_invoices).and_return invoice_repository.invoices
-    eg.allow(sales_engine).to eg.receive(:all_transactions).and_return transaction_repository.transactions
-    eg.allow(sales_engine).to eg.receive(:all_invoice_items).and_return invoice_item_repository.invoice_items
+    eg.allow(sales_engine).to eg.receive(:all_items).and_return item_repository.all
+    eg.allow(sales_engine).to eg.receive(:all_merchants).and_return merchant_repository.all
+    eg.allow(sales_engine).to eg.receive(:all_invoices).and_return invoice_repository.all
+    eg.allow(sales_engine).to eg.receive(:all_transactions).and_return transaction_repository.all
+    eg.allow(sales_engine).to eg.receive(:all_invoice_items).and_return invoice_item_repository.all
 
     SalesAnalyst.new(sales_engine)
   end

@@ -58,6 +58,6 @@ class SalesEngine
   end
 
   def all_customers
-    @invoice_items.all
+    @customers.all
   end
 end

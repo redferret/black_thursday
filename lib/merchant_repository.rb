@@ -31,6 +31,4 @@ class MerchantRepository < Repository
       merchant.update_name(attributes[:name])
     end
   end
-
-
 end

@@ -39,9 +39,10 @@ class TransactionRepository < Repository
       transaction.update_result(attributes[:result])
     end
   end
+
   def any_success?(invoice_id)
-    @transactions.any? do |transaction|
+    @models.any? do |transaction|
       transaction.invoice_id == invoice_id && transaction.success?
     end
-  end 
+  end
 end

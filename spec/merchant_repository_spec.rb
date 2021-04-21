@@ -110,7 +110,7 @@ describe MerchantRepository do
       mock_data = MerchantMocks.merchants_as_mocks(self)
       allow(FileIo).to receive(:process_csv).and_return(mock_data)
       m_repo = MerchantRepository.new('fake.csv')
-      allow(m_repo).to receive(:newest_id).and_return(10)
+      allow(m_repo).to receive(:find_max_id).and_return(10)
 
       m_repo.create({ name: 'Sami' })
       new_merchant = m_repo.all.last.name

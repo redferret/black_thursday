@@ -284,7 +284,7 @@ describe InvoiceItemRepository do
   describe '#total_for_invoice' do
     it 'returns the total for all InvoiceItems with specified invoice_id' do
       mock_data = InvoiceItemMocks.invoice_items_as_mocks(self)
-      allow_any_instance_of(InvoiceItemRepository).to receive(:create_invoice_items).and_return(mock_data)
+      allow(FileIo).to receive(:process_csv).and_return(mock_data)
       ii_repo = InvoiceItemRepository.new('fake.csv')
 
       new_invoice_item = {

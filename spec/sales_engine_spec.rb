@@ -33,6 +33,8 @@ describe SalesEngine do
       sales_engine = SalesEngineMocks.sales_engine(self)
 
       expect(sales_engine.items).to be_an ItemRepository
+      sales_engine.all_items
+      expect(sales_engine.items).to have_received(:all)
     end
   end
 
@@ -41,6 +43,8 @@ describe SalesEngine do
       sales_engine = SalesEngineMocks.sales_engine(self)
 
       expect(sales_engine.merchants).to be_a MerchantRepository
+      sales_engine.all_merchants
+      expect(sales_engine.merchants).to have_received(:all)
     end
   end
 
@@ -49,6 +53,8 @@ describe SalesEngine do
       sales_engine = SalesEngineMocks.sales_engine(self)
 
       expect(sales_engine.invoices).to be_an InvoiceRepository
+      sales_engine.all_invoices
+      expect(sales_engine.invoices).to have_received(:all)
     end
   end
 
@@ -56,7 +62,9 @@ describe SalesEngine do
     it 'has an TransactionRepository' do
       sales_engine = SalesEngineMocks.sales_engine(self)
 
-      expect(sales_engine.invoices).to be_an InvoiceRepository
+      expect(sales_engine.transactions).to be_an TransactionRepository
+      sales_engine.all_transactions
+      expect(sales_engine.transactions).to have_received(:all)
     end
   end
 
@@ -66,6 +74,8 @@ describe SalesEngine do
       invoice_item_repo = sales_engine.invoice_items
 
       expect(invoice_item_repo).to be_an InvoiceItemRepository
+      sales_engine.all_invoice_items
+      expect(sales_engine.invoice_items).to have_received(:all)
     end
   end
 
@@ -75,6 +85,8 @@ describe SalesEngine do
       customer_repo = sales_engine.customers
 
       expect(customer_repo).to be_a CustomerRepository
+      sales_engine.all_customers
+      expect(sales_engine.customers).to have_received(:all)
     end
   end
 
