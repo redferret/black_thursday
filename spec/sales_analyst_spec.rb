@@ -8,7 +8,6 @@ require './lib/sales_engine'
 require './spec/sales_analyst_mocks'
 
 RSpec.describe SalesAnalyst do
-
   describe '#merchants_with_only_one_item' do
     it 'returns a list of merchants with only 1 item' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
@@ -42,7 +41,7 @@ RSpec.describe SalesAnalyst do
     it 'returns days of the week with the most invoices' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
 
-      expect(sales_analyst.top_days_by_invoice_count).to eq ["Tuesday"]
+      expect(sales_analyst.top_days_by_invoice_count).to eq ['Tuesday']
     end
   end
 
@@ -69,7 +68,7 @@ RSpec.describe SalesAnalyst do
         merch4: 1
       }
       allow(sales_analyst).to receive(:num_of_items_per_merchant).and_return(mocked_hash)
-      expected = [:merch3, :merch4]
+      expected = %i[merch3 merch4]
       actual = sales_analyst.merchants_with_only_one_item
       expect(actual).to eq expected
     end
@@ -110,7 +109,6 @@ RSpec.describe SalesAnalyst do
 
       actual = sales_analyst.num_of_items_per_merchant
 
-
       expect(actual).to be_a Hash
       expect(actual).to eq expected_hash
     end
@@ -139,7 +137,7 @@ RSpec.describe SalesAnalyst do
   describe '#standard_deviations_of_mean' do
     it 'calculates the n standard deviation of the mean of items per merchant' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
-      std_dev = (Math.sqrt((((3 - 2.6)**2) + ((7 - 2.6)**2) + ((4 - 2.6)**2) + ((12 - 2.6)**2) + (40.56)) / 9.0)).round(2)
+      std_dev = (Math.sqrt((((3 - 2.6)**2) + ((7 - 2.6)**2) + ((4 - 2.6)**2) + ((12 - 2.6)**2) + 40.56) / 9.0)).round(2)
       mean = 6.5
       expected_range = mean + std_dev
       actual_range = sales_analyst.standard_deviations_of_mean(mean, std_dev)
@@ -204,7 +202,7 @@ RSpec.describe SalesAnalyst do
     it 'returns the average number of invoices per merchant' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
 
-      expect(sales_analyst.average_invoices_per_merchant). to eq 3.6
+      expect(sales_analyst.average_invoices_per_merchant).to eq 3.6
     end
   end
 
@@ -238,8 +236,8 @@ RSpec.describe SalesAnalyst do
   describe '#average_invoices_per_merchant_standard_deviation' do
     it 'returns the standard deviation of invoices per merchant' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
-      expected_deviation = (Math.sqrt((((1 - 3.6)**2) + ((2 - 3.6)**2) + ((3 - 3.6)**2)+ ((3 - 3.6)**2)+ ((3 - 3.6)**2)+
-      ((3 - 3.6)**2)+ ((3 - 3.6)**2)+ ((3 - 3.6)**2)+ ((3 - 3.6)**2) + ((12 - 3.6)**2)) / 9.0)).round(2)
+      expected_deviation = (Math.sqrt((((1 - 3.6)**2) + ((2 - 3.6)**2) + ((3 - 3.6)**2) + ((3 - 3.6)**2) + ((3 - 3.6)**2) +
+      ((3 - 3.6)**2) + ((3 - 3.6)**2) + ((3 - 3.6)**2) + ((3 - 3.6)**2) + ((12 - 3.6)**2)) / 9.0)).round(2)
       actual_deviation = sales_analyst.average_invoices_per_merchant_standard_deviation
 
       expect(expected_deviation).to eq actual_deviation
@@ -331,9 +329,8 @@ RSpec.describe SalesAnalyst do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
       invoices = sales_analyst.all_invoices
       merchants = sales_analyst.all_merchants
-      expected_hash = merchants.reduce({}) do|hash, merchant|
-        hash[merchant] = invoices.find_all {|invoice| invoice.merchant_id == merchant.id}
-        hash
+      expected_hash = merchants.each_with_object({}) do |merchant, hash|
+        hash[merchant] = invoices.find_all { |invoice| invoice.merchant_id == merchant.id }
       end
       allow(merchants).to receive(:reduce).and_return(expected_hash)
 
@@ -350,7 +347,7 @@ RSpec.describe SalesAnalyst do
         merchants[0] => 10.0,
         merchants[1] => 50.0,
         merchants[2] => 120.0
-     }
+      }
       allow_any_instance_of(Hash).to receive(:transform_values).and_return(revenue_hash)
 
       expect(sales_analyst.all_merchant_revenue).to eq revenue_hash
@@ -362,25 +359,23 @@ RSpec.describe SalesAnalyst do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
       invoices = sales_analyst.all_invoices
       merchants = sales_analyst.all_merchants
-      expected_hash = merchants.reduce({}) do|hash, merchant|
-        hash[merchant] = invoices.find_all {|invoice| invoice.merchant_id == merchant.id}
-        hash
+      expected_hash = merchants.each_with_object({}) do |merchant, hash|
+        hash[merchant] = invoices.find_all { |invoice| invoice.merchant_id == merchant.id }
       end
-
 
       allow(merchants).to receive(:reduce).and_return(expected_hash)
       revenue_hash = {
         merchants[0] => 10.0,
-        merchants[1]=> 20.0,
-        merchants[2]=> 30.0,
-        merchants[3]=> 30.0,
-        merchants[4]=> 30.0,
-        merchants[5]=> 30.0,
-        merchants[6]=> 30.0,
-        merchants[7]=> 30.0,
-        merchants[8]=> 50.0,
-        merchants[9]=> 120.0
-     }
+        merchants[1] => 20.0,
+        merchants[2] => 30.0,
+        merchants[3] => 30.0,
+        merchants[4] => 30.0,
+        merchants[5] => 30.0,
+        merchants[6] => 30.0,
+        merchants[7] => 30.0,
+        merchants[8] => 50.0,
+        merchants[9] => 120.0
+      }
       allow_any_instance_of(Hash).to receive(:transform_values).and_return(revenue_hash)
 
       expect(sales_analyst.top_revenue_earners(2).length).to eq 2

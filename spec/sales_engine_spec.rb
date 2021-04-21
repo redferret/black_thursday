@@ -33,13 +33,8 @@ describe SalesEngine do
       sales_engine = SalesEngineMocks.sales_engine(self)
 
       expect(sales_engine.items).to be_an ItemRepository
-    end
-
-    it 'has Items in the ItemRepository' do
-      sales_engine = SalesEngineMocks.sales_engine(self)
-
-      item_repo = sales_engine.items
-      expect(item_repo.all).not_to eq []
+      sales_engine.all_items
+      expect(sales_engine.items).to have_received(:all)
     end
   end
 
@@ -48,13 +43,8 @@ describe SalesEngine do
       sales_engine = SalesEngineMocks.sales_engine(self)
 
       expect(sales_engine.merchants).to be_a MerchantRepository
-    end
-
-    it 'has Merchants in the MerchantRepository' do
-      sales_engine = SalesEngineMocks.sales_engine(self)
-      merchant_repo = sales_engine.merchants
-
-      expect(merchant_repo.all).not_to eq []
+      sales_engine.all_merchants
+      expect(sales_engine.merchants).to have_received(:all)
     end
   end
 
@@ -63,13 +53,8 @@ describe SalesEngine do
       sales_engine = SalesEngineMocks.sales_engine(self)
 
       expect(sales_engine.invoices).to be_an InvoiceRepository
-    end
-
-    it 'has Invoices in the InvoiceRepository' do
-      sales_engine = SalesEngineMocks.sales_engine(self)
-      invoice_repo = sales_engine.invoices
-
-      expect(invoice_repo.all).not_to eq []
+      sales_engine.all_invoices
+      expect(sales_engine.invoices).to have_received(:all)
     end
   end
 
@@ -77,14 +62,9 @@ describe SalesEngine do
     it 'has an TransactionRepository' do
       sales_engine = SalesEngineMocks.sales_engine(self)
 
-      expect(sales_engine.invoices).to be_an InvoiceRepository
-    end
-
-    it 'has Transactions in the TransactionRepository' do
-      sales_engine = SalesEngineMocks.sales_engine(self)
-      transaction_repo = sales_engine.transactions
-
-      expect(transaction_repo.all).not_to eq []
+      expect(sales_engine.transactions).to be_an TransactionRepository
+      sales_engine.all_transactions
+      expect(sales_engine.transactions).to have_received(:all)
     end
   end
 
@@ -94,13 +74,8 @@ describe SalesEngine do
       invoice_item_repo = sales_engine.invoice_items
 
       expect(invoice_item_repo).to be_an InvoiceItemRepository
-    end
-
-    it 'has invoice items' do
-      sales_engine = SalesEngineMocks.sales_engine(self)
-      invoice_item_repo = sales_engine.invoice_items
-
-      expect(invoice_item_repo.all).not_to eq []
+      sales_engine.all_invoice_items
+      expect(sales_engine.invoice_items).to have_received(:all)
     end
   end
 
@@ -110,13 +85,8 @@ describe SalesEngine do
       customer_repo = sales_engine.customers
 
       expect(customer_repo).to be_a CustomerRepository
-    end
-
-    it 'has customers' do
-      sales_engine = SalesEngineMocks.sales_engine(self)
-      customer_repo = sales_engine.customers
-
-      expect(customer_repo.all).not_to eq []
+      sales_engine.all_customers
+      expect(sales_engine.customers).to have_received(:all)
     end
   end
 

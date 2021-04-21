@@ -113,7 +113,8 @@ class SalesAnalyst
   end
 
   def top_merchants_by_invoice_count
-    high_invoice_count = standard_deviations_of_mean(average_invoices_per_merchant, average_invoices_per_merchant_standard_deviation, 2)
+    high_invoice_count = standard_deviations_of_mean(average_invoices_per_merchant,
+                                                     average_invoices_per_merchant_standard_deviation, 2)
     merchants = []
     num_of_invoices_per_merchant.each_pair do |merchant, invoice_count|
       merchants << merchant if invoice_count >= high_invoice_count
@@ -122,7 +123,8 @@ class SalesAnalyst
   end
 
   def bottom_merchants_by_invoice_count
-    low_invoice_count = standard_deviations_of_mean(average_invoices_per_merchant, average_invoices_per_merchant_standard_deviation, -2)
+    low_invoice_count = standard_deviations_of_mean(average_invoices_per_merchant,
+                                                    average_invoices_per_merchant_standard_deviation, -2)
     merchants = []
     num_of_invoices_per_merchant.each_pair do |merchant, invoice_count|
       merchants << merchant if invoice_count <= low_invoice_count
@@ -131,7 +133,7 @@ class SalesAnalyst
   end
 
   def invoice_created_at_times
-    if all_invoices[0].created_at.class == String
+    if all_invoices[0].created_at.instance_of?(String)
       all_invoices.map do |invoice|
         Time.parse(invoice.created_at)
       end
@@ -168,9 +170,10 @@ class SalesAnalyst
   end
 
   def top_days_by_invoice_count
-    threshold = standard_deviations_of_mean(average_invoices_per_day, average_invoices_per_day_standard_deviation)
+    threshold = standard_deviations_of_mean(average_invoices_per_day,
+                                            average_invoices_per_day_standard_deviation)
     weekday_hash = convert_wday_integers_to_hash
-    weekday_hash.select do |weekday, invoices|
+    weekday_hash.select do |_weekday, invoices|
       invoices > threshold
     end.keys
   end
@@ -187,7 +190,7 @@ class SalesAnalyst
   end
 
   def invoice_total(invoice_id)
-    invoice_paid_in_full?(invoice_id)? @invoice_item_repo.total_for_invoice(invoice_id) : 0
+    invoice_paid_in_full?(invoice_id) ? @invoice_item_repo.total_for_invoice(invoice_id) : 0
   end
 
   def total_revenue_by_date(date)
@@ -213,7 +216,7 @@ class SalesAnalyst
   end
 
   def top_revenue_earners(x = 20)
-    revenue_list = all_merchant_revenue.sort_by {|merchant, revenue| revenue}.reverse
+    revenue_list = all_merchant_revenue.sort_by { |_merchant, revenue| revenue }.reverse
     merchants_by_revenue = revenue_list.map { |array| array[0] }
     merchants_by_revenue.first(x)
   end
@@ -256,9 +259,9 @@ class SalesAnalyst
 
   def most_sold_item_for_merchant(merchant_id)
     items = all_sold_items_for_merchant(merchant_id)
-    sorted_items = items.sort_by {|item, count| count}.reverse
+    sorted_items = items.sort_by { |_item, count| count }.reverse
     most_sold_items = find_top_by(sorted_items)
-    most_sold_items.map {|array| @item_repo.find_by_id(array[0])}
+    most_sold_items.map { |array| @item_repo.find_by_id(array[0]) }
   end
 
   def best_item_for_merchant(merchant_id)
@@ -268,7 +271,7 @@ class SalesAnalyst
       item.unit_price * count
     end
     most_valuable_items = find_top_by(sorted_items)
-    most_valuable_items.map {|array| @item_repo.find_by_id(array[0])}
+    most_valuable_items.map { |array| @item_repo.find_by_id(array[0]) }
   end
 
   def revenue_by_merchant(merchant_id)
@@ -287,7 +290,7 @@ class SalesAnalyst
   end
 
   def merchants_with_only_one_item
-    num_of_items_per_merchant.select do |key, value|
+    num_of_items_per_merchant.select do |_key, value|
       value == 1
     end.keys
   end

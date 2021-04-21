@@ -8,7 +8,7 @@ require './lib/invoice_item_repository'
 describe InvoiceItemRepository do
   describe '#initialize' do
     it 'exists' do
-      allow_any_instance_of(InvoiceItemRepository).to receive(:create_invoice_items).and_return(InvoiceItemMocks.invoice_items_as_hashes)
+      allow(FileIo).to receive(:process_csv).and_return(InvoiceItemMocks.invoice_items_as_hashes)
       ii_repo = InvoiceItemRepository.new('fake.csv')
 
       expect(ii_repo).is_a? InvoiceItemRepository
@@ -17,7 +17,7 @@ describe InvoiceItemRepository do
 
   describe '#all' do
     it 'returns all known InvoiceItem instances' do
-      allow_any_instance_of(InvoiceItemRepository).to receive(:create_invoice_items).and_return(InvoiceItemMocks.invoice_items_as_hashes)
+      allow(FileIo).to receive(:process_csv).and_return(InvoiceItemMocks.invoice_items_as_hashes)
       ii_repo = InvoiceItemRepository.new('fake.csv')
 
       expected = ii_repo.all.length
@@ -28,10 +28,10 @@ describe InvoiceItemRepository do
   describe '#find_by_id' do
     it 'returns either nil or an instance of InvoiceItemRepository with matching ID' do
       mock_data = InvoiceItemMocks.invoice_items_as_mocks(self)
-      allow_any_instance_of(InvoiceItemRepository).to receive(:create_invoice_items).and_return(mock_data)
+      allow(FileIo).to receive(:process_csv).and_return(mock_data)
       ii_repo = InvoiceItemRepository.new('fake.csv')
 
-      expected = ii_repo.invoice_items.first
+      expected = ii_repo.all.first
       expect(ii_repo.find_by_id(50)).to eq nil
       expect(ii_repo.find_by_id(0)).to eq expected
     end
@@ -41,7 +41,7 @@ describe InvoiceItemRepository do
     it 'returns either [] or array of InvoiceItems with matching item ID' do
       details = InvoiceItemMocks.invoice_items_as_hashes(item_id: 1)
       mock_data = InvoiceItemMocks.invoice_items_as_mocks(self, details)
-      allow_any_instance_of(InvoiceItemRepository).to receive(:create_invoice_items).and_return(mock_data)
+      allow(FileIo).to receive(:process_csv).and_return(mock_data)
       ii_repo = InvoiceItemRepository.new('fake.csv')
 
       expect(ii_repo.find_all_by_item_id(59)).to eq []
@@ -54,7 +54,7 @@ describe InvoiceItemRepository do
     it 'returns either [] or array of InvoiceItems with matching invoice ID' do
       details = InvoiceItemMocks.invoice_items_as_hashes(invoice_id: 1)
       mock_data = InvoiceItemMocks.invoice_items_as_mocks(self, details)
-      allow_any_instance_of(InvoiceItemRepository).to receive(:create_invoice_items).and_return(mock_data)
+      allow(FileIo).to receive(:process_csv).and_return(mock_data)
       ii_repo = InvoiceItemRepository.new('fake.csv')
 
       expect(ii_repo.find_all_by_invoice_id(59)).to eq []
@@ -66,11 +66,10 @@ describe InvoiceItemRepository do
   describe '#create' do
     it 'creates a new InvoiceItem with provided attributes' do
       mock_data = InvoiceItemMocks.invoice_items_as_mocks(self)
-      allow_any_instance_of(InvoiceItemRepository).to receive(:create_invoice_items).and_return(mock_data)
+      allow(FileIo).to receive(:process_csv).and_return(mock_data)
       ii_repo = InvoiceItemRepository.new('fake.csv')
 
       attributes = {
-        id: nil,
         item_id: 17,
         invoice_id: 81,
         quantity: 1,
@@ -81,18 +80,17 @@ describe InvoiceItemRepository do
 
       ii_repo.create(attributes)
 
-      expected = ii_repo.invoice_items.last
+      expected = ii_repo.all.last
       expect(ii_repo.all.length).to eq 11
       expect(expected.invoice_id).to eq 81
     end
 
     it 'sets id to current highest InvoiceItem id plus 1' do
       mock_data = InvoiceItemMocks.invoice_items_as_mocks(self)
-      allow_any_instance_of(InvoiceItemRepository).to receive(:create_invoice_items).and_return(mock_data)
+      allow(FileIo).to receive(:process_csv).and_return(mock_data)
       ii_repo = InvoiceItemRepository.new('fake.csv')
 
       attributes = {
-        id: nil,
         item_id: 17,
         invoice_id: 81,
         quantity: 1,
@@ -103,7 +101,7 @@ describe InvoiceItemRepository do
 
       ii_repo.create(attributes)
 
-      expected = ii_repo.invoice_items.last
+      expected = ii_repo.all.last
       expect(expected.id).to eq 10
     end
   end
@@ -111,44 +109,20 @@ describe InvoiceItemRepository do
   describe '#find_max_id' do
     it 'finds the highest id and returns it as an integer' do
       mock_data = InvoiceItemMocks.invoice_items_as_mocks(self)
-      allow_any_instance_of(InvoiceItemRepository).to receive(:create_invoice_items).and_return(mock_data)
+      allow(FileIo).to receive(:process_csv).and_return(mock_data)
       ii_repo = InvoiceItemRepository.new('fake.csv')
 
       expect(ii_repo.find_max_id).to eq 9
     end
   end
 
-  describe '#create_first_invoice_item' do
-    it 'can create an invoice item when InvoiceRepository has empty array of InvoiceItems' do
-      mock_data = InvoiceItemMocks.invoice_items_as_mocks(self)
-      allow_any_instance_of(InvoiceItemRepository).to receive(:create_invoice_items).and_return([])
-      ii_repo = InvoiceItemRepository.new('fake.csv')
-
-      attributes = {
-        id: nil,
-        item_id: 17,
-        invoice_id: 81,
-        quantity: 1,
-        unit_price: BigDecimal(10.99, 4),
-        created_at: Time.now,
-        updated_at: Time.now
-      }
-
-      expected = ii_repo.create(attributes)
-
-      expect(ii_repo.invoice_items).to eq expected
-      expect(ii_repo.invoice_items.first.id).to eq 1
-    end
-  end
-
   describe '#update' do
     it 'updates the InvoiceItem instance with corresponding id to provided attributes' do
       mock_data = InvoiceItemMocks.invoice_items_as_mocks(self)
-      allow_any_instance_of(InvoiceItemRepository).to receive(:create_invoice_items).and_return(mock_data)
+      allow(FileIo).to receive(:process_csv).and_return(mock_data)
       ii_repo = InvoiceItemRepository.new('fake.csv')
 
       new_invoice_item = {
-        id: nil,
         item_id: 17,
         invoice_id: 81,
         quantity: 1,
@@ -165,7 +139,7 @@ describe InvoiceItemRepository do
       }
       ii_repo.update(10, attributes)
 
-      expected = ii_repo.invoice_items.last
+      expected = ii_repo.all.last
 
       expect(expected.quantity).to eq 17
       expect(expected.unit_price).to eq 51.19
@@ -173,11 +147,10 @@ describe InvoiceItemRepository do
 
     it 'does nothing if id not found' do
       mock_data = InvoiceItemMocks.invoice_items_as_mocks(self)
-      allow_any_instance_of(InvoiceItemRepository).to receive(:create_invoice_items).and_return(mock_data)
+      allow(FileIo).to receive(:process_csv).and_return(mock_data)
       ii_repo = InvoiceItemRepository.new('fake.csv')
 
       new_invoice_item = {
-        id: nil,
         item_id: 17,
         invoice_id: 81,
         quantity: 1,
@@ -194,7 +167,7 @@ describe InvoiceItemRepository do
       }
       ii_repo.update(100, attributes)
 
-      expected = ii_repo.invoice_items.last
+      expected = ii_repo.all.last
 
       expect(expected.quantity).not_to eq 17
       expect(expected.unit_price).not_to eq 51.19
@@ -202,11 +175,10 @@ describe InvoiceItemRepository do
 
     it 'updates the updated_at time' do
       mock_data = InvoiceItemMocks.invoice_items_as_mocks(self)
-      allow_any_instance_of(InvoiceItemRepository).to receive(:create_invoice_items).and_return(mock_data)
+      allow(FileIo).to receive(:process_csv).and_return(mock_data)
       ii_repo = InvoiceItemRepository.new('fake.csv')
 
       new_invoice_item = {
-        id: nil,
         item_id: 17,
         invoice_id: 81,
         quantity: 1,
@@ -232,11 +204,10 @@ describe InvoiceItemRepository do
 
     it 'can not change immutable attributes' do
       mock_data = InvoiceItemMocks.invoice_items_as_mocks(self)
-      allow_any_instance_of(InvoiceItemRepository).to receive(:create_invoice_items).and_return(mock_data)
+      allow(FileIo).to receive(:process_csv).and_return(mock_data)
       ii_repo = InvoiceItemRepository.new('fake.csv')
 
       new_invoice_item = {
-        id: nil,
         item_id: 17,
         invoice_id: 81,
         quantity: 1,
@@ -255,7 +226,7 @@ describe InvoiceItemRepository do
       }
       ii_repo.update(10, attributes)
 
-      expected = ii_repo.invoice_items.last
+      expected = ii_repo.all.last
 
       expect(expected.item_id).to eq 17
       expect(expected.invoice_id).to eq 81
@@ -265,11 +236,10 @@ describe InvoiceItemRepository do
   describe '#delete' do
     it 'deletes item with corresponding id' do
       mock_data = InvoiceItemMocks.invoice_items_as_mocks(self)
-      allow_any_instance_of(InvoiceItemRepository).to receive(:create_invoice_items).and_return(mock_data)
+      allow(FileIo).to receive(:process_csv).and_return(mock_data)
       ii_repo = InvoiceItemRepository.new('fake.csv')
 
       new_invoice_item = {
-        id: nil,
         item_id: 17,
         invoice_id: 81,
         quantity: 1,
@@ -290,11 +260,10 @@ describe InvoiceItemRepository do
 
     it 'does nothing if id not found' do
       mock_data = InvoiceItemMocks.invoice_items_as_mocks(self)
-      allow_any_instance_of(InvoiceItemRepository).to receive(:create_invoice_items).and_return(mock_data)
+      allow(FileIo).to receive(:process_csv).and_return(mock_data)
       ii_repo = InvoiceItemRepository.new('fake.csv')
 
       new_invoice_item = {
-        id: nil,
         item_id: 17,
         invoice_id: 81,
         quantity: 1,
@@ -315,7 +284,7 @@ describe InvoiceItemRepository do
   describe '#total_for_invoice' do
     it 'returns the total for all InvoiceItems with specified invoice_id' do
       mock_data = InvoiceItemMocks.invoice_items_as_mocks(self)
-      allow_any_instance_of(InvoiceItemRepository).to receive(:create_invoice_items).and_return(mock_data)
+      allow(FileIo).to receive(:process_csv).and_return(mock_data)
       ii_repo = InvoiceItemRepository.new('fake.csv')
 
       new_invoice_item = {
