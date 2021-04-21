@@ -194,7 +194,6 @@ class SalesAnalyst
   end
 
   def total_revenue_by_date(date)
-    # should make a method in InvoiceRepo for find_all_by_date
     invoices_for_date = all_invoices.find_all do |invoice|
       invoice.created_at == date
     end
