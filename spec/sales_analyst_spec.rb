@@ -23,26 +23,43 @@ RSpec.describe SalesAnalyst do
   end
 
   describe '#find_top_by' do
-    it 'needs tests' do
-      fail
+    xit 'needs tests' do
+
     end
   end
 
   describe '#top_days_by_invoice_count' do
-    it 'fails because there are no tests for it' do
-      fail
+    xit 'fails because there are no tests for it' do
+
     end
   end
 
   describe '#merchants_registered_for_month' do
-    it 'fails because there are no tests for it' do
-      fail
+    it 'returns a lits of merchants registered for given month' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+      merchant1 = sales_analyst.merchant_repo.find_by_id(8)
+      merchant2 = sales_analyst.merchant_repo.find_by_id(9)
+
+      expected = [merchant1, merchant2]
+      actual = sales_analyst.merchants_registered_for_month('July')
+
+      expect(actual).to eq expected
     end
   end
 
   describe '#merchants_with_only_one_item' do
-    it 'fails because there are no tests for it' do
-      fail
+    it 'returns merchants with only 1 item' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+      mocked_hash = {
+        merch1: 3,
+        merch2: 4,
+        merch3: 1,
+        merch4: 1
+      }
+      allow(sales_analyst).to receive(:num_of_items_per_merchant).and_return(mocked_hash)
+      expected = [:merch3, :merch4]
+      actual = sales_analyst.merchants_with_only_one_item
+      expect(actual).to eq expected
     end
   end
 
