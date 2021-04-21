@@ -4,8 +4,8 @@ RSpec.describe ItemMocks do
   describe '#items_as_mocks' do
     it 'returns mocks items with expected attributes' do
       items_as_mocks = ItemMocks.items_as_mocks(self)
-      expect(items_as_mocks).to be_instance_of Array
 
+      expect(items_as_mocks).to be_instance_of Array
       items_as_mocks.each do |item_mock|
         expect(item_mock.name).to be_a String
         expect(item_mock.id).to be_an Integer
@@ -20,6 +20,7 @@ RSpec.describe ItemMocks do
     it 'accepts custom hashes' do
       items_as_hashes = ItemMocks.items_as_hashes(number_of_hashes: 2)
       items_as_mocks = ItemMocks.items_as_mocks(self, items_as_hashes)
+
       expect(items_as_mocks.length).to eq 2
     end
   end
@@ -53,6 +54,7 @@ RSpec.describe ItemMocks do
 
     it 'allows non-random dates' do
       items_as_hashes = ItemMocks.items_as_hashes(random_dates: false)
+
       items_as_hashes.each do |item_hash|
         expect(item_hash[:created_at]).to eq '2021-01-01'
       end
@@ -60,6 +62,7 @@ RSpec.describe ItemMocks do
 
     it 'allows for custom unit prices' do
       items_as_hashes = ItemMocks.items_as_hashes(unit_price: 4.50)
+      
       items_as_hashes.each do |item_hash|
         expect(item_hash[:unit_price]).to eq 4.50
       end

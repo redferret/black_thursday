@@ -17,7 +17,7 @@ class MerchantRepository < Repository
 
   def find_all_by_name(name)
     find_all_by do |merchant|
-      merchant.name.downcase == name.downcase
+      merchant.name.downcase.include?(name.downcase)
     end
   end
 

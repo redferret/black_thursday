@@ -1,9 +1,10 @@
 require './data/item_mocks'
-require './data/merchant_mocks'
 require './data/invoice_mocks'
 require './data/invoice_item_mocks'
+require './data/merchant_mocks'
 require './data/sales_analyst_mocks'
 require './data/transaction_mocks'
+
 require './lib/sales_analyst'
 require './lib/sales_engine'
 
@@ -14,10 +15,10 @@ RSpec.describe SalesAnalyst do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
       merchant1 = sales_analyst.merchant_repo.find_by_id(8)
       merchant2 = sales_analyst.merchant_repo.find_by_id(9)
-
       expected = [merchant1, merchant2]
 
       actual = sales_analyst.merchants_with_only_one_item
+
       expect(actual).to eq expected
     end
   end
@@ -41,7 +42,6 @@ RSpec.describe SalesAnalyst do
   describe '#top_days_by_invoice_count' do
     it 'returns days of the week with the most invoices' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
-
       expect(sales_analyst.top_days_by_invoice_count).to eq ['Tuesday']
     end
   end
@@ -71,6 +71,7 @@ RSpec.describe SalesAnalyst do
       allow(sales_analyst).to receive(:num_of_items_per_merchant).and_return(mocked_hash)
       expected = %i[merch3 merch4]
       actual = sales_analyst.merchants_with_only_one_item
+
       expect(actual).to eq expected
     end
   end
@@ -80,10 +81,10 @@ RSpec.describe SalesAnalyst do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
       merchant1 = sales_analyst.merchant_repo.find_by_id(8)
       merchant2 = sales_analyst.merchant_repo.find_by_id(9)
-
       expected = [merchant1, merchant2]
 
       actual = sales_analyst.merchants_with_only_one_item_registered_in_month('July')
+
       expect(actual).to eq expected
     end
   end
@@ -91,7 +92,6 @@ RSpec.describe SalesAnalyst do
   describe '#num_of_items_per_merchant' do
     it 'returns a hash with each merchant as key and number of items as value' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
-
       sales_engine = sales_analyst.sales_engine
       merchants_as_mocks = sales_engine.merchants.all
 
@@ -173,7 +173,6 @@ RSpec.describe SalesAnalyst do
     it 'get the average of all the averages for each merchant' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
       allow(sales_analyst).to receive(:average_item_price_for_merchant) { 50.0 }
-
       actual_avg_of_averages = sales_analyst.average_average_price_per_merchant
       expected_avg_of_averages = 30.0
 
@@ -184,7 +183,6 @@ RSpec.describe SalesAnalyst do
   describe '#golden_items' do
     it 'returns all items 2+ std deviations above the mean price' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
-
       actual_items = sales_analyst.golden_items
 
       expect(actual_items.length).to eq 3
@@ -210,7 +208,6 @@ RSpec.describe SalesAnalyst do
   describe 'num_of_invoices_per_merchant' do
     it 'returns a hash with merchants as keys and invoices as values' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
-
       sales_engine = sales_analyst.sales_engine
       merchants_as_mocks = sales_engine.merchants.all
 

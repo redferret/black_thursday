@@ -64,6 +64,7 @@ RSpec.describe TransactionMocks do
 
     it 'returns non-random time stamps' do
       tas_as_hashes = TransactionMocks.transactions_as_hashes(random_dates: false)
+
       tas_as_hashes.each do |ta_hash|
         expect(ta_hash[:created_at]).to eq '2021-01-01'
       end
@@ -85,6 +86,7 @@ RSpec.describe TransactionMocks do
         expect(ta_mock.updated_at).to match InvoiceMocks.date_format
       end
     end
+    
     it 'accepts custom hashes' do
       transaction_hashes = TransactionMocks.transactions_as_hashes(number_of_hashes: 2)
       transaction_mocks = TransactionMocks.transactions_as_mocks(self, transaction_hashes)

@@ -17,6 +17,7 @@ RSpec.describe InvoiceMocks do
     it 'accepts custom hashes' do
       invoices_as_hashes = InvoiceMocks.invoices_as_hashes(number_of_hashes: 2)
       invoices_as_mocks = InvoiceMocks.invoices_as_mocks(self, invoices_as_hashes)
+
       expect(invoices_as_mocks.length).to eq 2
     end
   end
@@ -68,6 +69,7 @@ RSpec.describe InvoiceMocks do
 
     it 'returns non-random dates' do
       invoices_as_hashes = InvoiceMocks.invoices_as_hashes(random_dates: false)
+
       invoices_as_hashes.each do |invoice_hash|
         expect(invoice_hash[:created_at]).to eq '2021-01-01'
       end
@@ -78,6 +80,7 @@ RSpec.describe InvoiceMocks do
     it 'returns a random status' do
       actual_status = InvoiceMocks.get_a_random_status
       possible_statuses = ['pending', 'shipped', 'returned']
+      
       expect(possible_statuses.include?(actual_status)).to be true
     end
   end

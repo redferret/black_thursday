@@ -15,6 +15,7 @@ describe Mockable do
     it 'builds mocks with given hashes' do
       hashes = [{ id: 10, name: 'Example 1' }, { id: 11, name: 'Example 2' }]
       mocks = Mockable.mock_generator(self, 'MockExample', hashes)
+
       expect(mocks.length).to eq 2
       expect(mocks.first.name).to eq 'Example 1'
     end
@@ -32,9 +33,11 @@ describe Mockable do
       date = Mockable.get_a_random_date
       expect(date.to_s).to match Mockable.date_format
     end
+
     it 'gets a non-random date' do
       first_date = Mockable.get_a_random_date false
       second_date = Mockable.get_a_random_date false
+
       expect(first_date.to_s).to eq second_date.to_s
     end
   end
@@ -45,6 +48,7 @@ describe Mockable do
       mock_items = ItemMocks.items_as_hashes
       expected_sum = 10
       actual_sum = Mockable.sum_item_prices_from_hash(mock_items)
+
       expect(actual_sum).to eq expected_sum
     end
   end
@@ -56,6 +60,7 @@ describe Mockable do
       mock_items = ItemMocks.items_as_hashes
       expected_mean = 5
       actual_mean = Mockable.mean_of_item_prices_from_hash(mock_items)
+      
       expect(actual_mean).to eq expected_mean
     end
   end

@@ -1,6 +1,10 @@
-require './lib/file_io'
+require_relative './file_io'
 
 class Repository
+  def inspect
+    "#<#{self.class} #{@models.size} rows>"
+  end
+
   def load_models(filename, model_class_name)
     @models = FileIo.process_csv(filename, model_class_name)
   end
