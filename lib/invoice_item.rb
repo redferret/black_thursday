@@ -1,4 +1,4 @@
-require './lib/model'
+require_relative './model'
 
 class InvoiceItem < Model
   attr_reader :item_id,
