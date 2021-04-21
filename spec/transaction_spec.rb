@@ -203,4 +203,36 @@ describe Transaction do
       expect(transaction.updated_at).to be > Time.new(2021, 0o2, 0o4)
     end
   end
+
+  describe '#success?' do
+    it 'returns true if Transaction result is :success' do
+      details = {
+        id: 6,
+        invoice_id: 8,
+        credit_card_number: '4242424242424242',
+        credit_card_expiration_date: '0220',
+        result: 'success',
+        created_at: Time.now,
+        updated_at: Time.new(2021, 0o4, 0o1)
+      }
+      transaction = Transaction.new(details)
+
+      expect(transaction.success?).to be true
+    end
+
+    it 'returns true if Transaction result is :success' do
+      details = {
+        id: 6,
+        invoice_id: 8,
+        credit_card_number: '4242424242424242',
+        credit_card_expiration_date: '0220',
+        result: 'failure',
+        created_at: Time.now,
+        updated_at: Time.new(2021, 0o4, 0o1)
+      }
+      transaction = Transaction.new(details)
+
+      expect(transaction.success?).to be false
+    end
+  end
 end

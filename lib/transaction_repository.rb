@@ -65,4 +65,10 @@ class TransactionRepository
     transaction = find_by_id(id)
     @transactions.delete(transaction)
   end
+
+  def any_success?(invoice_id)
+    @transactions.any? do |transaction|
+      transaction.invoice_id == invoice_id && transaction.success?
+    end
+  end 
 end
