@@ -8,6 +8,51 @@ require './lib/sales_engine'
 require './spec/sales_analyst_mocks'
 
 RSpec.describe SalesAnalyst do
+
+  describe '#merchants_with_only_one_item' do
+    it 'returns a list of merchants with only 1 item' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+      merchant1 = sales_analyst.merchant_repo.find_by_id(4)
+      merchant2 = sales_analyst.merchant_repo.find_by_id(5)
+
+      expected = [merchant1, merchant2]
+
+      actual = sales_analyst.merchants_with_only_one_item
+      expect(actual).to eq expected
+    end
+  end
+
+  describe '#top_days_by_invoice_count' do
+    it 'fails because there are no tests for it' do
+      fail
+    end
+  end
+
+  describe '#merchants_registered_for_month' do
+    it 'fails because there are no tests for it' do
+      fail
+    end
+  end
+
+  describe '#merchants_with_only_one_item' do
+    it 'fails because there are no tests for it' do
+      fail
+    end
+  end
+
+  describe '#merchants_with_only_one_item_registered_in_month' do
+    it 'returns a list of merchants with only 1 item registered in given month' do
+      sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
+      merchant1 = sales_analyst.merchant_repo.find_by_id(4)
+      merchant2 = sales_analyst.merchant_repo.find_by_id(5)
+
+      expected = [merchant1, merchant2]
+
+      actual = sales_analyst.merchants_with_only_one_item_registered_in_month('July')
+      expect(actual).to eq expected
+    end
+  end
+
   describe '#num_of_items_per_merchant' do
     it 'returns a hash with each merchant as key and number of items as value' do
       sales_analyst = SalesAnalystMocks.sales_analyst_mock(self)
